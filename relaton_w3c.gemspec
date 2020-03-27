@@ -1,4 +1,6 @@
-require_relative 'lib/relaton_w3c/version'
+lib = File.expand_path("lib", __dir__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "relaton_w3c/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "relaton-w3c"
@@ -31,13 +33,12 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "debase"
   spec.add_development_dependency "equivalent-xml", "~> 0.6"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  # spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "ruby-debug-ide"
   spec.add_development_dependency "ruby-jing"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
-  spec.add_dependency "relaton-iso-bib", "~> 0.8.0"
+  spec.add_dependency "relaton-bib", "~> 0.8.0"
 end
