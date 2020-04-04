@@ -8,17 +8,18 @@ module RelatonW3c
       # @return [RelatonW3c::HitCollection]
       def search(text)
         HitCollection.new text
-      rescue SocketError, Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-             Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError,
-             OpenSSL::SSL::SSLError, Errno::ETIMEDOUT
-        raise RelatonBib::RequestError, "Could not access #{HitCollection::DOMAIN}"
+      rescue SocketError, Timeout::Error, Errno::EINVAL, Errno::ECONNRESET,
+             EOFError, Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
+             Net::ProtocolError, OpenSSL::SSL::SSLError, Errno::ETIMEDOUT
+        raise RelatonBib::RequestError,
+              "Could not access #{HitCollection::DOMAIN}"
       end
 
       # @param ref [String] the W3C standard Code to look up
       # @param year [String, NilClass] not used
       # @param opts [Hash] options
       # @return [RelatonW3c::W3cBibliographicItem]
-      def get(ref, _year = nil, opts = {})
+      def get(ref, _year = nil, _opts = {})
         warn "[relaton-w3c] (\"#{ref}\") fetching..."
         result = search(ref)
         return unless result.any?

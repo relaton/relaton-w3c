@@ -8,7 +8,7 @@ module RelatonW3c
     #
     # @param lang [String, NilClass]
     # @return [RelatonW3c::W3cBibliographicItem]
-    def fetch(lang = nil)
+    def fetch(_lang = nil)
       @fetch ||= Scrapper.parse_page hit
     end
   end

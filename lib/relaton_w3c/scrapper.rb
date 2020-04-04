@@ -8,74 +8,99 @@ module RelatonW3c
         "PR" => "proposedRecommendation",
         "REC" => "recommendation",
         "RET" => "retired",
-        "WD" => "workingDraft"
+        "WD" => "workingDraft",
       }.freeze
 
       # @param hit [Hash]
       # @return [RelatonW3c::W3cBibliographicItem]
       def parse_page(hit)
-        doc = nil
-        if hit["link"] =~ Regexp.new(HitCollection::DOMAIN)
-          resp = Net::HTTP.get URI.parse(hit["link"])
-          doc = Nokogiri::HTML resp
-        end
+        resp = Net::HTTP.get_response URI.parse(hit["link"])
+        doc = resp.code == "200" ? Nokogiri::HTML(resp.body) : nil
         W3cBibliographicItem.new(
           type: "standard",
           fetched: Date.today.to_s,
           language: ["en"],
           script: ["Latn"],
-          title: title(hit),
-          abstract: abstract(doc),
-          link: link(hit),
-          date: date(hit),
-          doctype: doctype(hit),
-          contributor: contributor(hit, doc),
-          keyword: keyword(hit),
+          title: fetch_title(hit, doc),
+          abstract: fetch_abstract(doc),
+          link: fetch_link(hit),
+          date: fetch_date(hit, doc),
+          doctype: fetch_doctype(hit, doc),
+          contributor: fetch_contributor(hit, doc),
+          relation: fetch_relation(doc),
+          keyword: fetch_keyword(hit),
         )
       end
 
       private
 
       # @param hit [Hash]
+      # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::TypedTitleString>]
-      def title(hit)
-        t = RelatonBib::FormattedString.new content: hit["title"], language: "en", script: "Latn"
-        [RelatonBib::TypedTitleString.new(type: "main", title: t)]
+      def fetch_title(hit, doc)
+        titles = []
+        if doc
+          title = doc.at("//h1[@id='title']").text
+          titles << { content: title, type: "main" }
+          subtitle = doc.at("//h2[@id='subtitle']").text
+          titles << { content: subtitle, tipe: "subtitle" }
+        else
+          titles << { content: hit["title"], type: "main" }
+        end
+        titles.map do |t|
+          title = RelatonBib::FormattedString.new(
+            content: t[:content], language: "en", script: "Latn",
+          )
+          RelatonBib::TypedTitleString.new(type: t[:type], title: title)
+        end
       end
 
       # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [Array<RelatonBib::FormattedString>]
-      def abstract(doc)
+      def fetch_abstract(doc)
         return [] unless doc
 
         content = doc.at("//h2[.='Abstract']/following-sibling::p").text
-        [RelatonBib::FormattedString.new(content: content, language: "en", script: "Latn")]
+        [RelatonBib::FormattedString.new(content: content, language: "en",
+                                         script: "Latn")]
       end
 
       # @param hit [Hash]
       # @return [Array<RelatonBib::TypedUri>]
-      def link(hit)
+      def fetch_link(hit)
         [RelatonBib::TypedUri.new(type: "src", content: hit["link"])]
       end
 
       # @param hit [Hash]
+      # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [Array<RelatonBib::BibliographicDate>]
-      def date(hit)
-        [RelatonBib::BibliographicDate.new(type: "published", on: hit["datepub"])]
+      def fetch_date(hit, doc)
+        on = hit["datepub"] || doc.at("//h2/time[@datetime]")[:datetime]
+        [RelatonBib::BibliographicDate.new(type: "published", on: on)]
       end
 
       # @param hit [Hash]
+      # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [String]
-      def doctype(hit)
-        DOCTYPES[hit["type"]]
+      def fetch_doctype(hit, doc)
+        if hit["type"]
+          DOCTYPES[hit["type"]]
+        elsif doc
+          type = HitCollection::TYPES.detect do |_k, v|
+            doc.at("//h2[contains(., '#{v}')]/time[@datetime]")
+          end
+          DOCTYPES[type&.first]
+        end
       end
 
       # @param hit [Hash]
       # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [Array<RelatonBib::ContributionInfo>]
-      def contributor(hit, doc)
+      def fetch_contributor(hit, doc)
         if doc
-          editors = find_contribs(doc, "Editors").map { |ed| parse_contrib ed, "editor" }
+          editors = find_contribs(doc, "Editors").map do |ed|
+            parse_contrib ed, "editor"
+          end
           contribs = find_contribs(doc, "Authors").reduce(editors) do |mem, athr|
             ed = mem.detect { |e| e[:id] && e[:id] == athr["data-editor-id"] }
             if ed
@@ -125,19 +150,39 @@ module RelatonW3c
       def contrib_info(**args)
         completename = RelatonBib::LocalizedString.new(args[:name])
         name = RelatonBib::FullName.new completename: completename
-        aff = []
+        af = []
         if args[:org]
           org = RelatonBib::Organization.new args[:org]
-          aff << RelatonBib::Affiliation.new(organization: org)
+          af << RelatonBib::Affiliation.new(organization: org)
         end
-        en = RelatonBib::Person.new name: name, url: args[:url], affiliation: aff
+        en = RelatonBib::Person.new name: name, url: args[:url], affiliation: af
         RelatonBib::ContributionInfo.new entity: en, role: args[:role]
+      end
+
+      # @param doc [Nokogiri::HTML::Document]
+      # @return [Array<RelatonBib::DocumentRelation>]
+      def fetch_relation(doc)
+        return [] unless doc && (link = recommendation_link(doc))
+
+        hit = { "link" => link }
+        item = parse_page hit
+        [RelatonBib::DocumentRelation.new(type: "obsoleted", bibitem: item)]
+      end
+
+      # @param doc [Nokogiri::HTML::Document]
+      # @return [String, NilClass]
+      def recommendation_link(doc)
+        recom = doc.at("//dt[.='Latest Recommendation:']",
+                       "//dt[.='Previous Recommendation:']")
+        return unless recom
+
+        recom.at("./following-sibling::dd/a")[:href]
       end
 
       # @param hit [Hash]
       # @return [Array<RelatonBib::LocalizedString>]
-      def keyword(hit)
-        hit["keyword"].map do |kw|
+      def fetch_keyword(hit)
+        hit.fetch("keyword", []).map do |kw|
           RelatonBib::LocalizedString.new kw, "en", "Latn"
         end
       end

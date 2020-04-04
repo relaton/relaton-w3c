@@ -10,9 +10,9 @@ module RelatonW3c
       "PR" => "Proposed Recommendation",
       "REC" => "Recommendation",
       "RET" => "Retired",
-      "WD" => "Working Draft"
+      "WD" => "Working Draft",
     }.freeze
-    DOMAIN = "https://www.w3.org".freeze
+    DOMAIN = "https://www.w3.org"
     DATADIR = File.expand_path(".relaton/w3c", Dir.home).freeze
     DATAFILE = File.expand_path("bibliograhy.yml", DATADIR).freeze
 
@@ -47,21 +47,13 @@ module RelatonW3c
       result.map { |h| Hit.new(h, self) }
     end
 
+    # @param hit [Hash]
+    # @param type [String]
+    # @param date [String]
+    # @return [TrueClass, FalseClass]
     def type_date_filter(hit, type, date)
-      history = []
-      history_doc = nil
       if type && hit["type"] != short_type(type) || date && hit["date"] != date
-        history_doc = get_history hit
-        if type
-          history = history_doc.xpath("//table//a[contains(.,'#{long_type(type)}')]/../..")
-        end
-        if date
-          if type
-            history = history.select { |h| h.at("td[@class='table_datecol']").text == date }
-          else
-            history = history_doc.xpath("//table//td[@class='table_datecol'][.='#{date}']/..")
-          end
-        end
+        history = get_history hit, type, date
         return false unless history.any?
 
         hit["type"] = short_type type
@@ -71,9 +63,36 @@ module RelatonW3c
       true
     end
 
-    def get_history(hit)
+    # @param hit [Hash]
+    # @param type [String]
+    # @param date [String]
+    # @return [Array<Nokogiri::XML::Element>, Nokogiri::HTML::NodeSet]
+    def get_history(hit, type, date)
       resp = Net::HTTP.get URI.parse(HitCollection::DOMAIN + hit["history"])
-      Nokogiri::HTML resp
+      history_doc = Nokogiri::HTML resp
+      history = history_doc.xpath(
+        "//table//a[contains(.,'#{long_type(type)}')]/../..",
+      )
+      return filter_history_by_date(history, history_doc, type, date) if date
+
+      history
+    end
+
+    # @param history [Nokogiri::XML::NodeSet]
+    # @param history_doc [Nokogiri::HTML::NodeSet]
+    # @param type [String]
+    # @param date [String]
+    # @return [Array<Nokogiri::XML::Element>, Nokogiri::HTML::NodeSet]
+    def filter_history_by_date(history, history_doc, type, date)
+      if type
+        history.select do |h|
+          h.at("td[@class='table_datecol']").text == date
+        end
+      else
+        history_doc.xpath(
+          "//table//td[@class='table_datecol'][.='#{date}']/..",
+        )
+      end
     end
 
     #
@@ -115,21 +134,31 @@ module RelatonW3c
       return unless resp.code == "200"
 
       doc = Nokogiri::HTML resp.body
-      @data = doc.xpath("//ul[@id='container']/li").map do |s|
-        link = s.at("h2/a")
-        pubdetails = s.at("p[@class='pubdetails']")
-        {
-          "title" => link.text.gsub("\u00a0", " "),
-          "link" => link[:href],
-          "type" => s.at("div").text.upcase,
-          "workgroup" => s.xpath("p[@class='deliverer']").map(&:text),
-          "datepub" => pubdetails.at("text()").text.match(/\d{4}-\d{2}-\d{2}/).to_s,
-          "history" => pubdetails.at("a[text()='History']")[:href],
-          "editor" => s.xpath("ul[@class='editorlist']/li").map { |e| e.text.strip },
-          "keyword" => s.xpath("ul[@class='taglist']/li").map { |e| e.text.strip }
-        }
+      @data = doc.xpath("//ul[@id='container']/li").map do |h_el|
+        link = h_el.at("h2/a")
+        pubdetails = h_el.at("p[@class='pubdetails']")
+        fetch_hit h_el, link, pubdetails
       end
       File.write DATAFILE, @data.to_yaml, encoding: "UTF-8"
+    end
+
+    # @param h_el [Nokogiri::XML::Element]
+    # @param link [Nokogiri::XML::Element]
+    # @param pubdetails [Nokogiri::XML::Element]
+    def fetch_hit(h_el, link, pubdetails)
+      datepub = pubdetails.at("text()").text.match(/\d{4}-\d{2}-\d{2}/).to_s
+      editor = h_el.xpath("ul[@class='editorlist']/li").map { |e| e.text.strip }
+      keyword = h_el.xpath("ul[@class='taglist']/li").map { |e| e.text.strip }
+      {
+        "title" => link.text.gsub("\u00a0", " "),
+        "link" => link[:href],
+        "type" => h_el.at("div").text.upcase,
+        "workgroup" => h_el.xpath("p[@class='deliverer']").map(&:text),
+        "datepub" => datepub,
+        "history" => pubdetails.at("a[text()='History']")[:href],
+        "editor" => editor,
+        "keyword" => keyword,
+      }
     end
   end
 end
