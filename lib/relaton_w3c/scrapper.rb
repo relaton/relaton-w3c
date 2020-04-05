@@ -28,7 +28,7 @@ module RelatonW3c
           doctype: fetch_doctype(hit, doc),
           contributor: fetch_contributor(hit, doc),
           relation: fetch_relation(doc),
-          keyword: fetch_keyword(hit),
+          keyword: hit["keyword"],
         )
       end
 
@@ -177,14 +177,6 @@ module RelatonW3c
         return unless recom
 
         recom.at("./following-sibling::dd/a")[:href]
-      end
-
-      # @param hit [Hash]
-      # @return [Array<RelatonBib::LocalizedString>]
-      def fetch_keyword(hit)
-        hit.fetch("keyword", []).map do |kw|
-          RelatonBib::LocalizedString.new kw, "en", "Latn"
-        end
       end
     end
   end

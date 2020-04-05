@@ -5,8 +5,17 @@ require "relaton_w3c/w3c_bibliographic_item"
 require "relaton_w3c/hit_collection"
 require "relaton_w3c/hit"
 require "relaton_w3c/scrapper"
+require "relaton_w3c/xml_parser"
 
 module RelatonW3c
   class Error < StandardError; end
-  # Your code goes here...
+
+  # Returns hash of XML reammar
+  # @return [String]
+  def self.grammar_hash
+    gem_path = File.expand_path "..", __dir__
+    grammars_path = File.join gem_path, "grammars", "*"
+    grammars = Dir[grammars_path].sort.map { |gp| File.read gp }.join
+    Digest::MD5.hexdigest grammars
+  end
 end
