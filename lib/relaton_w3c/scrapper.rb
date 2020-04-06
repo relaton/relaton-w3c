@@ -75,8 +75,8 @@ module RelatonW3c
       # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [Array<RelatonBib::BibliographicDate>]
       def fetch_date(hit, doc)
-        on = hit["datepub"] || doc.at("//h2/time[@datetime]")[:datetime]
-        [RelatonBib::BibliographicDate.new(type: "published", on: on)]
+        on = hit["datepub"] || doc && doc.at("//h2/time[@datetime]")[:datetime]
+        [RelatonBib::BibliographicDate.new(type: "published", on: on)] if on
       end
 
       # @param hit [Hash]

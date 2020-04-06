@@ -28,5 +28,12 @@ module RelatonW3c
         end
       end
     end
+
+    # @return [Hash]
+    def to_hash
+      hash = super
+      hash["doctype"] = doctype if doctype
+      hash
+    end
   end
 end

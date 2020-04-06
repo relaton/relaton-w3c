@@ -84,7 +84,8 @@ RSpec.describe RelatonW3c do
           VCR.use_cassette "json_ld_1_1_history" do
             VCR.use_cassette "wd_json_ld11_20191018" do
               doc = RelatonW3c::W3cBibliography.get "W3C JSON-LD 1.1 2019-10-18"
-              expect(doc).to be_instance_of RelatonW3c::W3cBibliographicItem
+              expect(doc.title.first.title.content).to eq "JSON-LD 1.1"
+              expect(doc.date.first.on.to_s).to eq "2019-10-18"
             end
           end
         end
@@ -95,8 +96,19 @@ RSpec.describe RelatonW3c do
           VCR.use_cassette "json_ld_1_1_history" do
             VCR.use_cassette "wd_json_ld11_20191018" do
               doc = RelatonW3c::W3cBibliography.get "W3C WD JSON-LD 1.1 2019-10-18"
-              expect(doc).to be_instance_of RelatonW3c::W3cBibliographicItem
+              expect(doc.title.first.title.content).to eq "JSON-LD 1.1"
+              expect(doc.doctype).to eq "workingDraft"
+              expect(doc.date.first.on.to_s).to eq "2019-10-18"
             end
+          end
+        end
+      end
+
+      it "document from another site" do
+        VCR.use_cassette "data" do
+          VCR.use_cassette "dom" do
+            doc = RelatonW3c::W3cBibliography.get "W3C DOM"
+            expect(doc.title.first.title.content).to eq "DOM"
           end
         end
       end

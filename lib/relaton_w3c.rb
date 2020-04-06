@@ -6,6 +6,7 @@ require "relaton_w3c/hit_collection"
 require "relaton_w3c/hit"
 require "relaton_w3c/scrapper"
 require "relaton_w3c/xml_parser"
+require "relaton_w3c/hash_converter"
 
 module RelatonW3c
   class Error < StandardError; end

@@ -1,0 +1,188 @@
+---
+title:
+- type: main
+  content: JSON-LD 1.1
+  language: en
+  script: Latn
+  format: text/plain
+- content: A JSON-based Serialization for Linked Data
+  language: en
+  script: Latn
+  format: text/plain
+link:
+  content: https://www.w3.org/TR/2020/CR-json-ld11-20200316/
+  type: src
+type: standard
+date:
+  type: published
+  value: '2020-01-01'
+contributor:
+- person:
+    name:
+      completename: Gregg Kellogg
+  role:
+  - editor
+  - author
+- person:
+    name:
+      completename: Pierre-Antoine Champin
+    affiliation:
+      organization:
+        name: LIRIS - Université de Lyon
+        url: https://liris.cnrs.fr/
+  role:
+  - editor
+  - author
+- person:
+    name:
+      completename: Dave Longley
+    affiliation:
+      organization:
+        name: Digital Bazaar
+        url: https://digitalbazaar.com/
+  role: editor
+- person:
+    name:
+      completename: Manu Sporny
+    affiliation:
+      organization:
+        name: Digital Bazaar
+        url: https://digitalbazaar.com/
+  role: author
+- person:
+    name:
+      completename: Dave Longley
+    affiliation:
+      organization:
+        name: Digital Bazaar
+        url: https://digitalbazaar.com/
+  role: author
+- person:
+    name:
+      completename: Markus Lanthaler
+    affiliation:
+      organization:
+        name: Google
+        url: https://www.google.com/
+  role: author
+- person:
+    name:
+      completename: Niklas Lindström
+  role: author
+revdate: '2020-01-01'
+language: en
+script: Latn
+abstract:
+  content: |-
+    JSON is a useful data serialization and messaging format.
+        This specification defines JSON-LD 1.1, a JSON-based format to serialize
+        Linked Data. The syntax is designed to easily integrate into deployed
+        systems that already use JSON, and provides a smooth upgrade path from
+        JSON to JSON-LD.
+        It is primarily intended to be a way to use Linked Data in Web-based
+        programming environments, to build interoperable Web services, and to
+        store Linked Data in JSON-based storage engines.
+  language: en
+  script: Latn
+  format: text/plain
+relation:
+  type: obsoleted
+  bibitem:
+    title:
+    - type: main
+      content: JSON-LD 1.0
+      language: en
+      script: Latn
+      format: text/plain
+    - content: A JSON-based Serialization for Linked Data
+      language: en
+      script: Latn
+      format: text/plain
+    link:
+      content: https://www.w3.org/TR/2014/REC-json-ld-20140116/
+      type: src
+    type: standard
+    date:
+      type: published
+      value: '2014-01-01'
+    contributor:
+    - person:
+        name:
+          completename: Manu Sporny
+        affiliation:
+          organization:
+            name: Digital Bazaar
+            url: http://digitalbazaar.com/
+      role: editor
+    - person:
+        name:
+          completename: Gregg Kellogg
+        affiliation:
+          organization:
+            name: Kellogg Associates
+            url: http://kellogg-assoc.com/
+      role: editor
+    - person:
+        name:
+          completename: Markus Lanthaler
+        affiliation:
+          organization:
+            name: Graz University of Technology
+            url: http://www.tugraz.at/
+      role: editor
+    - person:
+        name:
+          completename: Manu Sporny
+        affiliation:
+          organization:
+            name: Digital Bazaar
+            url: http://digitalbazaar.com/
+      role: author
+    - person:
+        name:
+          completename: Dave Longley
+        affiliation:
+          organization:
+            name: Digital Bazaar
+            url: http://digitalbazaar.com/
+      role: author
+    - person:
+        name:
+          completename: Gregg Kellogg
+        affiliation:
+          organization:
+            name: Kellogg Associates
+            url: http://kellogg-assoc.com/
+      role: author
+    - person:
+        name:
+          completename: Markus Lanthaler
+        affiliation:
+          organization:
+            name: Graz University of Technology
+            url: http://www.tugraz.at/
+      role: author
+    - person:
+        name:
+          completename: Niklas Lindström
+      role: author
+    revdate: '2014-01-01'
+    language: en
+    script: Latn
+    abstract:
+      content: |-
+        JSON is a useful data serialization and messaging format.
+            This specification defines JSON-LD, a JSON-based format to serialize
+            Linked Data. The syntax is designed to easily integrate into deployed
+            systems that already use JSON, and provides a smooth upgrade path from
+            JSON to JSON-LD.
+            It is primarily intended to be a way to use Linked Data in Web-based
+            programming environments, to build interoperable Web services, and to
+            store Linked Data in JSON-based storage engines.
+      language: en
+      script: Latn
+      format: text/plain
+    fetched: '2020-04-04'
+fetched: '2020-04-04'
+keyword: Data
+doctype: candidateRecommendation
