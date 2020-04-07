@@ -1,16 +1,17 @@
-# RelatonW3c
+= RelatonW3c
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/relaton_w3c`. To experiment with that code, run `bin/console` for an interactive prompt.
+RelatonW3c is a Ruby gem that implements the https://github.com/metanorma/metanorma-model-iso#iso-bibliographic-item[IsoBibliographicItem model].
 
-TODO: Delete this and the text above, and describe your gem
+You can use it to retrieve metadata of W3C Standards from https://w3.org, and access such metadata through the `W3cBibliographicItem` object.
 
-## Installation
+== Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
+[source,ruby]
+----
 gem 'relaton_w3c'
-```
+----
 
 And then execute:
 
@@ -20,21 +21,127 @@ Or install it yourself as:
 
     $ gem install relaton_w3c
 
-## Usage
+== Usage
 
-TODO: Write usage instructions here
+=== Search for a standard using keywords
 
-## Development
+----
+require 'relaton_w3c'
+
+hits = RelatonW3c::W3cBibliography.search("W3C JSON-LD 1.1")
+=> <RelatonW3c::HitCollection:0x007f93b5e4ff48 @ref=W3C JSON-LD 1.1 @fetched=false>
+
+item = hits[0].fetch
+=> #<RelatonW3c::W3cBibliographicItem:0x007f93a58a0670
+...
+----
+
+=== XML serialization
+
+----
+item.to_xml
+=> "<bibitem type="standard">
+        <fetched>2020-04-07</fetched>
+        <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
+        <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
+        <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
+        <date type="published">
+            <on>2020</on>
+        </date>
+        ...
+    </bibitem>"
+----
+
+With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and adds flavour `ext` element.
+
+----
+item.to_xml bibdata: true
+=> "<bibdata type="standard">
+        <fetched>2020-04-07</fetched>
+        <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
+        <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
+        <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
+        <date type="published">
+            <on>2020</on>
+        </date>
+        ...
+        <ext>
+            <doctype>candidateRecommendation</doctype>
+        </ext>
+    </bibdata>"
+----
+
+=== Get document by title
+----
+RelatonW3c::W3cBibliography.get "W3C JSON-LD 1.1"
+[relaton-w3c] ("W3C JSON-LD 1.1") fetching...
+[relaton-w3c] ("W3C JSON-LD 1.1") found JSON-LD 1.1
+=> #<RelatonW3c::W3cBibliographicItem:0x007f93b655bb48
+...
+----
+
+=== Get document by title and type
+----
+RelatonW3c::W3cBibliography.get "W3C Candidate Recommendation JSON-LD 1.1"
+[relaton-w3c] ("W3C Candidate Recommendation JSON-LD 1.1") fetching...
+[relaton-w3c] ("W3C Candidate Recommendation JSON-LD 1.1") found JSON-LD 1.1
+=> #<RelatonW3c::W3cBibliographicItem:0x007f9357199b90
+...
+----
+
+=== Get document by title and short type
+----
+RelatonW3c::W3cBibliography.get "W3C CR JSON-LD 1.1"
+[relaton-w3c] ("W3C CR JSON-LD 1.1") fetching...
+[relaton-w3c] ("W3C CR JSON-LD 1.1") found JSON-LD 1.1
+=> #<RelatonW3c::W3cBibliographicItem:0x007f93b6d37dd0
+...
+----
+
+=== Get document by title, type, and date
+----
+RelatonW3c::W3cBibliography.get "W3C WD JSON-LD 1.1 2019-10-18"
+[relaton-w3c] ("W3C WD JSON-LD 1.1 2019-10-18") fetching...
+[relaton-w3c] ("W3C WD JSON-LD 1.1 2019-10-18") found JSON-LD 1.1
+=> #<RelatonW3c::W3cBibliographicItem:0x007f9345a198b8
+...
+----
+
+=== Create bibliographic item from XML
+----
+RelatonW3c::XMLParser.from_xml File.read('spec/fixtures/cr_json_ld11.xml')
+=> #<RelatonW3c::W3cBibliographicItem:0x007f9381efce98
+...
+----
+
+=== Create bibliographic item from YAML
+----
+hash = YAML.load_file 'spec/fixtures/cr_json_ld11.yml'
+=> {"title"=>
+  [{"type"=>"main", "content"=>"JSON-LD 1.1", "language"=>"en", "script"=>"Latn", "format"=>"text/plain"},
+...
+
+bib_hash = RelatonW3c::HashConverter.hash_to_bib hash
+=> {:title=>
+  [{:type=>"main", :content=>"JSON-LD 1.1", :language=>"en", :script=>"Latn", :format=>"text/plain"},
+...
+
+RelatonW3c::W3cBibliographicItem.new bib_hash
+=> #<RelatonW3c::W3cBibliographicItem:0x007f9381ec6a00
+...
+----
+
+== Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
+== Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/relaton_w3c.
+Bug reports and pull requests are welcome on GitHub at https://github.com/relaton/relaton_w3c.
 
 
-## License
+== License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

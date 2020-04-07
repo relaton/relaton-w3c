@@ -5,7 +5,7 @@ module RelatonW3c
     attr_reader :idtype
 
     def initialize
-      @short = :relaton_calconnect
+      @short = :relaton_w3c
       @prefix = "W3C"
       @defaultprefix = %r{^W3C\s}
       @idtype = "W3C"
