@@ -33,12 +33,11 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "debase"
   spec.add_development_dependency "equivalent-xml", "~> 0.6"
-  # spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "ruby-debug-ide"
   spec.add_development_dependency "ruby-jing"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
-  spec.add_dependency "relaton-bib", "~> 0.9.0"
+  spec.add_dependency "relaton-bib", ">= 0.9.2"
 end
