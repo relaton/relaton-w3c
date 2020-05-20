@@ -166,7 +166,7 @@ module RelatonW3c
 
         hit = { "link" => link }
         item = parse_page hit
-        [RelatonBib::DocumentRelation.new(type: "obsoleted", bibitem: item)]
+        [RelatonBib::DocumentRelation.new(type: "obsoletedBy", bibitem: item)]
       end
 
       # @param doc [Nokogiri::HTML::Document]
