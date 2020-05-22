@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "fileutils"
+require "yaml"
+
 module RelatonW3c
   # Page of hit collection.
   class HitCollection < RelatonBib::HitCollection

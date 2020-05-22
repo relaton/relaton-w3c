@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "net/http"
+
 module RelatonW3c
   # Class methods for search W3C standards.
   class W3cBibliography
@@ -10,7 +12,7 @@ module RelatonW3c
         HitCollection.new text
       rescue SocketError, Timeout::Error, Errno::EINVAL, Errno::ECONNRESET,
              EOFError, Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
-             Net::ProtocolError, OpenSSL::SSL::SSLError, Errno::ETIMEDOUT
+             Net::ProtocolError, Errno::ETIMEDOUT
         raise RelatonBib::RequestError,
               "Could not access #{HitCollection::DOMAIN}"
       end

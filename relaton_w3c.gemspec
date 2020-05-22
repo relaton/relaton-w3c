@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.email         = ["open.source@ribose.com"]
 
   spec.summary       = "RelatonIso: retrieve W3C Standards for bibliographic "\
-                       "use using the IsoBibliographicItem model"
+                       "using the IsoBibliographicItem model"
   spec.description   = "RelatonIso: retrieve W3C Standards for bibliographic "\
-                       "use using the IsoBibliographicItem model"
+                       "using the IsoBibliographicItem model"
   spec.homepage      = "https://github.com/relaton/relaton-wc3"
   spec.license       = "BSD-2-Clause"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
