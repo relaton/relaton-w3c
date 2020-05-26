@@ -44,7 +44,7 @@ module RelatonW3c
           titles << { content: title, type: "main" }
           subtitle = doc.at("//h2[@id='subtitle']").text
           titles << { content: subtitle, tipe: "subtitle" }
-        else
+        elsif hit["title"]
           titles << { content: hit["title"], type: "main" }
         end
         titles.map do |t|
