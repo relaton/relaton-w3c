@@ -12,8 +12,8 @@ module RelatonW3c
       if args[:doctype] && !TYPES.include?(args[:doctype])
         warn "[relaton-w3c] invalid document type: #{args[:doctype]}"
       end
-      @doctype = args.delete :doctype
       super **args
+      # @doctype = args[:doctype]
     end
 
     # @param builder [Nokogiri::XML::Builder, NilClass]
