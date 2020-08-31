@@ -126,6 +126,15 @@ RSpec.describe RelatonW3c do
           end
         end
       end
+
+      it "HTML5" do
+        VCR.use_cassette "date" do
+          VCR.use_cassette "html5" do
+            doc = RelatonW3c::W3cBibliography.get "W3C HTML5"
+            expect(doc.title.first.title.content).to eq "HTML5"
+          end
+        end
+      end
     end
   end
 end

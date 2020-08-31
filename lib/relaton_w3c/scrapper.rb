@@ -13,7 +13,7 @@ module RelatonW3c
 
       # @param hit [Hash]
       # @return [RelatonW3c::W3cBibliographicItem]
-      def parse_page(hit)
+      def parse_page(hit) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         resp = Net::HTTP.get_response URI.parse(hit["link"])
         doc = resp.code == "200" ? Nokogiri::HTML(resp.body) : nil
         W3cBibliographicItem.new(
@@ -28,7 +28,7 @@ module RelatonW3c
           doctype: fetch_doctype(hit, doc),
           contributor: fetch_contributor(hit, doc),
           relation: fetch_relation(doc),
-          keyword: hit["keyword"],
+          keyword: hit["keyword"]
         )
       end
 
@@ -37,19 +37,21 @@ module RelatonW3c
       # @param hit [Hash]
       # @param doc [Nokogiri::HTML::Document]
       # @return [Array<RelatonBib::TypedTitleString>]
-      def fetch_title(hit, doc)
+      def fetch_title(hit, doc) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
         titles = []
         if doc
-          title = doc.at("//h1[@id='title']").text
-          titles << { content: title, type: "main" }
-          subtitle = doc.at("//h2[@id='subtitle']").text
-          titles << { content: subtitle, tipe: "subtitle" }
+          title = doc.at("//h1[contains(@id, 'title')]")&.text
+          titles << { content: title, type: "main" } if title
+          subtitle = doc.at(
+            "//h2[@id='subtitle']|//p[contains(@class, 'subline')]"
+          )&.text
+          titles << { content: subtitle, tipe: "subtitle" } if subtitle
         elsif hit["title"]
           titles << { content: hit["title"], type: "main" }
         end
         titles.map do |t|
           title = RelatonBib::FormattedString.new(
-            content: t[:content], language: "en", script: "Latn",
+            content: t[:content], language: "en", script: "Latn"
           )
           RelatonBib::TypedTitleString.new(type: t[:type], title: title)
         end
@@ -75,8 +77,25 @@ module RelatonW3c
       # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [Array<RelatonBib::BibliographicDate>]
       def fetch_date(hit, doc)
-        on = hit["datepub"] || doc && doc.at("//h2/time[@datetime]")[:datetime]
+        on = hit["datepub"] || doc&.at("//h2/time[@datetime]")&.attr(:datetime)
+        on ||= fetch_date1(doc) || fetch_date2(doc)
         [RelatonBib::BibliographicDate.new(type: "published", on: on)] if on
+      end
+
+      # @param doc [Nokogiri::HTML::Document, NilClass]
+      # @return [String]
+      def fetch_date1(doc)
+        d = doc&.at("//h2[@property='dc:issued']")&.attr(:content)
+        d&.match(/\d{4}-\d{2}-\d{2}/)&.to_s
+      end
+
+      # @param doc [Nokogiri::HTML::Document, NilClass]
+      # @return [String]
+      def fetch_date2(doc)
+        d = doc&.at("//h2[contains(@id, 'w3c-recommendation')]")
+        return unless d
+
+        Date.parse(d.attr(:id.match(/\d{2}-\w+-\d{4}/).to_s)).to_s
       end
 
       # @param hit [Hash]
@@ -96,17 +115,19 @@ module RelatonW3c
       # @param hit [Hash]
       # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [Array<RelatonBib::ContributionInfo>]
-      def fetch_contributor(hit, doc)
+      def fetch_contributor(hit, doc) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
         if doc
-          editors = find_contribs(doc, "Editors").map do |ed|
-            parse_contrib ed, "editor"
+          editors = find_contribs(doc, "Editors").reduce([]) do |mem, ed|
+            c = parse_contrib ed, "editor"
+            mem << c if c
+            mem
           end
-          contribs = find_contribs(doc, "Authors").reduce(editors) do |mem, athr|
-            ed = mem.detect { |e| e[:id] && e[:id] == athr["data-editor-id"] }
+          contribs = find_contribs(doc, "Authors").reduce(editors) do |mem, ath|
+            ed = mem.detect { |e| e[:id] && e[:id] == ath["data-editor-id"] }
             if ed
               ed[:role] << { type: "author" }
             else
-              mem << parse_contrib(athr, "author")
+              mem << parse_contrib(ath, "author")
             end
             mem
           end
@@ -131,6 +152,8 @@ module RelatonW3c
       # @return [Hash]
       def parse_contrib(element, type)
         p = element.at("a")
+        return unless p
+
         contrib = {
           name: p.text,
           url: p[:href],
