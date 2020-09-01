@@ -13,6 +13,9 @@ link:
   content: https://www.w3.org/TR/2020/CR-json-ld11-20200316/
   type: src
 type: standard
+docid:
+  id: CR-json-ld11-20200316
+  type: W3C
 date:
   type: published
   value: '2020-01-01'
@@ -184,5 +187,6 @@ relation:
       format: text/plain
     fetched: '2020-04-04'
 fetched: '2020-04-04'
+id: CR-json-ld11-20200316
 keyword: Data
 doctype: candidateRecommendation

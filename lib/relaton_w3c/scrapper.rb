@@ -18,6 +18,7 @@ module RelatonW3c
         doc = resp.code == "200" ? Nokogiri::HTML(resp.body) : nil
         W3cBibliographicItem.new(
           type: "standard",
+          docid: fetch_docid(hit),
           fetched: Date.today.to_s,
           language: ["en"],
           script: ["Latn"],
@@ -33,6 +34,13 @@ module RelatonW3c
       end
 
       private
+
+      # @param hit [Hash]
+      # @return [Array<RelatonBib::DocumentIdentifier>]
+      def fetch_docid(hit)
+        id = hit["link"].split("/").last
+        [RelatonBib::DocumentIdentifier.new(id: id, type: "W3C")]
+      end
 
       # @param hit [Hash]
       # @param doc [Nokogiri::HTML::Document]
