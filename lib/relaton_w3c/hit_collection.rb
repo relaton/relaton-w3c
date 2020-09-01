@@ -45,7 +45,9 @@ module RelatonW3c
       /(?<title>.+)\s(?<date>\d{4}-\d{2}-\d{2})$/ =~ title_date
       title ||= title_date
       result = data.select do |hit|
-        hit["title"] == title && type_date_filter(hit, type, date)
+        (hit["title"].casecmp?(title) ||
+          hit["link"].split("/").last.match?(/#{title}/)) &&
+          type_date_filter(hit, type, date)
       end
       result.map { |h| Hit.new(h, self) }
     end
@@ -54,7 +56,7 @@ module RelatonW3c
     # @param type [String]
     # @param date [String]
     # @return [TrueClass, FalseClass]
-    def type_date_filter(hit, type, date)
+    def type_date_filter(hit, type, date) # rubocop:disable Metrics/AbcSize
       if type && hit["type"] != short_type(type) || date && hit["date"] != date
         history = get_history hit, type, date
         return false unless history.any?
