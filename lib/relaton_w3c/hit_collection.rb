@@ -46,8 +46,11 @@ module RelatonW3c
       title ||= title_date
       result = data.select do |hit|
         (hit["title"].casecmp?(title) ||
-          hit["link"].split("/").last.match?(/#{title}/)) &&
+          hit["link"].split("/").last.match?(/-#{title}-/)) &&
           type_date_filter(hit, type, date)
+      end
+      if result.empty?
+        result = data.select { |h| h["link"].split("/").last.match? /#{title}/ }
       end
       result.map { |h| Hit.new(h, self) }
     end

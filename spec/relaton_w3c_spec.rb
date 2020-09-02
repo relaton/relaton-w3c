@@ -128,10 +128,32 @@ RSpec.describe RelatonW3c do
       end
 
       it "HTML5" do
-        VCR.use_cassette "date" do
+        VCR.use_cassette "data" do
           VCR.use_cassette "html5" do
             doc = RelatonW3c::W3cBibliography.get "W3C HTML5"
             expect(doc.title.first.title.content).to eq "HTML5"
+          end
+        end
+      end
+
+      it "W3C xmlschema-1" do
+        VCR.use_cassette "data" do
+          VCR.use_cassette "w3c_xmlschema_1" do
+            doc = RelatonW3c::W3cBibliography.get "W3C xmlschema-1"
+            expect(doc.title.first.title.content).to eq(
+              "XML Schema Part 1: Structures Second Edition"
+            )
+          end
+        end
+      end
+
+      it "W3C REC-xml-names-20091208" do
+        VCR.use_cassette "data" do
+          VCR.use_cassette "rec_xml_names_20091208" do
+            doc = RelatonW3c::W3cBibliography.get "W3C REC-xml-names-20091208"
+            expect(doc.title.first.title.content).to eq(
+              "Namespaces in XML 1.0 (Third Edition)"
+            )
           end
         end
       end

@@ -48,13 +48,14 @@ module RelatonW3c
       def fetch_title(hit, doc) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
         titles = []
         if doc
-          title = doc.at("//h1[contains(@id, 'title')]")&.text
-          titles << { content: title, type: "main" } if title
+          title = doc.at("//*[contains(@id, 'title')]")&.text
+          titles << { content: title, type: "main" } if title && !title.empty?
           subtitle = doc.at(
             "//h2[@id='subtitle']|//p[contains(@class, 'subline')]"
           )&.text
           titles << { content: subtitle, tipe: "subtitle" } if subtitle
-        elsif hit["title"]
+        end
+        if titles.empty? && hit["title"]
           titles << { content: hit["title"], type: "main" }
         end
         titles.map do |t|
