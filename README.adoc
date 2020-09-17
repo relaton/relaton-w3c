@@ -10,7 +10,7 @@ Add this line to your application's Gemfile:
 
 [source,ruby]
 ----
-gem 'relaton_w3c'
+gem 'relaton-w3c'
 ----
 
 And then execute:
@@ -19,14 +19,16 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install relaton_w3c
+    $ gem install relaton-w3c
 
 == Usage
 
 === Search for a standard using keywords
 
+[source,ruby]
 ----
 require 'relaton_w3c'
+=> true
 
 hits = RelatonW3c::W3cBibliography.search("W3C JSON-LD 1.1")
 => <RelatonW3c::HitCollection:0x007f93b5e4ff48 @ref=W3C JSON-LD 1.1 @fetched=false>
@@ -38,40 +40,43 @@ item = hits[0].fetch
 
 === XML serialization
 
+[source,ruby]
 ----
 item.to_xml
-=> "<bibitem type="standard">
-        <fetched>2020-04-07</fetched>
-        <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
-        <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
-        <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
-        <date type="published">
-            <on>2020</on>
-        </date>
-        ...
+=> "<bibitem id="CR-json-ld11-20200316" type="standard">
+      <fetched>2020-04-07</fetched>
+      <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
+      <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
+      <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
+      <date type="published">
+          <on>2020</on>
+      </date>
+      ...
     </bibitem>"
 ----
 
 With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and adds flavour `ext` element.
 
+[source,ruby]
 ----
 item.to_xml bibdata: true
 => "<bibdata type="standard">
-        <fetched>2020-04-07</fetched>
-        <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
-        <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
-        <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
-        <date type="published">
-            <on>2020</on>
-        </date>
-        ...
-        <ext>
-            <doctype>candidateRecommendation</doctype>
-        </ext>
+      <fetched>2020-04-07</fetched>
+      <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
+      <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
+      <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
+      <date type="published">
+          <on>2020</on>
+      </date>
+      ...
+      <ext>
+        <doctype>candidateRecommendation</doctype>
+      </ext>
     </bibdata>"
 ----
 
 === Get document by title
+[source,ruby]
 ----
 RelatonW3c::W3cBibliography.get "W3C JSON-LD 1.1"
 [relaton-w3c] ("W3C JSON-LD 1.1") fetching...
@@ -81,6 +86,7 @@ RelatonW3c::W3cBibliography.get "W3C JSON-LD 1.1"
 ----
 
 === Get document by title and type
+[source,ruby]
 ----
 RelatonW3c::W3cBibliography.get "W3C Candidate Recommendation JSON-LD 1.1"
 [relaton-w3c] ("W3C Candidate Recommendation JSON-LD 1.1") fetching...
@@ -90,6 +96,7 @@ RelatonW3c::W3cBibliography.get "W3C Candidate Recommendation JSON-LD 1.1"
 ----
 
 === Get document by title and short type
+[source,ruby]
 ----
 RelatonW3c::W3cBibliography.get "W3C CR JSON-LD 1.1"
 [relaton-w3c] ("W3C CR JSON-LD 1.1") fetching...
@@ -99,6 +106,7 @@ RelatonW3c::W3cBibliography.get "W3C CR JSON-LD 1.1"
 ----
 
 === Get document by title, type, and date
+[source,ruby]
 ----
 RelatonW3c::W3cBibliography.get "W3C WD JSON-LD 1.1 2019-10-18"
 [relaton-w3c] ("W3C WD JSON-LD 1.1 2019-10-18") fetching...
@@ -108,6 +116,7 @@ RelatonW3c::W3cBibliography.get "W3C WD JSON-LD 1.1 2019-10-18"
 ----
 
 === Create bibliographic item from XML
+[source,ruby]
 ----
 RelatonW3c::XMLParser.from_xml File.read('spec/fixtures/cr_json_ld11.xml')
 => #<RelatonW3c::W3cBibliographicItem:0x007f9381efce98
@@ -115,6 +124,7 @@ RelatonW3c::XMLParser.from_xml File.read('spec/fixtures/cr_json_ld11.xml')
 ----
 
 === Create bibliographic item from YAML
+[source,ruby]
 ----
 hash = YAML.load_file 'spec/fixtures/cr_json_ld11.yml'
 => {"title"=>

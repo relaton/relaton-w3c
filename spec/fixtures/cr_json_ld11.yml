@@ -89,7 +89,7 @@ abstract:
   script: Latn
   format: text/plain
 relation:
-  type: obsoleted
+  type: obsoletedBy
   bibitem:
     title:
     - type: main
