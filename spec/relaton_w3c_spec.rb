@@ -39,7 +39,7 @@ RSpec.describe RelatonW3c do
 
     it "with type" do
       VCR.use_cassette "data" do
-        VCR.use_cassette "cr_json_ld11" do
+        VCR.use_cassette "cr_json_ld11_by_type" do
           doc = RelatonW3c::W3cBibliography.get "W3C Candidate Recommendation "\
             "JSON-LD 1.1"
           expect(doc.title.first.title.content).to eq "JSON-LD 1.1"
@@ -50,7 +50,7 @@ RSpec.describe RelatonW3c do
 
     it "with short type" do
       VCR.use_cassette "data" do
-        VCR.use_cassette "cr_json_ld11" do
+        VCR.use_cassette "cr_json_ld11_by_type" do
           doc = RelatonW3c::W3cBibliography.get "W3C CR JSON-LD 1.1"
           expect(doc.title.first.title.content).to eq "JSON-LD 1.1"
           expect(doc.doctype).to eq "candidateRecommendation"
@@ -113,7 +113,9 @@ RSpec.describe RelatonW3c do
         VCR.use_cassette "data" do
           VCR.use_cassette "dom" do
             doc = RelatonW3c::W3cBibliography.get "W3C DOM"
-            expect(doc.title.first.title.content).to eq "DOM"
+            expect(doc.title.first.title.content).to eq(
+              "Document Object Model (DOM) Level 3 XPath Specification"
+            )
           end
         end
       end

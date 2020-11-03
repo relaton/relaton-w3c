@@ -5,7 +5,10 @@
       <ref name="bibdata"/>
     </start>
     <define name="DocumentType">
-      <value>candidateRecommendation</value>
+      <choice>
+        <value>candidateRecommendation</value>
+        <value>recommendation</value>
+      </choice>
     </define>
   </include>
 </grammar>

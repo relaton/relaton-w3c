@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://www.w3.org/TR/2004/REC-xmlschema-1-20041028/
+    uri: https://www.w3.org/TR/2004/REC-xmlschema-1-20041028/
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 02 Sep 2020 11:49:12 GMT
+      - Tue, 03 Nov 2020 23:16:05 GMT
       Content-Location:
       - structures.html
       Vary:
-      - negotiate,Accept-Encoding,upgrade-insecure-requests
+      - negotiate,Accept-Encoding
       Tcn:
       - choice
       Last-Modified:
@@ -37,13 +37,17 @@ http_interactions:
       Cache-Control:
       - max-age=31536000
       Expires:
-      - Thu, 02 Sep 2021 11:49:12 GMT
+      - Wed, 03 Nov 2021 23:16:05 GMT
       Access-Control-Allow-Origin:
       - "*"
       Transfer-Encoding:
       - chunked
       Content-Type:
       - text/html; charset=utf-8
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
+      Content-Security-Policy:
+      - upgrade-insecure-requests
     body:
       encoding: ASCII-8BIT
       string: "<?xml version=\"1.0\" encoding=\"us-ascii\"?>\n<!DOCTYPE html PUBLIC
@@ -10650,5 +10654,5 @@ http_interactions:
         Stanton, Defense Information Systems Agency</li><li>John Tebbutt, NIST</li><li>Ross
         Thompson, Contivo</li><li>Scott Vorthmann, TIBCO Extensibility</li></ul></div></div><script
         type=\"application/javascript\" src=\"https://www.w3.org/scripts/TR/fixup.js\"></script></body></html>\n"
-  recorded_at: Wed, 02 Sep 2020 11:49:13 GMT
+  recorded_at: Tue, 03 Nov 2020 23:16:06 GMT
 recorded_with: VCR 6.0.0

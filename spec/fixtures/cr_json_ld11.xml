@@ -1,9 +1,9 @@
 <bibdata type="standard">
-  <fetched>2020-09-01</fetched>
+  <fetched>2020-11-04</fetched>
   <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
   <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
-  <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
-  <docidentifier type="W3C">CR-json-ld11-20200316</docidentifier>
+  <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
+  <docidentifier type="W3C">REC-json-ld11-20200716</docidentifier>
   <date type="published">
     <on>2020</on>
   </date>
@@ -107,7 +107,7 @@
     store Linked Data in JSON-based storage engines.</abstract>
   <relation type="obsoletedBy">
     <bibitem type="standard">
-      <fetched>2020-09-01</fetched>
+      <fetched>2020-11-04</fetched>
       <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.0</title>
       <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
       <uri type="src">https://www.w3.org/TR/2014/REC-json-ld-20140116/</uri>
@@ -235,6 +235,6 @@
   </relation>
   <keyword>Data</keyword>
   <ext>
-    <doctype>candidateRecommendation</doctype>
+    <doctype>recommendation</doctype>
   </ext>
 </bibdata>

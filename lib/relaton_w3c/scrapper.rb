@@ -71,7 +71,8 @@ module RelatonW3c
       def fetch_abstract(doc)
         return [] unless doc
 
-        content = doc.at("//h2[.='Abstract']/following-sibling::p").text
+        content = doc.at("//h2[.='Abstract']/following-sibling::p",
+                         "//div[@class='abstract']/p").text
         [RelatonBib::FormattedString.new(content: content, language: "en",
                                          script: "Latn")]
       end
