@@ -17,7 +17,7 @@ module RelatonW3c
     }.freeze
     DOMAIN = "https://www.w3.org"
     DATADIR = File.expand_path(".relaton/w3c", Dir.home).freeze
-    DATAFILE = File.expand_path("bibliograhy.yml", DATADIR).freeze
+    DATAFILE = File.expand_path("bibliography.yml", DATADIR).freeze
 
     # @param ref [String] reference to search
     def initialize(ref)

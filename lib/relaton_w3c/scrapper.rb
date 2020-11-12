@@ -49,7 +49,9 @@ module RelatonW3c
         titles = []
         if doc
           title = doc.at("//*[contains(@id, 'title')]")&.text
-          titles << { content: title, type: "main" } if title && !title.empty?
+          if title && !title.empty?
+            titles << { content: title.gsub(/\n/, " "), type: "main" }
+          end
           subtitle = doc.at(
             "//h2[@id='subtitle']|//p[contains(@class, 'subline')]"
           )&.text

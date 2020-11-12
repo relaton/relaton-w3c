@@ -1,11 +1,11 @@
 <bibdata type="standard">
-  <fetched>2020-11-04</fetched>
+  <fetched>2020-11-11</fetched>
   <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
   <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
   <docidentifier type="W3C">REC-json-ld11-20200716</docidentifier>
   <date type="published">
-    <on>2020</on>
+    <on>2020-07-16</on>
   </date>
   <contributor>
     <role type="editor"/>
@@ -107,13 +107,13 @@
     store Linked Data in JSON-based storage engines.</abstract>
   <relation type="obsoletedBy">
     <bibitem type="standard">
-      <fetched>2020-11-04</fetched>
+      <fetched>2020-11-11</fetched>
       <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.0</title>
       <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
       <uri type="src">https://www.w3.org/TR/2014/REC-json-ld-20140116/</uri>
       <docidentifier type="W3C">REC-json-ld-20140116</docidentifier>
       <date type="published">
-        <on>2014</on>
+        <on>2014-01-16</on>
       </date>
       <contributor>
         <role type="editor"/>
