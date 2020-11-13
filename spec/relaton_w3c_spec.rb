@@ -28,8 +28,8 @@ RSpec.describe RelatonW3c do
           file = "spec/fixtures/cr_json_ld11.xml"
           xml = doc.to_xml bibdata: true
           File.write file, xml, encoding: "UTF-8" unless File.exist? file
-          expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8").
-            gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
+          expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
+            .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
           schema = Jing.new "spec/fixtures/isobib.rng"
           errors = schema.validate file
           expect(errors).to eq []
@@ -114,7 +114,7 @@ RSpec.describe RelatonW3c do
           VCR.use_cassette "dom" do
             doc = RelatonW3c::W3cBibliography.get "W3C DOM"
             expect(doc.title.first.title.content).to eq(
-              "Document Object Model (DOM) Level 3 XPath Specification"
+              "Document Object Model (DOM) Level 3 Abstract Schemas Specification"
             )
           end
         end
