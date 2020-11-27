@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 11 Nov 2020 12:24:09 GMT
+      - Fri, 27 Nov 2020 13:01:33 GMT
       Content-Location:
       - structures.html
       Vary:
@@ -37,13 +37,15 @@ http_interactions:
       Cache-Control:
       - max-age=31536000
       Expires:
-      - Thu, 11 Nov 2021 12:24:09 GMT
+      - Sat, 27 Nov 2021 13:01:33 GMT
       Access-Control-Allow-Origin:
       - "*"
       Transfer-Encoding:
       - chunked
       Content-Type:
       - text/html; charset=utf-8
+      X-Backend:
+      - ssl-mirrors
       Strict-Transport-Security:
       - max-age=15552000; includeSubdomains; preload
       Content-Security-Policy:
@@ -10654,5 +10656,5 @@ http_interactions:
         Stanton, Defense Information Systems Agency</li><li>John Tebbutt, NIST</li><li>Ross
         Thompson, Contivo</li><li>Scott Vorthmann, TIBCO Extensibility</li></ul></div></div><script
         type=\"application/javascript\" src=\"https://www.w3.org/scripts/TR/fixup.js\"></script></body></html>\n"
-  recorded_at: Wed, 11 Nov 2020 12:24:10 GMT
+  recorded_at: Fri, 27 Nov 2020 13:01:35 GMT
 recorded_with: VCR 6.0.0
