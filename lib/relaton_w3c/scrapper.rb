@@ -143,7 +143,7 @@ module RelatonW3c
             end
             mem
           end
-          contribs.map { |c| contrib_info c }
+          contribs.map { |c| contrib_info **c }
         else
           hit["editor"].map do |ed|
             contrib_info name: ed, role: [{ type: "editor" }]
@@ -187,7 +187,7 @@ module RelatonW3c
         name = RelatonBib::FullName.new completename: completename
         af = []
         if args[:org]
-          org = RelatonBib::Organization.new args[:org]
+          org = RelatonBib::Organization.new **args[:org]
           af << RelatonBib::Affiliation.new(organization: org)
         end
         en = RelatonBib::Person.new name: name, url: args[:url], affiliation: af

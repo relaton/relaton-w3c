@@ -4,7 +4,7 @@ module RelatonW3c
       # @param item_hash [Hash]
       # @return [RelatonW3c::W3cBibliographicItem]
       def bib_item(item_hash)
-        W3cBibliographicItem.new item_hash
+        W3cBibliographicItem.new **item_hash
       end
     end
   end
