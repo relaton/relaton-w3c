@@ -113,7 +113,7 @@ RSpec.describe RelatonW3c do
         VCR.use_cassette "data" do
           VCR.use_cassette "dom" do
             doc = RelatonW3c::W3cBibliography.get "W3C DOM"
-            expect(doc.title.first.title.content).to eq "Document Object Model (DOM) Requirements"
+            expect(doc.title.first.title.content).to eq "Document Object Model (DOM) Level 3 XPath Specification"
           end
         end
       end
