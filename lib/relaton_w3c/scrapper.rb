@@ -29,7 +29,7 @@ module RelatonW3c
           doctype: fetch_doctype(hit, doc),
           contributor: fetch_contributor(hit, doc),
           relation: fetch_relation(doc),
-          keyword: hit["keyword"]
+          keyword: hit["keyword"],
         )
       end
 
@@ -53,7 +53,7 @@ module RelatonW3c
             titles << { content: title.gsub(/\n/, " "), type: "main" }
           end
           subtitle = doc.at(
-            "//h2[@id='subtitle']|//p[contains(@class, 'subline')]"
+            "//h2[@id='subtitle']|//p[contains(@class, 'subline')]",
           )&.text
           titles << { content: subtitle, tipe: "subtitle" } if subtitle
         end
@@ -62,7 +62,7 @@ module RelatonW3c
         end
         titles.map do |t|
           title = RelatonBib::FormattedString.new(
-            content: t[:content], language: "en", script: "Latn"
+            content: t[:content], language: "en", script: "Latn",
           )
           RelatonBib::TypedTitleString.new(type: t[:type], title: title)
         end
@@ -88,7 +88,7 @@ module RelatonW3c
       # @param hit [Hash]
       # @param doc [Nokogiri::HTML::Document, NilClass]
       # @return [Array<RelatonBib::BibliographicDate>]
-      def fetch_date(hit, doc)
+      def fetch_date(hit, doc) # rubocop:disable Metrics/CyclomaticComplexity
         on = hit["datepub"] || doc&.at("//h2/time[@datetime]")&.attr(:datetime)
         on ||= fetch_date1(doc) || fetch_date2(doc)
         [RelatonBib::BibliographicDate.new(type: "published", on: on)] if on
@@ -143,7 +143,7 @@ module RelatonW3c
             end
             mem
           end
-          contribs.map { |c| contrib_info **c }
+          contribs.map { |c| contrib_info(**c) }
         else
           hit["editor"].map do |ed|
             contrib_info name: ed, role: [{ type: "editor" }]
@@ -162,7 +162,7 @@ module RelatonW3c
       # @param element [Nokogiri::XML::Element]
       # @param type [String]
       # @return [Hash]
-      def parse_contrib(element, type)
+      def parse_contrib(element, type) # rubocop:disable Metrics/MethodLength
         p = element.at("a")
         return unless p
 
@@ -187,7 +187,7 @@ module RelatonW3c
         name = RelatonBib::FullName.new completename: completename
         af = []
         if args[:org]
-          org = RelatonBib::Organization.new **args[:org]
+          org = RelatonBib::Organization.new(**args[:org])
           af << RelatonBib::Affiliation.new(organization: org)
         end
         en = RelatonBib::Person.new name: name, url: args[:url], affiliation: af

@@ -10,7 +10,7 @@ module RelatonW3c
       if args[:doctype] && !TYPES.include?(args[:doctype])
         warn "[relaton-w3c] invalid document type: #{args[:doctype]}"
       end
-      super **args
+      super
     end
   end
 end

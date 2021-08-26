@@ -22,8 +22,8 @@ module RelatonW3c
     # @param ref [String] reference to search
     def initialize(ref)
       %r{
-        ^(W3C\s)?
-        (?<type>(CR|NOTE|PER|PR|REC|RET|WD|Candidate\sRecommendation|
+        ^(?:W3C\s)?
+        (?<type>(?:CR|NOTE|PER|PR|REC|RET|WD|Candidate\sRecommendation|
           Group\sNote|Proposed\sEdited\sRecommendation|Proposed\sRecommendation|
           Recommendation|Retired|Working\sDraft))? # type
         \s?
@@ -41,7 +41,7 @@ module RelatonW3c
     # @param title_date [String]
     # @param type [String]
     # @return [Array<Hash>]
-    def from_yaml(title_date, type)
+    def from_yaml(title_date, type) # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
       /(?<title>.+)\s(?<date>\d{4}-\d{2}-\d{2})$/ =~ title_date
       title ||= title_date
       result = data.select do |hit|
@@ -50,7 +50,7 @@ module RelatonW3c
           type_date_filter(hit, type, date)
       end
       if result.empty?
-        result = data.select { |h| h["link"].split("/").last.match? /#{title}/ }
+        result = data.select { |h| h["link"].split("/").last.match?(/#{title}/) }
       end
       result.map { |h| Hit.new(h, self) }
     end
@@ -109,7 +109,7 @@ module RelatonW3c
     # @param type [String]
     # @return [String]
     def short_type(type)
-      tp = TYPES.select { |k,v| v == type }.keys
+      tp = TYPES.select { |_, v| v == type }.keys
       tp.first || type
     end
 
@@ -137,7 +137,7 @@ module RelatonW3c
     # fetch data form server and save it to file.
     #
     def fetch_data
-      resp = Net::HTTP.get_response URI.parse(DOMAIN + "/TR/")
+      resp = Net::HTTP.get_response URI.parse("#{DOMAIN}/TR/")
       # return if there aren't any changes since last fetching
       return unless resp.code == "200"
 
@@ -153,7 +153,7 @@ module RelatonW3c
     # @param h_el [Nokogiri::XML::Element]
     # @param link [Nokogiri::XML::Element]
     # @param pubdetails [Nokogiri::XML::Element]
-    def fetch_hit(h_el, link, pubdetails)
+    def fetch_hit(h_el, link, pubdetails) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       datepub = pubdetails.at("text()").text.match(/\d{4}-\d{2}-\d{2}/).to_s
       editor = h_el.xpath("ul[@class='editorlist']/li").map { |e| e.text.strip }
       keyword = h_el.xpath("ul[@class='taglist']/li").map { |e| e.text.strip }

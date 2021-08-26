@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
                        "using the IsoBibliographicItem model"
   spec.homepage      = "https://github.com/relaton/relaton-wc3"
   spec.license       = "BSD-2-Clause"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
@@ -31,13 +31,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # spec.add_development_dependency "debase"
   spec.add_development_dependency "equivalent-xml", "~> 0.6"
-  # spec.add_development_dependency "ruby-debug-ide"
   spec.add_development_dependency "ruby-jing"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
-  spec.add_dependency "relaton-bib", ">= 1.8.0"
+  spec.add_dependency "relaton-bib", ">= 1.9.0"
 end

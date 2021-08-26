@@ -29,7 +29,7 @@ module RelatonW3c
     # @return [RelatonIsoBib::CcBibliographicItem]
     def hash_to_bib(hash)
       item_hash = ::RelatonW3c::HashConverter.hash_to_bib(hash)
-      ::RelatonW3c::W3cBibliographicItem.new **item_hash
+      ::RelatonW3c::W3cBibliographicItem.new(**item_hash)
     end
 
     # Returns hash of XML grammar
