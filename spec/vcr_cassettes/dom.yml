@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://www.w3.org/TR/2021/PR-DOM-20210805/
+    uri: https://www.w3.org/TR/2021/SPSD-DOM-Level-3-Core-20210928/
     body:
       encoding: US-ASCII
       string: ''
@@ -17,21 +17,36 @@ http_interactions:
       - www.w3.org
   response:
     status:
-      code: 301
-      message: Moved Permanently
+      code: 200
+      message: OK
     headers:
       Date:
-      - Thu, 26 Aug 2021 11:00:37 GMT
-      Location:
-      - https://dom.spec.whatwg.org/review-drafts/2020-06/
+      - Thu, 07 Oct 2021 11:05:59 GMT
+      Content-Location:
+      - Overview.html
+      Last-Modified:
+      - Tue, 28 Sep 2021 09:09:37 GMT
+      Etag:
+      - '"2b7c-5cd0a92a1d640-gzip"'
+      Accept-Ranges:
+      - bytes
       Cache-Control:
       - max-age=31536000
       Expires:
-      - Fri, 26 Aug 2022 11:00:37 GMT
+      - Fri, 07 Oct 2022 11:05:59 GMT
+      Vary:
+      - Accept-Encoding
+      Link:
+      - <https://timetravel.mementoweb.org/w3c/timegate/https://www.w3.org/TR/DOM-Level-3-Core/>;rel="timegate",
+        <https://www.w3.org/TR/DOM-Level-3-Core/>;rel="original"
+      Access-Control-Allow-Origin:
+      - "*"
       Content-Length:
-      - '258'
+      - '3623'
       Content-Type:
-      - text/html; charset=iso-8859-1
+      - text/html; charset=utf-8
+      Memento-Datetime:
+      - Tue, 28 Sep 2021 09:09:37 GMT
       X-Backend:
       - ssl-mirrors
       Strict-Transport-Security:
@@ -39,14 +54,131 @@ http_interactions:
       Content-Security-Policy:
       - upgrade-insecure-requests
     body:
-      encoding: UTF-8
-      string: |
-        <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
-        <html><head>
-        <title>301 Moved Permanently</title>
-        </head><body>
-        <h1>Moved Permanently</h1>
-        <p>The document has moved <a href="https://dom.spec.whatwg.org/review-drafts/2020-06/">here</a>.</p>
-        </body></html>
-  recorded_at: Thu, 26 Aug 2021 11:00:37 GMT
+      encoding: ASCII-8BIT
+      string: "<!DOCTYPE html PUBLIC\n  \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n
+        \ \"http://www.w3.org/TR/html4/loose.dtd\">\n<!--\n Generated: Mon Apr 05
+        15:04:17 EDT 2004 jfouffa.w3.org\n -->\n<html lang='en-US'>\n<head>\n  <title>Document
+        Object Model (DOM) Level 3 Core Specification</title>\n  <link rel='stylesheet'
+        type='text/css' href='./spec.css'>\n  <meta http-equiv=\"Content-Type\" content=\"text/html;
+        charset=UTF-8\">\n  <link href=\"https://www.w3.org/StyleSheets/TR/W3C-SPSD.css\"
+        rel=\"stylesheet\" type=\"text/css\">\n  <link rel='next' href='expanded-toc.html'>\n
+        \ <link rel='contents' href='Overview.html#contents'>\n  <link rel='copyright'
+        href='copyright-notice.html'>\n  <link rel='glossary' href='glossary.html'>\n
+        \ <link rel='Start' href='Overview.html'>\n  <link rel='index' href='def-index.html'>\n
+        \ <link rel='author' href='mailto:www-dom@w3.org'>\n  <link rel='help' href='http://www.w3.org/DOM/'>\n</head>\n<body>\n<div
+        class='navbar' style='text-align: center'>\n<map id='navbar-top' name='navbar-top'
+        title='Navigation Bar'><p>\n[<a title='Expanded Table of Contents' accesskey='n'
+        href='expanded-toc.html'><strong><u>n</u></strong>ext</a>] &nbsp; [<a title='Table
+        of Contents' accesskey='c' href='Overview.html#contents'><strong><u>c</u></strong>ontents</a>]
+        &nbsp; [<a title='Index' \naccesskey='i' href='def-index.html'><strong><u>i</u></strong>ndex</a>]</p>\n<hr
+        title='Navigation area separator'>\n</map></div>\n\n<div class='head'>\n<p><a
+        href='http://www.w3.org/'>\n<img height='48' width='72'\n alt='W3C' src='http://www.w3.org/Icons/w3c_home'></a></p>\n
+        \ <h1 id='title'>Document Object Model (DOM) Level 3 Core Specification</h1>\n
+        \ <h2 id='version'>Version 1.0</h2>\n<!-- REC-DOM-Level-3-Core-20040407\n
+        -->  <h2 id='W3C-doctype'>W3C Recommendation 07 April 2004\n <br>superseded
+        28 September 2021\n </h2>\n<dl><dt>This version:</dt>\n<dd><a href=\"http://www.w3.org/TR/2021/SPSD-DOM-Level-3-Core-20210928/\">http://www.w3.org/TR/2021/SPSD-DOM-Level-3-Core-20210928/</a></dd><dt>Latest
+        version:</dt>\n\n      <dd><a href='http://www.w3.org/TR/DOM-Level-3-Core'>http://www.w3.org/TR/DOM-Level-3-Core</a></dd>\n\n
+        \   <dt>Previous version:</dt>\n<dd><a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407'>http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407</a></dd>\n\n
+        \   </dl>\n<dl><dt>Editors:\n</dt><dd>Arnaud Le Hors, \n<i>IBM</i></dd>\n<dd>Philippe
+        Le H&#xe9;garet, \n<i>W3C</i></dd>\n<dd>Lauren Wood, \n<i>SoftQuad, Inc. (WG
+        Chair emerita, for DOM Level 1 and 2)</i></dd>\n<dd>Gavin Nicol, \n<i>Inso
+        EPS (for DOM Level 1)</i></dd>\n<dd>Jonathan Robie, \n<i>Texcel Research and
+        Software AG (for DOM Level 1\n\t  and 2)</i></dd>\n<dd>Mike Champion, \n<i>Arbortext
+        and Software AG (for DOM Level 1 and 2)</i></dd>\n<dd>Steve Byrne, \n<i>JavaSoft
+        (for DOM Level 1 until November 19,\n        1997)</i></dd>\n</dl>\n\n<p>Please
+        refer to the <a href='http://www.w3.org/2004/01/DOM-Level-3-errata'><strong>errata</strong></a>
+        for this document, which may include some normative corrections.</p><p>This
+        document is also available in these non-normative formats: <a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/xml-source.xml'>XML
+        file</a>, <a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.txt'>plain
+        text</a>, <a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.ps'>PostScript
+        file</a>, <a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.pdf'>PDF
+        file</a>, <a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.html'>single
+        HTML file</a>, and <a href='http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/DOM3-Core.zip'>ZIP
+        file</a>.</p>\n<p class='translation'>See also <a href='http://www.w3.org/2004/01/DOM-Level-3-translations'>translations</a>
+        of this document.</p><p class='copyright'><a href='http://www.w3.org/Consortium/Legal/ipr-notice#Copyright'>
+        Copyright</a> &#xa9;2004 <a href='http://www.w3.org/'><acronym title='World
+        Wide Web Consortium'>W3C</acronym></a><sup>&#xae;</sup> (<a href='http://www.csail.mit.edu/'><acronym
+        title='Massachusetts Institute of Technology'>MIT</acronym></a>, <a href='http://www.ercim.org/'><acronym
+        title='European Research Consortium for Informatics and Mathematics'>ERCIM</acronym></a>,
+        <a href='http://www.keio.ac.jp/'>Keio</a>), All Rights Reserved. W3C <a href='http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>,
+        <a href='http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>,
+        <a href='http://www.w3.org/Consortium/Legal/copyright-documents'>document
+        use</a> and <a href='http://www.w3.org/Consortium/Legal/copyright-software'>software
+        licensing</a> rules apply.</p>\n</div>\n<hr title='separator from header'>\n<h2
+        id='abstract'>Abstract</h2>\n<div class='abstract'>\n<p>\n\tThis specification
+        defines the Document Object Model Core Level\n\t3, a platform- and language-neutral
+        interface that allows\n\tprograms and scripts to dynamically access and update
+        the\n\tcontent, structure and style of documents.  The Document Object\n\tModel
+        Core Level 3 builds on the Document Object Model Core\n\tLevel 2 [<a class='noxref'
+        href='references.html#DOM2Core'>DOM Level 2 Core</a>].\n      </p><p>\n\tThis
+        version enhances DOM Level 2 Core by completing the mapping\n\tbetween DOM
+        and the XML Information Set [<a class='noxref' href='references.html#InfoSet'>XML
+        Information Set</a>],\n\tincluding the support for XML Base [<a class='noxref'
+        href='references.html#XMLBase'>XML Base</a>],\n\tadding the ability to attach
+        user information to DOM Nodes or to\n\tbootstrap a DOM implementation, providing
+        mechanisms to resolve\n\tnamespace prefixes or to manipulate \"ID\" attributes,
+        giving to type\n\tinformation, etc.\n      </p></div>\n<h2 id='status'>Status
+        of this document</h2>\n<div class='status'>\n<p>\n\t<em>This section describes
+        the status of this document at the\n\ttime of its publication. Other documents
+        may supersede this\n\tdocument. A list of current W3C publications and the
+        latest\n\trevision of this technical report can be found in the <a href='http://www.w3.org/TR/'>W3C
+        technical reports index</a>\n\tat http://www.w3.org/TR/.</em>\n      </p>\n
+        \   <p>This specification is a <a href=\"https://www.w3.org/2020/Process-20200915/#rec-rescind\">Superseded
+        Recommendation</a>. A newer specification exists that is recommended for new
+        adoption in place of  this specification. </p>\n      <p>\n\tThis document
+        contains the Document Object Model Level 3 Core\n\tspecification. It has been
+        produced as part of the <a href='http://www.w3.org/DOM/Activity.html'>W3C
+        DOM\n\tActivity</a>. The authors of this document are the <a href='http://www.w3.org/DOM/'>DOM
+        Working Group</a>\n\tparticipants. For more information about DOM, readers
+        can also\n\trefer to <a href='http://www.w3.org/DOM/faq.html'>DOM\n\tFAQ</a>
+        and <a href='http://www.w3.org/DOM/Test/'>DOM\n\tConformance Test Suites</a>.\n
+        \     </p><p>\n\tIt is based on the feedback received during the <a href='http://www.w3.org/2004/02/19-dom-level-3-issues/issues.html'>Proposed\n\tRecommendation</a>
+        period. <a href='http://www.w3.org/2004/03/DOM-Level-3-Core-changes.html'>Changes\n\tsince
+        the Proposed Recommendation version</a> and an <a href='http://www.w3.org/2003/10/DOM-Level-3-Core-implementations.html'>implementation\n\treport</a>
+        are available. Please refer to the <a href='http://www.w3.org/2004/01/DOM-Level-3-errata'>errata</a>
+        for this\n\tdocument, which may include some normative corrections.\n\n      </p><p>\n\tComments
+        on this document should be sent to the public mailing\n\tlist <a href='mailto:www-dom@w3.org'>www-dom@w3.org</a>
+        (<a href='http://lists.w3.org/Archives/Public/www-dom/'>public archive</a>).\n
+        \     </p><p>For purposes of the W3C Patent Policy, this Superseded Recommendation
+        \ has the same status as an active Recommendation; it retains licensing  commitments
+        and remains available as a reference for old -- and  possibly still deployed
+        -- implementations, but is not recommended for future implementation. New
+        implementations should follow the <a href='https://dom.spec.whatwg.org/'>latest
+        version</a> of the DOM Living Standard.</p><p>\n\tPatent disclosures relevant
+        to this specification may be found\n\ton the Working Group's <a href='http://www.w3.org/2002/08/02-DOM-Disclosures.html'>patent\n\tdisclosure
+        page</a>. This document has been produced under the\n\t<a href='http://www.w3.org/TR/2002/NOTE-patent-practice-20020124'>24\n\tJanuary
+        2002 CPP</a> as amended by the <a href='http://www.w3.org/2004/02/05-pp-transition'>W3C
+        Patent\n\tPolicy Transition Procedure</a>. An individual who has actual\n\tknowledge
+        of a patent which the individual believes contains\n\tEssential Claim(s) with
+        respect to this specification should\n\tdisclose the information in accordance
+        with <a href='http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure'>section\n\t6
+        of the W3C Patent Policy</a>.\n      </p></div>\n<h2 id='table-of-contents'><a
+        name='contents'>Table of contents</a></h2>\n<ul class='toc'>\n<li class='tocline2'><a
+        class='tocxref' href='expanded-toc.html'>Expanded Table of Contents</a></li>\n<li
+        class='tocline2'><a class='tocxref' href='copyright-notice.html'>W3C Copyright
+        Notices and Licenses</a></li>\n<li class='tocline2'><a class='tocxref' href='introduction.html'>What
+        is the Document Object Model?</a></li>\n</ul>\n<ul class='toc'>\n<li class='tocline2'><a
+        class='tocxref' href='core.html'>1. Document Object Model Core</a></li>\n</ul>\n<ul
+        class='toc'>\n<li class='tocline2'><a class='tocxref' href='changes.html'>Appendix
+        A: Changes</a></li>\n<li class='tocline2'><a class='tocxref' href='namespaces-algorithms.html'>Appendix
+        B: Namespaces Algorithms</a></li>\n<li class='tocline2'><a class='tocxref'
+        href='infoset-mapping.html'>Appendix C: Infoset Mapping</a></li>\n<li class='tocline2'><a
+        class='tocxref' href='configuration-settings.html'>Appendix D: Configuration
+        Settings</a></li>\n<li class='tocline2'><a class='tocxref' href='accessing-code-point-boundaries.html'>Appendix
+        E: Accessing code point boundaries</a></li>\n<li class='tocline2'><a class='tocxref'
+        href='idl-definitions.html'>Appendix F: IDL Definitions</a></li>\n<li class='tocline2'><a
+        class='tocxref' href='java-binding.html'>Appendix G: Java Language Binding</a></li>\n<li
+        class='tocline2'><a class='tocxref' href='ecma-script-binding.html'>Appendix
+        H: ECMAScript Language Binding</a></li>\n<li class='tocline2'><a class='tocxref'
+        href='acknowledgements.html'>Appendix I: Acknowledgements</a></li>\n<li class='tocline2'><a
+        class='tocxref' href='glossary.html'>Glossary</a></li>\n<li class='tocline2'><a
+        class='tocxref' href='references.html'>References</a></li>\n<li class='tocline2'><a
+        class='tocxref' href='def-index.html'>Index</a></li>\n</ul>\n\n<div class='navbar'
+        style='text-align: center'>\n<map id='navbar-bottom' name='navbar-bottom'
+        title='Navigation Bar'><hr title='Navigation area separator'><p>\n[<a title='Expanded
+        Table of Contents' href='expanded-toc.html'><strong><u>n</u></strong>ext</a>]
+        &nbsp; [<a title='Table of Contents' href='Overview.html#contents'><strong><u>c</u></strong>ontents</a>]
+        &nbsp; [<a title='Index' \nhref='def-index.html'><strong><u>i</u></strong>ndex</a>]</p>\n</map></div>\n<script
+        src=\"https://www.w3.org/scripts/TR/fixup.js\"></script></body>\n</html>\n"
+  recorded_at: Thu, 07 Oct 2021 11:05:59 GMT
 recorded_with: VCR 6.0.0

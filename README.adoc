@@ -115,6 +115,16 @@ RelatonW3c::W3cBibliography.get "W3C WD JSON-LD 1.1 2019-10-18"
 ...
 ----
 
+=== Typed links
+
+Each W3C document has `src` type link.
+
+[source,ruby]
+----
+item.link
+=> [#<RelatonBib::TypedUri:0x00007fc533ed4040 @content=#<Addressable::URI:0xcc22c URI:https://www.w3.org/TR/2020/REC-json-ld11-20200716/>, @type="src">]
+----
+
 === Create bibliographic item from XML
 [source,ruby]
 ----
