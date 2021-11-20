@@ -4,11 +4,12 @@ module RelatonW3c
   class Processor < Relaton::Processor
     attr_reader :idtype
 
-    def initialize
+    def initialize # rubocop:disable Lint/MissingSuper
       @short = :relaton_w3c
       @prefix = "W3C"
       @defaultprefix = %r{^W3C\s}
       @idtype = "W3C"
+      @datasets = %w[w3c-rdf]
     end
 
     # @param code [String]
@@ -17,6 +18,18 @@ module RelatonW3c
     # @return [RelatonW3C::W3cBibliographicItem]
     def get(code, date, opts)
       ::RelatonW3c::W3cBibliography.get(code, date, opts)
+    end
+
+    #
+    # Fetch all the documents from http://www.w3.org/2002/01/tr-automation/tr.rdf
+    #
+    # @param [String] _source source name
+    # @param [Hash] opts
+    # @option opts [String] :output directory to output documents
+    # @option opts [String] :format
+    #
+    def fetch_data(_source, opts)
+      DataFetcher.fetch(**opts)
     end
 
     # @param xml [String]

@@ -1,16 +1,16 @@
 module RelatonW3c
   class Scrapper
-    class << self
-      DOCTYPES = {
-        "CR" => "candidateRecommendation",
-        "NOTE" => "groupNote",
-        "PER" => "proposedEditedRecommendation",
-        "PR" => "proposedRecommendation",
-        "REC" => "recommendation",
-        "RET" => "retired",
-        "WD" => "workingDraft",
-      }.freeze
+    DOCTYPES = {
+      "CR" => "candidateRecommendation",
+      "NOTE" => "groupNote",
+      "PER" => "proposedEditedRecommendation",
+      "PR" => "proposedRecommendation",
+      "REC" => "recommendation",
+      "RET" => "retired",
+      "WD" => "workingDraft",
+    }.freeze
 
+    class << self
       # @param hit [Hash]
       # @return [RelatonW3c::W3cBibliographicItem]
       def parse_page(hit) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength

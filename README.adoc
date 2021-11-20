@@ -151,6 +151,25 @@ RelatonW3c::W3cBibliographicItem.new bib_hash
 ...
 ----
 
+=== Fetch data
+
+There is a W3C dataset http://www.w3.org/2002/01/tr-automation/tr.rdf which can be converted into RelatonXML/BibXML/BibYAML formats.
+
+The method `RelatonW3c::DataFetcher.fetch(output: "data", format: "yaml")` converts all the documents from the dataset and save them to the `./data` folder in YAML format.
+Arguments:
+
+- `output` - folder to save documents (default './data').
+- `format` - format in which the documents are saved. Possimle formats are: `yaml`, `xml`, `bibxml` (default `yaml`).
+
+[source,ruby]
+----
+RelatonW3c::DataFetcher.fetch
+Started at: 2021-11-19 13:32:05 +0100
+Stopped at: 2021-11-19 13:34:40 +0100
+Done in: 155 sec.
+=> nil
+----
+
 == Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
