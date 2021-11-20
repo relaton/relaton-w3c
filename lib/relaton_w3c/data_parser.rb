@@ -55,7 +55,7 @@ module RelatonW3c
     # @return [RelatonBib::TypedTitleStringCollection] title
     #
     def parse_title
-      t = RelatonBib::TypedTitleString.new title: @sol.title.to_s
+      t = RelatonBib::TypedTitleString.new content: @sol.title.to_s
       RelatonBib::TypedTitleStringCollection.new [t]
     end
 

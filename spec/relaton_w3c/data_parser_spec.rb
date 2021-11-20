@@ -46,7 +46,7 @@ RSpec.describe RelatonW3c::DataParser do
       title = subject.parse_title
       expect(title).to be_instance_of RelatonBib::TypedTitleStringCollection
       expect(title.first).to be_instance_of RelatonBib::TypedTitleString
-      expect(title.first.title).to eq "CSS3 module: Web Fonts"
+      expect(title.first.title.content).to eq "CSS3 module: Web Fonts"
     end
 
     it "parse link" do
