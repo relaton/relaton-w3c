@@ -60,7 +60,7 @@ module RelatonW3c
     # @param date [String]
     # @return [TrueClass, FalseClass]
     def type_date_filter(hit, type, date) # rubocop:disable Metrics/AbcSize
-      if type && hit["type"] != short_type(type) || date && hit["date"] != date
+      if (type && hit["type"] != short_type(type)) || (date && hit["date"] != date)
         history = get_history hit, type, date
         return false unless history.any?
 

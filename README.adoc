@@ -30,11 +30,10 @@ Or install it yourself as:
 require 'relaton_w3c'
 => true
 
-hits = RelatonW3c::W3cBibliography.search("W3C JSON-LD 1.1")
-=> <RelatonW3c::HitCollection:0x007f93b5e4ff48 @ref=W3C JSON-LD 1.1 @fetched=false>
-
-item = hits[0].fetch
-=> #<RelatonW3c::W3cBibliographicItem:0x007f93a58a0670
+item = RelatonW3c::W3cBibliography.get "W3C REC-json-ld11-20200716"
+[relaton-w3c] ("W3C REC-json-ld11-20200716") fetching...
+[relaton-w3c] ("W3C REC-json-ld11-20200716") found JSON-LD 1.1
+=> #<RelatonW3c::W3cBibliographicItem:0x00007fc4ea03c6c0
 ...
 ----
 
@@ -43,16 +42,51 @@ item = hits[0].fetch
 [source,ruby]
 ----
 item.to_xml
-=> "<bibitem id="CR-json-ld11-20200316" type="standard">
-      <fetched>2020-04-07</fetched>
-      <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
-      <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
-      <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
-      <date type="published">
-          <on>2020</on>
-      </date>
-      ...
-    </bibitem>"
+=> "<bibitem id="W3CREC-json-ld11-20200716" type="standard">
+  <fetched>2021-11-20</fetched>
+  <title format="text/plain">JSON-LD 1.1</title>
+  <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
+  <docidentifier type="W3C">W3C REC-json-ld11-20200716</docidentifier>
+  <docnumber>REC-json-ld11-20200716</docnumber>
+  <date type="published">
+    <on>2020-07-16</on>
+  </date>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename language="en" script="Latn">Dave Longley</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename language="en" script="Latn">Gregg Kellogg</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename language="en" script="Latn">Pierre-Antoine Champin</completename>
+      </name>
+    </person>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <relation type="obsoletes">
+    <bibitem>
+      <formattedref format="text/plain">W3C PR-json-ld11-20200507</formattedref>
+    </bibitem>
+  </relation>
+  <series>
+    <title format="text/plain">W3C REC</title>
+    <number>REC-json-ld11-20200716</number>
+  </series>
+</bibitem>"
 ----
 
 With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and adds flavour `ext` element.
@@ -61,58 +95,19 @@ With argument `bibdata: true` it ouputs XML wrapped by `bibdata` element and add
 ----
 item.to_xml bibdata: true
 => "<bibdata type="standard">
-      <fetched>2020-04-07</fetched>
-      <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
-      <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
-      <uri type="src">https://www.w3.org/TR/2020/CR-json-ld11-20200316/</uri>
-      <date type="published">
-          <on>2020</on>
-      </date>
-      ...
-      <ext>
-        <doctype>candidateRecommendation</doctype>
-      </ext>
-    </bibdata>"
-----
-
-=== Get document by title
-[source,ruby]
-----
-RelatonW3c::W3cBibliography.get "W3C JSON-LD 1.1"
-[relaton-w3c] ("W3C JSON-LD 1.1") fetching...
-[relaton-w3c] ("W3C JSON-LD 1.1") found JSON-LD 1.1
-=> #<RelatonW3c::W3cBibliographicItem:0x007f93b655bb48
-...
-----
-
-=== Get document by title and type
-[source,ruby]
-----
-RelatonW3c::W3cBibliography.get "W3C Candidate Recommendation JSON-LD 1.1"
-[relaton-w3c] ("W3C Candidate Recommendation JSON-LD 1.1") fetching...
-[relaton-w3c] ("W3C Candidate Recommendation JSON-LD 1.1") found JSON-LD 1.1
-=> #<RelatonW3c::W3cBibliographicItem:0x007f9357199b90
-...
-----
-
-=== Get document by title and short type
-[source,ruby]
-----
-RelatonW3c::W3cBibliography.get "W3C CR JSON-LD 1.1"
-[relaton-w3c] ("W3C CR JSON-LD 1.1") fetching...
-[relaton-w3c] ("W3C CR JSON-LD 1.1") found JSON-LD 1.1
-=> #<RelatonW3c::W3cBibliographicItem:0x007f93b6d37dd0
-...
-----
-
-=== Get document by title, type, and date
-[source,ruby]
-----
-RelatonW3c::W3cBibliography.get "W3C WD JSON-LD 1.1 2019-10-18"
-[relaton-w3c] ("W3C WD JSON-LD 1.1 2019-10-18") fetching...
-[relaton-w3c] ("W3C WD JSON-LD 1.1 2019-10-18") found JSON-LD 1.1
-=> #<RelatonW3c::W3cBibliographicItem:0x007f9345a198b8
-...
+  <fetched>2021-11-20</fetched>
+  <title format="text/plain">JSON-LD 1.1</title>
+  <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
+  <docidentifier type="W3C">W3C REC-json-ld11-20200716</docidentifier>
+  <docnumber>REC-json-ld11-20200716</docnumber>
+  ...
+  <ext>
+    <doctype>recommendation</doctype>
+    <editorialgroup>
+      <technical-committee>JSON-LD Working Group</technical-committee>
+    </editorialgroup>
+  </ext>
+</bibdata>"
 ----
 
 === Typed links
@@ -121,8 +116,11 @@ Each W3C document has `src` type link.
 
 [source,ruby]
 ----
-item.link
-=> [#<RelatonBib::TypedUri:0x00007fc533ed4040 @content=#<Addressable::URI:0xcc22c URI:https://www.w3.org/TR/2020/REC-json-ld11-20200716/>, @type="src">]
+item.link.first.type
+=> "src"
+
+item.link.first.content
+=> #<Addressable::URI:0x75634 URI:https://www.w3.org/TR/2020/REC-json-ld11-20200716/>
 ----
 
 === Create bibliographic item from XML
@@ -146,7 +144,7 @@ bib_hash = RelatonW3c::HashConverter.hash_to_bib hash
   [{:type=>"main", :content=>"JSON-LD 1.1", :language=>"en", :script=>"Latn", :format=>"text/plain"},
 ...
 
-RelatonW3c::W3cBibliographicItem.new bib_hash
+RelatonW3c::W3cBibliographicItem.new **bib_hash
 => #<RelatonW3c::W3cBibliographicItem:0x007f9381ec6a00
 ...
 ----

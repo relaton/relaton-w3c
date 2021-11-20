@@ -1,240 +1,51 @@
 <bibdata type="standard">
-  <fetched>2020-11-11</fetched>
-  <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.1</title>
-  <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
+  <fetched>2021-11-20</fetched>
+  <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
-  <docidentifier type="W3C">REC-json-ld11-20200716</docidentifier>
+  <docidentifier type="W3C">W3C REC-json-ld11-20200716</docidentifier>
+  <docnumber>REC-json-ld11-20200716</docnumber>
   <date type="published">
     <on>2020-07-16</on>
   </date>
   <contributor>
     <role type="editor"/>
-    <role type="author"/>
     <person>
       <name>
-        <completename>Gregg Kellogg</completename>
+        <completename language="en" script="Latn">Dave Longley</completename>
       </name>
     </person>
   </contributor>
   <contributor>
     <role type="editor"/>
-    <role type="author"/>
     <person>
       <name>
-        <completename>Pierre-Antoine Champin</completename>
+        <completename language="en" script="Latn">Gregg Kellogg</completename>
       </name>
-      <affiliation>
-        <organization>
-          <name>LIRIS - Université de Lyon</name>
-          <uri>https://liris.cnrs.fr/</uri>
-        </organization>
-      </affiliation>
     </person>
   </contributor>
   <contributor>
     <role type="editor"/>
     <person>
       <name>
-        <completename>Dave Longley</completename>
-      </name>
-      <affiliation>
-        <organization>
-          <name>Digital Bazaar</name>
-          <uri>https://digitalbazaar.com/</uri>
-        </organization>
-      </affiliation>
-    </person>
-  </contributor>
-  <contributor>
-    <role type="author"/>
-    <person>
-      <name>
-        <completename>Manu Sporny</completename>
-      </name>
-      <affiliation>
-        <organization>
-          <name>Digital Bazaar</name>
-          <uri>https://digitalbazaar.com/</uri>
-        </organization>
-      </affiliation>
-    </person>
-  </contributor>
-  <contributor>
-    <role type="author"/>
-    <person>
-      <name>
-        <completename>Dave Longley</completename>
-      </name>
-      <affiliation>
-        <organization>
-          <name>Digital Bazaar</name>
-          <uri>https://digitalbazaar.com/</uri>
-        </organization>
-      </affiliation>
-    </person>
-  </contributor>
-  <contributor>
-    <role type="author"/>
-    <person>
-      <name>
-        <completename>Markus Lanthaler</completename>
-      </name>
-      <affiliation>
-        <organization>
-          <name>Google</name>
-          <uri>https://www.google.com/</uri>
-        </organization>
-      </affiliation>
-    </person>
-  </contributor>
-  <contributor>
-    <role type="author"/>
-    <person>
-      <name>
-        <completename>Niklas Lindström</completename>
+        <completename language="en" script="Latn">Pierre-Antoine Champin</completename>
       </name>
     </person>
   </contributor>
   <language>en</language>
   <script>Latn</script>
-  <abstract format="text/plain" language="en" script="Latn">JSON is a useful data serialization and messaging format.
-    This specification defines JSON-LD 1.1, a JSON-based format to serialize
-    Linked Data. The syntax is designed to easily integrate into deployed
-    systems that already use JSON, and provides a smooth upgrade path from
-    JSON to JSON-LD.
-    It is primarily intended to be a way to use Linked Data in Web-based
-    programming environments, to build interoperable Web services, and to
-    store Linked Data in JSON-based storage engines.</abstract>
-  <relation type="obsoletedBy">
-    <bibitem type="standard">
-      <fetched>2020-11-11</fetched>
-      <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.0</title>
-      <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
-      <uri type="src">https://www.w3.org/TR/2014/REC-json-ld-20140116/</uri>
-      <docidentifier type="W3C">REC-json-ld-20140116</docidentifier>
-      <date type="published">
-        <on>2014-01-16</on>
-      </date>
-      <contributor>
-        <role type="editor"/>
-        <person>
-          <name>
-            <completename>Manu Sporny</completename>
-          </name>
-          <affiliation>
-            <organization>
-              <name>Digital Bazaar</name>
-              <uri>http://digitalbazaar.com/</uri>
-            </organization>
-          </affiliation>
-        </person>
-      </contributor>
-      <contributor>
-        <role type="editor"/>
-        <person>
-          <name>
-            <completename>Gregg Kellogg</completename>
-          </name>
-          <affiliation>
-            <organization>
-              <name>Kellogg Associates</name>
-              <uri>http://kellogg-assoc.com/</uri>
-            </organization>
-          </affiliation>
-        </person>
-      </contributor>
-      <contributor>
-        <role type="editor"/>
-        <person>
-          <name>
-            <completename>Markus Lanthaler</completename>
-          </name>
-          <affiliation>
-            <organization>
-              <name>Graz University of Technology</name>
-              <uri>http://www.tugraz.at/</uri>
-            </organization>
-          </affiliation>
-        </person>
-      </contributor>
-      <contributor>
-        <role type="author"/>
-        <person>
-          <name>
-            <completename>Manu Sporny</completename>
-          </name>
-          <affiliation>
-            <organization>
-              <name>Digital Bazaar</name>
-              <uri>http://digitalbazaar.com/</uri>
-            </organization>
-          </affiliation>
-        </person>
-      </contributor>
-      <contributor>
-        <role type="author"/>
-        <person>
-          <name>
-            <completename>Dave Longley</completename>
-          </name>
-          <affiliation>
-            <organization>
-              <name>Digital Bazaar</name>
-              <uri>http://digitalbazaar.com/</uri>
-            </organization>
-          </affiliation>
-        </person>
-      </contributor>
-      <contributor>
-        <role type="author"/>
-        <person>
-          <name>
-            <completename>Gregg Kellogg</completename>
-          </name>
-          <affiliation>
-            <organization>
-              <name>Kellogg Associates</name>
-              <uri>http://kellogg-assoc.com/</uri>
-            </organization>
-          </affiliation>
-        </person>
-      </contributor>
-      <contributor>
-        <role type="author"/>
-        <person>
-          <name>
-            <completename>Markus Lanthaler</completename>
-          </name>
-          <affiliation>
-            <organization>
-              <name>Graz University of Technology</name>
-              <uri>http://www.tugraz.at/</uri>
-            </organization>
-          </affiliation>
-        </person>
-      </contributor>
-      <contributor>
-        <role type="author"/>
-        <person>
-          <name>
-            <completename>Niklas Lindström</completename>
-          </name>
-        </person>
-      </contributor>
-      <language>en</language>
-      <script>Latn</script>
-      <abstract format="text/plain" language="en" script="Latn">JSON is a useful data serialization and messaging format.
-    This specification defines JSON-LD, a JSON-based format to serialize
-    Linked Data. The syntax is designed to easily integrate into deployed
-    systems that already use JSON, and provides a smooth upgrade path from
-    JSON to JSON-LD.
-    It is primarily intended to be a way to use Linked Data in Web-based
-    programming environments, to build interoperable Web services, and to
-    store Linked Data in JSON-based storage engines.</abstract>
+  <relation type="obsoletes">
+    <bibitem>
+      <formattedref format="text/plain">W3C PR-json-ld11-20200507</formattedref>
     </bibitem>
   </relation>
-  <keyword>Data</keyword>
+  <series>
+    <title format="text/plain">W3C REC</title>
+    <number>REC-json-ld11-20200716</number>
+  </series>
   <ext>
     <doctype>recommendation</doctype>
+    <editorialgroup>
+      <technical-committee>JSON-LD Working Group</technical-committee>
+    </editorialgroup>
   </ext>
 </bibdata>
