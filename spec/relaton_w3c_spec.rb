@@ -29,7 +29,6 @@ RSpec.describe RelatonW3c do
         xml = doc.to_xml bibdata: true
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
-          .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
         schema = Jing.new "spec/fixtures/isobib.rng"
         errors = schema.validate file
         expect(errors).to eq []
@@ -146,16 +145,25 @@ RSpec.describe RelatonW3c do
       #     end
       #   end
       # end
+    end
 
-      it "W3C REC-xml-names-20091208" do
-        # VCR.use_cassette "data" do
-        VCR.use_cassette "rec_xml_names_20091208" do
-          doc = RelatonW3c::W3cBibliography.get "W3C REC-xml-names-20091208"
-          expect(doc.title.first.title.content).to eq(
-            "Namespaces in XML 1.0 (Third Edition)",
-          )
-        end
-        # end
+    it "W3C REC-xml-names-20091208" do
+      # VCR.use_cassette "data" do
+      VCR.use_cassette "rec_xml_names_20091208" do
+        doc = RelatonW3c::W3cBibliography.get "W3C REC-xml-names-20091208"
+        expect(doc.title.first.title.content).to eq(
+          "Namespaces in XML 1.0 (Third Edition)",
+        )
+      end
+      # end
+    end
+
+    it "not found" do
+      VCR.use_cassette "not_found" do
+        expect do
+          bib = RelatonW3c::W3cBibliography.get "W3C REC-xml"
+          expect(bib).to be_nil
+        end.to output(/not found/).to_stderr
       end
     end
   end

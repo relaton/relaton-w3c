@@ -15,6 +15,8 @@ module RelatonW3c
         file = text.sub(/^W3C\s/, "").gsub(/[\s,:\/]/, "_").squeeze("_").upcase
         url = "#{SOURCE}#{file}.yaml"
         resp = Net::HTTP.get_response(URI.parse(url))
+        return unless resp.code == "200"
+
         hash = YAML.safe_load resp.body
         item_hash = ::RelatonW3c::HashConverter.hash_to_bib(hash)
         ::RelatonW3c::W3cBibliographicItem.new(**item_hash)
@@ -32,7 +34,10 @@ module RelatonW3c
       def get(ref, _year = nil, _opts = {})
         warn "[relaton-w3c] (\"#{ref}\") fetching..."
         result = search(ref)
-        return unless result # .any?
+        unless result
+          warn "[relaton-w3c] (\"#{ref}\") not found."
+          return
+        end
 
         # ret = result.first.fetch
         warn "[relaton-w3c] (\"#{ref}\") found #{result.title.first.title.content}"
