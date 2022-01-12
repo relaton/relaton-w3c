@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '469'
+      - '480'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"5062b08fd792b0390af7193b0051c0b33152f905bd771c7d3421d99407a80e5c"
+      - W/"f3d58508ce87a65f1c0c0c7a4d20c53412091f2b8a2d75722e82ce6879980b95"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - BBD4:A922:1284F:42E07:61B8908B
+      - 965A:1247E:86B267:8BA843:61DDCF51
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 14 Dec 2021 12:39:40 GMT
+      - Tue, 11 Jan 2022 18:41:27 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510059-SOF
+      - cache-sof1510069-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1639485580.806319,VS0,VE197
+      - S1641926481.474416,VS0,VE6146
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - baa46c6757ff0cb17dab301176cfff06d8d1e5c0
+      - ea68bdd1f9d6513f429bbaaa4ebe9e34abcb02fa
       Expires:
-      - Tue, 14 Dec 2021 12:44:40 GMT
+      - Tue, 11 Jan 2022 18:46:27 GMT
       Source-Age:
       - '0'
     body:
@@ -72,70 +72,87 @@ http_interactions:
         ---
         id: W3CREC-xml-names-20091208
         title:
-          content: Namespaces in XML 1.0 (Third Edition)
+        - content: Namespaces in XML 1.0 (Third Edition)
           format: text/plain
         link:
-          content: https://www.w3.org/TR/2009/REC-xml-names-20091208/
+        - content: https://www.w3.org/TR/2009/REC-xml-names-20091208/
           type: src
         type: standard
         docid:
-          id: W3C REC-xml-names-20091208
+        - id: W3C REC-xml-names-20091208
           type: W3C
         docnumber: REC-xml-names-20091208
         date:
-          type: published
+        - type: published
           value: '2009-12-08'
         contributor:
         - person:
             name:
               completename:
                 content: Andrew Layman
-                language: en
-                script: Latn
-          role: editor
+                language:
+                - en
+                script:
+                - Latn
+          role:
+          - editor
         - person:
             name:
               completename:
                 content: Dave Hollander
-                language: en
-                script: Latn
-          role: editor
+                language:
+                - en
+                script:
+                - Latn
+          role:
+          - editor
         - person:
             name:
               completename:
                 content: Henry Thompson
-                language: en
-                script: Latn
-          role: editor
+                language:
+                - en
+                script:
+                - Latn
+          role:
+          - editor
         - person:
             name:
               completename:
                 content: Richard Tobin
-                language: en
-                script: Latn
-          role: editor
+                language:
+                - en
+                script:
+                - Latn
+          role:
+          - editor
         - person:
             name:
               completename:
                 content: Tim Bray
-                language: en
-                script: Latn
-          role: editor
+                language:
+                - en
+                script:
+                - Latn
+          role:
+          - editor
         revdate: '2009-12-08'
-        language: en
-        script: Latn
+        language:
+        - en
+        script:
+        - Latn
         relation:
-          type: obsoletes
+        - type: obsoletes
           bibitem:
             formattedref: W3C PER-xml-names-20090806
         series:
-          title:
+        - title:
             content: W3C REC
             format: text/plain
           number: REC-xml-names-20091208
-        fetched: '2021-12-13'
+        fetched: '2022-01-11'
         doctype: recommendation
         editorialgroup:
-          name: XML Core Working Group
-  recorded_at: Tue, 14 Dec 2021 12:39:39 GMT
+        - name: XML Core Working Group
+  recorded_at: Tue, 11 Jan 2022 18:41:27 GMT
 recorded_with: VCR 6.0.0

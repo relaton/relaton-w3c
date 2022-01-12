@@ -36,7 +36,9 @@ RSpec.describe RelatonW3c::DataFetcher do
     end
 
     it "fetch data" do
-      expect(subject).to receive(:save_doc).with(:bib).exactly(8).times
+      expect(subject).to receive(:save_doc).with(:bib).exactly(33).times
+      expect(RelatonBib::BibXMLParser).to receive(:parse).with(kind_of(String))
+        .and_return(:bib).exactly(25).times
       expect(RelatonW3c::DataParser).to receive(:parse)
         .with(kind_of(RDF::Query::Solution), subject)
         .and_return(:bib).exactly(8).times
