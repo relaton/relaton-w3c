@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '445'
+      - '444'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"e38ff7d53eebbf9425c865611e7362b0b9831da1b9ae52856e62f05d2e56ac90"
+      - W/"a2d6cfdf7ea3dbad3a56d6ffdb87b1bacfd1f5a8b9157b420cd5ffaf391c2eb6"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 1BAA:D75A:41A762:4601AA:61DDCF4F
+      - C400:0A15:96491C:9C7429:61EC2458
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 11 Jan 2022 18:41:19 GMT
+      - Sat, 22 Jan 2022 15:35:52 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510057-SOF
+      - cache-sof1510026-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1641926480.727199,VS0,VE193
+      - S1642865753.809493,VS0,VE187
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 66be2521e0c4b0e8c91ebedbdee153a461c01986
+      - ac686ecd7703dd08d584b926dc96980271f9a08c
       Expires:
-      - Tue, 11 Jan 2022 18:46:19 GMT
+      - Sat, 22 Jan 2022 15:40:52 GMT
       Source-Age:
       - '0'
     body:
@@ -130,9 +130,9 @@ http_interactions:
             content: W3C REC
             format: text/plain
           number: REC-json-ld11-20200716
-        fetched: '2022-01-11'
+        fetched: '2022-01-21'
         doctype: recommendation
         editorialgroup:
         - name: JSON-LD Working Group
-  recorded_at: Tue, 11 Jan 2022 18:41:20 GMT
+  recorded_at: Sat, 22 Jan 2022 15:35:52 GMT
 recorded_with: VCR 6.0.0

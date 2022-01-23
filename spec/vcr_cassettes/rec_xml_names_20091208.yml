@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"f3d58508ce87a65f1c0c0c7a4d20c53412091f2b8a2d75722e82ce6879980b95"
+      - W/"af27bd6693034729ed0804e0bf5158b0c78a339323e1c3dbee5aef0da77ab245"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 965A:1247E:86B267:8BA843:61DDCF51
+      - 75B8:4BC3:98F208:9F17AA:61EC2459
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 11 Jan 2022 18:41:27 GMT
+      - Sat, 22 Jan 2022 15:35:53 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510069-SOF
+      - cache-sof1510078-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1641926481.474416,VS0,VE6146
+      - S1642865754.526015,VS0,VE172
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - ea68bdd1f9d6513f429bbaaa4ebe9e34abcb02fa
+      - f332f0aab115a708ed377e14b721a7b24e89ee1f
       Expires:
-      - Tue, 11 Jan 2022 18:46:27 GMT
+      - Sat, 22 Jan 2022 15:40:53 GMT
       Source-Age:
       - '0'
     body:
@@ -150,9 +150,9 @@ http_interactions:
             content: W3C REC
             format: text/plain
           number: REC-xml-names-20091208
-        fetched: '2022-01-11'
+        fetched: '2022-01-21'
         doctype: recommendation
         editorialgroup:
         - name: XML Core Working Group
-  recorded_at: Tue, 11 Jan 2022 18:41:27 GMT
+  recorded_at: Sat, 22 Jan 2022 15:35:53 GMT
 recorded_with: VCR 6.0.0

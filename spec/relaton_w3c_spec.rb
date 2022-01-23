@@ -162,7 +162,7 @@ RSpec.describe RelatonW3c do
     it "not found" do
       VCR.use_cassette "not_found" do
         expect do
-          bib = RelatonW3c::W3cBibliography.get "W3C REC-xml"
+          bib = RelatonW3c::W3cBibliography.get "W3C not-found"
           expect(bib).to be_nil
         end.to output(/not found/).to_stderr
       end
