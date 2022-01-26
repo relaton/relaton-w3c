@@ -47,7 +47,7 @@ module RelatonW3c
     #
     def fetch
       query.each { |sl| save_doc DataParser.parse(sl, self) }
-      Dir[File.expand_path("../../withdrawn/*", __dir__)].each do |file|
+      Dir[File.expand_path("../../data/*", __dir__)].each do |file|
         xml = File.read file, encoding: "UTF-8"
         save_doc RelatonBib::BibXMLParser.parse(xml)
       end
