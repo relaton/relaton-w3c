@@ -49,7 +49,7 @@ module RelatonW3c
       query.each { |sl| save_doc DataParser.parse(sl, self) }
       Dir[File.expand_path("../../data/*", __dir__)].each do |file|
         xml = File.read file, encoding: "UTF-8"
-        save_doc RelatonBib::BibXMLParser.parse(xml)
+        save_doc BibXMLParser.parse(xml)
       end
     end
 
