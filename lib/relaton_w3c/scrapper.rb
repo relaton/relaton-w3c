@@ -39,7 +39,7 @@ module RelatonW3c
       # @return [Array<RelatonBib::DocumentIdentifier>]
       def fetch_docid(hit)
         id = hit["link"].split("/").last
-        [RelatonBib::DocumentIdentifier.new(id: id, type: "W3C")]
+        [RelatonBib::DocumentIdentifier.new(id: id, type: "W3C", primary: true)]
       end
 
       # @param hit [Hash]

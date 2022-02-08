@@ -20,6 +20,7 @@ type: standard
 docid:
 - id: CR-json-ld11-20200316
   type: W3C
+  primary: true
 date:
 - type: published
   value: '2020-01-01'

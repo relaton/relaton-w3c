@@ -75,7 +75,7 @@ module RelatonW3c
     #
     def parse_docid
       id = pub_id(@sol.link.to_s)
-      [RelatonBib::DocumentIdentifier.new(type: "W3C", id: id)]
+      [RelatonBib::DocumentIdentifier.new(type: "W3C", id: id, primary: true)]
     end
 
     #
