@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '478'
+      - '490'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"63a185e92e7f3dfb36382f2c85228eada816b55744712f35d7b502481009d0e1"
+      - W/"f22a9a00a15f0666113305aa202adafb6f7c5afcd6c27422af48a5381eab1e11"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - DBFA:3516:8A4E87:8F10C2:62028DB7
+      - 82C6:26C1:1D2DE93:1E7F795:6252CF54
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 08 Feb 2022 15:35:19 GMT
+      - Sun, 10 Apr 2022 12:36:37 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510073-SOF
+      - cache-sof1510023-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1644334519.008554,VS0,VE176
+      - S1649594197.943816,VS0,VE193
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 5034a48c239dd87339c616714e0a9fafb6912120
+      - 7f6c04c2580c29403563f8a208f75f7d89a0cb5b
       Expires:
-      - Tue, 08 Feb 2022 15:40:19 GMT
+      - Sun, 10 Apr 2022 12:41:37 GMT
       Source-Age:
       - '0'
     body:
@@ -81,6 +81,7 @@ http_interactions:
         docid:
         - id: W3C REC-xml-names-20091208
           type: W3C
+          primary: true
         docnumber: REC-xml-names-20091208
         date:
         - type: published
@@ -150,9 +151,9 @@ http_interactions:
             content: W3C REC
             format: text/plain
           number: REC-xml-names-20091208
-        fetched: '2022-02-08'
+        fetched: '2022-04-09'
         doctype: recommendation
         editorialgroup:
         - name: XML Core Working Group
-  recorded_at: Tue, 08 Feb 2022 15:35:19 GMT
-recorded_with: VCR 6.0.0
+  recorded_at: Sun, 10 Apr 2022 12:36:37 GMT
+recorded_with: VCR 6.1.0

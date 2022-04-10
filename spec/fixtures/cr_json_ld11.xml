@@ -1,8 +1,8 @@
 <bibdata type="standard">
-  <fetched>2021-11-20</fetched>
+  <fetched>2022-04-10</fetched>
   <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
-  <docidentifier type="W3C">W3C REC-json-ld11-20200716</docidentifier>
+  <docidentifier type="W3C" primary="true">W3C REC-json-ld11-20200716</docidentifier>
   <docnumber>REC-json-ld11-20200716</docnumber>
   <date type="published">
     <on>2020-07-16</on>
