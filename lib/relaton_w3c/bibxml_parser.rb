@@ -13,5 +13,12 @@ module RelatonW3c
     def pubid_type(_)
       "W3C"
     end
+
+    def docids(reference, ver)
+      ids = super
+      ids.reject! &:primary
+      id = "W3C #{reference[:target].split('/').last}"
+      ids.unshift RelatonBib::DocumentIdentifier.new(id: id, type: "W3C", primary: true)
+    end
   end
 end

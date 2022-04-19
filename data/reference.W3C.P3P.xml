@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding='UTF-8'?>
-<reference anchor="W3C.P3P" taret="http://www.w3.org/TR/P3P/">
+<reference anchor="W3C.P3P" target="http://www.w3.org/TR/P3P/">
   <front>
     <title>The Platform for Privacy Preferences 1.0 (P3P1.0) Specification</title>
     <author initials="M." surname="Marchiori" fullname="Massimo Marchiori">

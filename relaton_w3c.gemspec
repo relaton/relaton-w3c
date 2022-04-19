@@ -39,7 +39,10 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "linkeddata", "~> 3.1.0"
   spec.add_dependency "mechanize", "~> 2.8.0"
+  # spec.add_dependency "picky"
   spec.add_dependency "rdf", "~> 3.1.0"
+  spec.add_dependency "rdf-normalize", "~> 0.4.0"
   spec.add_dependency "relaton-bib", "~> 1.11.0"
+  spec.add_dependency "shex", "~> 0.6.0"
   spec.add_dependency "sparql", "~> 3.1.0"
 end

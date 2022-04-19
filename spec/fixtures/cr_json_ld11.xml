@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2022-04-10</fetched>
+  <fetched>2022-04-19</fetched>
   <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
   <docidentifier type="W3C" primary="true">W3C REC-json-ld11-20200716</docidentifier>
@@ -33,9 +33,24 @@
   </contributor>
   <language>en</language>
   <script>Latn</script>
+  <status>
+    <stage>recommendation</stage>
+  </status>
   <relation type="obsoletes">
     <bibitem>
       <formattedref format="text/plain">W3C PR-json-ld11-20200507</formattedref>
+    </bibitem>
+  </relation>
+  <relation type="updatedBy">
+    <description format="text/plain">errata</description>
+    <bibitem>
+      <formattedref format="text/plain">W3C json-ld-syntax/errata</formattedref>
+    </bibitem>
+  </relation>
+  <relation type="hasDraft">
+    <description format="text/plain">Editor's draft</description>
+    <bibitem>
+      <formattedref format="text/plain">W3C json-ld-syntax</formattedref>
     </bibitem>
   </relation>
   <series>

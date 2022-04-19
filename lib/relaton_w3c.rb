@@ -2,13 +2,14 @@ require "relaton_bib"
 require "relaton_w3c/version"
 require "relaton_w3c/w3c_bibliography"
 require "relaton_w3c/w3c_bibliographic_item"
-require "relaton_w3c/hit_collection"
-require "relaton_w3c/hit"
-require "relaton_w3c/scrapper"
+# require "relaton_w3c/hit_collection"
+# require "relaton_w3c/hit"
+# require "relaton_w3c/scrapper"
 require "relaton_w3c/xml_parser"
 require "relaton_w3c/bibxml_parser"
 require "relaton_w3c/hash_converter"
 require "relaton_w3c/data_fethcer"
+require "relaton_w3c/data_index"
 
 module RelatonW3c
   class Error < StandardError; end

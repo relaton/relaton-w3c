@@ -1,0 +1,21 @@
+<bibdata type="standard">
+  <fetched>2022-04-19</fetched>
+  <formattedref format="text/plain">W3C xml-names</formattedref>
+  <uri type="src">https://www.w3.org/TR/xml-names/</uri>
+  <docnumber>xml-names</docnumber>
+  <language>en</language>
+  <script>Latn</script>
+  <relation type="hasEdition">
+    <bibitem>
+      <formattedref format="text/plain">W3C REC-xml-names-20091208</formattedref>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <formattedref format="text/plain">W3C REC-xml-names-20060816</formattedref>
+    </bibitem>
+  </relation>
+  <ext>
+    <doctype>recommendation</doctype>
+  </ext>
+</bibdata>

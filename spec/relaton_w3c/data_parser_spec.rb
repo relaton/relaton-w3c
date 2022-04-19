@@ -17,29 +17,41 @@ RSpec.describe RelatonW3c::DataParser do
       rdf = RDF::Repository.load "spec/fixtures/tr.rdf"
       expect(RDF::Repository).to receive(:load).with("http://www.w3.org/2002/01/tr-automation/tr.rdf").and_return(rdf)
       fetcher = RelatonW3c::DataFetcher.new "dir", "bibxml"
-      sol = fetcher.query.filter(link: "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html").first
+      sol = fetcher.query_versioned_docs.filter(link: "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html").first
       RelatonW3c::DataParser.new sol, fetcher
     end
 
     it "skip parsing doc" do
-      expect(subject).to receive(:type).and_return "not_allowed_type"
+      expect(subject).to receive(:types_stages).and_return ["not_allowed_type"]
       expect(subject).not_to receive(:parse_doctype)
       expect(subject.parse).to be_nil
     end
 
     it "parse doc" do
-      expect(subject).to receive(:parse_doctype)
-      expect(subject).to receive(:parse_title)
-      expect(subject).to receive(:parse_link)
-      expect(subject).to receive(:parse_docid)
-      expect(subject).to receive(:identifier).with(kind_of(String))
-      expect(subject).to receive(:parse_series)
-      expect(subject).to receive(:parse_date)
-      expect(subject).to receive(:parse_relation)
-      expect(subject).to receive(:parse_contrib)
-      expect(subject).to receive(:parse_editorialgroup)
-      expect(RelatonBib::BibliographicItem).to receive(:new).and_return :bib
+      expect(subject).to receive(:parse_docstatus).and_return :status
+      expect(subject).to receive(:parse_doctype).and_return :doctype
+      expect(subject).to receive(:parse_title).and_return :title
+      expect(subject).to receive(:parse_link).and_return :link
+      expect(subject).to receive(:parse_docid).and_return :docid
+      expect(subject).to receive(:parse_formattedref).and_return :formattedref
+      expect(subject).to receive(:identifier).with(no_args).and_return :docnumber
+      expect(subject).to receive(:parse_series).and_return :series
+      expect(subject).to receive(:parse_date).and_return :date
+      expect(subject).to receive(:parse_relation).and_return :relation
+      expect(subject).to receive(:parse_contrib).and_return :contributor
+      expect(subject).to receive(:parse_editorialgroup).and_return :editorialgroup
+      expect(RelatonBib::BibliographicItem).to receive(:new).with(
+        docstatus: :status, doctype: :doctype, fetched: Date.today.to_s, language: ["en"], script: ["Latn"],
+        type: "standard", title: :title, link: :link, docid: :docid, formattedref: :formattedref,
+        contributor: :contributor, docnumber: :docnumber, series: :series, date: :date, relation: :relation,
+        editorialgroup: :editorialgroup,
+      ).and_return :bib
       expect(subject.parse).to eq :bib
+    end
+
+    it "parse doc status" do
+      status = subject.parse_docstatus
+      expect(status).to be_a RelatonBib::DocumentStatus
     end
 
     it "parse title" do
@@ -65,9 +77,9 @@ RSpec.describe RelatonW3c::DataParser do
       expect(docid.first.id).to eq "W3C REC-CSS2-19980512/fonts"
     end
 
-    # it "parse identifier" do
-    #   expect(subject.identifier("https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html")).to eq "REC-CSS2-19980512/fonts"
-    # end
+    it "parse identifier" do
+      expect(subject.identifier("https://www.w3.org/TR/1998/CSS2")).to eq "CSS2"
+    end
 
     it "parse series" do
       series = subject.parse_series
@@ -89,13 +101,43 @@ RSpec.describe RelatonW3c::DataParser do
       expect(date.first).to be_instance_of RelatonBib::BibliographicDate
     end
 
-    it "parse relation" do
-      relation = subject.parse_relation
-      expect(relation).to be_instance_of Array
-      expect(relation.size).to eq 1
-      expect(relation.first).to be_instance_of RelatonBib::DocumentRelation
-      expect(relation.first.type).to eq "obsoletes"
-      expect(relation.first.bibitem.formattedref.content).to eq "W3C PR-DSig-label-19980403"
+    context "parse relation" do
+      it "obsoletes & hasDraft" do
+        relation = subject.parse_relation
+        expect(relation).to be_instance_of Array
+        expect(relation.size).to eq 2
+        expect(relation.first).to be_instance_of RelatonBib::DocumentRelation
+        expect(relation.first.type).to eq "obsoletes"
+        expect(relation.first.bibitem.formattedref.content).to eq "W3C PR-DSig-label-19980403"
+        expect(relation[1]).to be_instance_of RelatonBib::DocumentRelation
+        expect(relation[1].type).to eq "hasDraft"
+        expect(relation[1].description).to be_instance_of RelatonBib::FormattedString
+        expect(relation[1].description.content).to eq "Editor's draft"
+        expect(relation[1].bibitem.formattedref.content).to eq "W3C css-fonts-3"
+      end
+
+      it "instace (version)" do
+        sol = double "sol", version_of: "CSS2"
+        data = double "data"
+        rel = double "rel", link: "https://www.w3.org/TR/1998/REC-CSS2-19980512"
+        expect(data).to receive(:query).with(kind_of(SPARQL::Algebra::Operator::Prefix)).and_return [rel]
+        fetcher = double "fetcher", data: data
+        parser = RelatonW3c::DataParser.new sol, fetcher
+        relation = parser.parse_relation
+        expect(relation).to be_instance_of Array
+        expect(relation.size).to eq 1
+        expect(relation.first).to be_instance_of RelatonBib::DocumentRelation
+        expect(relation.first.type).to eq "hasEdition"
+        expect(relation.first.bibitem.formattedref.content).to eq "W3C REC-CSS2-19980512"
+      end
+    end
+
+    it "parse formattedref" do
+      sol = double "sol", version_of: "CSS2"
+      parser = RelatonW3c::DataParser.new sol, nil
+      fref = parser.parse_formattedref
+      expect(fref).to be_instance_of RelatonBib::FormattedRef
+      expect(fref.content).to eq "W3C CSS2"
     end
 
     it "parse contrib" do

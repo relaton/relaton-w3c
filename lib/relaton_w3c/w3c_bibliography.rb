@@ -5,15 +5,17 @@ require "net/http"
 module RelatonW3c
   # Class methods for search W3C standards.
   class W3cBibliography
-    SOURCE = "https://raw.githubusercontent.com/relaton/relaton-data-w3c/main/data/"
+    SOURCE = "https://raw.githubusercontent.com/relaton/relaton-data-w3c/main/"
 
     class << self
       # @param text [String]
       # @return [RelatonW3c::HitCollection]
       def search(text) # rubocop:disable Metrics/MethodLength
-        # HitCollection.new text
-        file = text.sub(/^W3C\s/, "").gsub(/[\s,:\/]/, "_").squeeze("_").upcase
-        url = "#{SOURCE}#{file}.yaml"
+        ref = DataParser.parse_identifier text.sub(/^W3C\s/, "")
+        file = DataIndex.create_from_repo.search(ref)
+        return unless file
+
+        url = "#{SOURCE}#{file}"
         resp = Net::HTTP.get_response(URI.parse(url))
         return unless resp.code == "200"
 
@@ -24,7 +26,7 @@ module RelatonW3c
              EOFError, Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
              Net::ProtocolError, Errno::ETIMEDOUT
         raise RelatonBib::RequestError,
-              "Could not access #{HitCollection::DOMAIN}"
+              "Could not access #{url}"
       end
 
       # @param ref [String] the W3C standard Code to look up
@@ -39,8 +41,8 @@ module RelatonW3c
           return
         end
 
-        # ret = result.first.fetch
-        warn "[relaton-w3c] (\"#{ref}\") found #{result.title.first.title.content}"
+        found = result.docnumber
+        warn "[relaton-w3c] (\"#{ref}\") found #{found}"
         result
       end
     end

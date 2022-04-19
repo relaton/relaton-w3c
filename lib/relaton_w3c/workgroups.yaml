@@ -32,6 +32,9 @@
 'https://www.w3.org/WAI/EO':
   name: Education and Outreach Working Group 
   abbrev: EOWG
+'https://www.w3.org/WAI/about/groups/eowg':
+  name: Education and Outreach Working Group 
+  abbrev: EOWG
 'https://www.w3.org/2001/sw/WebOnt':
   name: Web-Ontology Working Group
 'http://www.w3.org/MarkUp/Forms':
@@ -53,6 +56,8 @@
 'https://www.w3.org/WebPlatform/WG':
   name: Web Applications Working Group
 'https://www.w3.org/2008/webapps':
+  name: Web Applications Working Group
+'https://www.w3.org/groups/wg/webapps':
   name: Web Applications Working Group
 'https://www.w3.org/das':
   name: Devices and Sensors Working Group
@@ -225,6 +230,8 @@
   name: Accessible Rich Internet Applications Working Group
   abbrev: ARIA WG
 'https://www.w3.org/wasm':
+  name: WebAssembly Working Group
+'https://www.w3.org/groups/wg/wasm':
   name: WebAssembly Working Group
 'https://www.w3.org/groups/wg/webediting':
   name: Web Editing Working Group
