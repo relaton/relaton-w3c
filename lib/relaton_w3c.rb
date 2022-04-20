@@ -8,7 +8,7 @@ require "relaton_w3c/w3c_bibliographic_item"
 require "relaton_w3c/xml_parser"
 require "relaton_w3c/bibxml_parser"
 require "relaton_w3c/hash_converter"
-require "relaton_w3c/data_fethcer"
+require "relaton_w3c/data_fetcher"
 require "relaton_w3c/data_index"
 
 module RelatonW3c
