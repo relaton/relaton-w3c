@@ -1,3 +1,5 @@
+require "zip"
+
 module RelatonW3c
   class DataIndex
     #
@@ -16,15 +18,16 @@ module RelatonW3c
     #
     # @return [RelatonW3c::DataIndex] data index
     #
-    def self.create_from_repo
-      resp_index = Net::HTTP.get(URI("#{W3cBibliography::SOURCE}index-w3c.yaml"))
+    def self.create_from_repo # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+      resp = Zip::InputStream.new URI("#{W3cBibliography::SOURCE}index-w3c.zip").open
+      zip = resp.get_next_entry
 
       # Newer versions of Psych uses the `permitted_classes:` parameter
       index = if YAML.method(:safe_load).parameters.collect(&:last).index(:permitted_classes)
-        YAML.safe_load(resp_index, permitted_classes: [Symbol])
-      else
-        YAML.safe_load(resp_index, [Symbol])
-      end
+                YAML.safe_load(zip.get_input_stream.read, permitted_classes: [Symbol])
+              else
+                YAML.safe_load(zip.get_input_stream.read, [Symbol])
+              end
 
       DataIndex.new index: index
     end
