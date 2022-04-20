@@ -18,7 +18,7 @@ module RelatonW3c
     #
     def self.create_from_repo
       resp_index = Net::HTTP.get(URI("#{W3cBibliography::SOURCE}index-w3c.yaml"))
-      DataIndex.new index: YAML.safe_load(resp_index, [Symbol])
+      DataIndex.new index: YAML.safe_load(resp_index, permitted_classes: [Symbol])
     end
 
     #
