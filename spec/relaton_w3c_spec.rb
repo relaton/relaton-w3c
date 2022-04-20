@@ -40,7 +40,7 @@ RSpec.describe RelatonW3c do
       VCR.use_cassette "rec_xml_names" do
         doc = RelatonW3c::W3cBibliography.get "W3C xml-names"
         file = "spec/fixtures/rec_xml_names.xml"
-        xml = doc.to_xml(bibdata: true)
+        xml = doc.to_xml(bibdata: true).sub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
           .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
@@ -54,7 +54,7 @@ RSpec.describe RelatonW3c do
       VCR.use_cassette "rec_xml_names" do
         doc = RelatonW3c::W3cBibliography.get "https://www.w3.org/TR/xml-names/"
         file = "spec/fixtures/xml_names.xml"
-        xml = doc.to_xml(bibdata: true)
+        xml = doc.to_xml(bibdata: true).sub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
           .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
