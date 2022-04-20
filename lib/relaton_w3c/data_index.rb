@@ -18,7 +18,15 @@ module RelatonW3c
     #
     def self.create_from_repo
       resp_index = Net::HTTP.get(URI("#{W3cBibliography::SOURCE}index-w3c.yaml"))
-      DataIndex.new index: YAML.safe_load(resp_index, permitted_classes: [Symbol])
+
+      # Newer versions of Psych uses the `permitted_classes:` parameter
+      index = if YAML.method(:safe_load).parameters.collect(&:last).index(:permitted_classes)
+        YAML.safe_load(resp_index, permitted_classes: [Symbol])
+      else
+        YAML.safe_load(resp_index, [Symbol])
+      end
+
+      DataIndex.new index: index
     end
 
     #
