@@ -14,32 +14,15 @@ module RelatonW3c
     end
 
     #
-    # Create index from a GitHub repository
-    #
-    # @return [RelatonW3c::DataIndex] data index
-    #
-    def self.create_from_repo # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      resp = Zip::InputStream.new URI("#{W3cBibliography::SOURCE}index-w3c.zip").open
-      zip = resp.get_next_entry
-
-      # Newer versions of Psych uses the `permitted_classes:` parameter
-      index = if YAML.method(:safe_load).parameters.collect(&:last).index(:permitted_classes)
-                YAML.safe_load(zip.get_input_stream.read, permitted_classes: [Symbol])
-              else
-                YAML.safe_load(zip.get_input_stream.read, [Symbol])
-              end
-
-      DataIndex.new index: index
-    end
-
-    #
     # Add document to index
     #
     # @param [String] docnumber document number
     # @param [String] file path to document file
     #
     def add(docnumber, file)
-      @index << docnumber_to_parts(docnumber, file)
+      dnparts = self.class.docnumber_to_parts docnumber
+      dnparts[:file] = file
+      @index << dnparts
     end
 
     #
@@ -67,11 +50,14 @@ module RelatonW3c
     # @return [String] document's filename
     #
     def search(ref) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      dparts = docnumber_to_parts(ref)
+      dparts = self.class.docnumber_to_parts(ref)
+      return if dparts[:code].nil?
+
       @index.detect do |parts|
         parts[:code].match?(/^#{Regexp.escape dparts[:code]}/i) &&
           (dparts[:stage].nil? || dparts[:stage].casecmp?(parts[:stage])) &&
-          (dparts[:type].nil? || dparts[:type].casecmp?(parts[:type])) &&
+          (dparts[:type].nil? || dparts[:type].casecmp?(parts[:type]) ||
+            (parts[:type].nil? && dparts[:type] == "TR")) &&
           (dparts[:date].nil? || dparts[:date] == parts[:date]) &&
           (dparts[:suff].nil? || dparts[:suff].casecmp?(parts[:suff]))
       end&.fetch(:file)
@@ -119,28 +105,47 @@ module RelatonW3c
       date
     end
 
-    #
-    # Parse document number to parts
-    #
-    # @param [String] docnumber document number
-    # @param [String, nil] file path to document file
-    #
-    # @return [Hash{Symbol=>String}] document parts
-    #
-    def docnumber_to_parts(docnumber, file = nil) # rubocop:disable Metrics/MethodLength
-      %r{
-        ^(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE))-)?
-        (?<code>\w+(?:[+-][\w.]+)*?)
-        (?:-(?<date>\d{8}|\d{6}))?
-        (?:/(?<suff>\w+))?$
-      }xi =~ docnumber
-      entry = { code: code }
-      entry[:file] = file if file
-      entry[:stage] = stage if stage
-      entry[:type] = type if type
-      entry[:date] = date if date
-      entry[:suff] = suff if suff
-      entry
+    class << self
+      #
+      # Create index from a GitHub repository
+      #
+      # @return [RelatonW3c::DataIndex] data index
+      #
+      def create_from_repo # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+        resp = Zip::InputStream.new URI("#{W3cBibliography::SOURCE}index-w3c.zip").open
+        zip = resp.get_next_entry
+
+        # Newer versions of Psych uses the `permitted_classes:` parameter
+        index = if YAML.method(:safe_load).parameters.collect(&:last).index(:permitted_classes)
+                  YAML.safe_load(zip.get_input_stream.read, permitted_classes: [Symbol])
+                else
+                  YAML.safe_load(zip.get_input_stream.read, [Symbol])
+                end
+
+        DataIndex.new index: index
+      end
+
+      #
+      # Parse document number to parts
+      #
+      # @param [String] docnumber document number
+      #
+      # @return [Hash{Symbol=>String}] document parts
+      #
+      def docnumber_to_parts(docnumber) # rubocop:disable Metrics/MethodLength
+        %r{
+          ^(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE|TR))-)?
+          (?<code>\w+(?:[+-][\w.]+)*?)
+          (?:-(?<date>\d{8}|\d{6}))?
+          (?:/(?<suff>\w+))?$
+        }xi =~ docnumber
+        entry = { code: code }
+        entry[:stage] = stage if stage
+        entry[:type] = type if type
+        entry[:date] = date if date
+        entry[:suff] = suff if suff
+        entry
+      end
     end
   end
 end

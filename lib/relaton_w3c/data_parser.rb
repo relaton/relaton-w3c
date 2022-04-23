@@ -169,7 +169,7 @@ module RelatonW3c
     #
     def type
       # thre are many types, we need to find the right one
-      @type ||= types_stages&.detect { |t| USED_TYPES.include?(t) }
+      @type ||= types_stages&.detect { |t| USED_TYPES.include?(t) } || "technicalReport"
     end
 
     #

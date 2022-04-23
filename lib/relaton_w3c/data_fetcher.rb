@@ -68,59 +68,6 @@ module RelatonW3c
     end
 
     #
-    # Create index file
-    #
-    # def create_index
-    #   index_file = "index-w3c.yaml"
-    #   index_yaml = @index.sort do |a, b|
-    #     compare_index_items a, b
-    #   end.to_yaml
-    #   File.write index_file, index_yaml, encoding: "UTF-8"
-    # end
-
-    #
-    # Compare index items
-    #
-    # @param [Hash] aid first item
-    # @param [Hash] bid second item
-    #
-    # @return [Integer] comparison result
-    #
-    # def compare_index_items(aid, bid) # rubocop:disable Metrics/AbcSize
-    #   ret = aid[:code] <=> bid[:code]
-    #   ret = stage_weight(bid[:stage]) <=> stage_weight(aid[:stage]) if ret.zero?
-    #   ret = date_weight(bid[:date]) <=> date_weight(aid[:date]) if ret.zero?
-    #   # ret = aid[:type] <=> bid[:type] if ret.zero?
-    #   ret
-    # end
-
-    #
-    # Weight of stage
-    #
-    # @param [String, nil] stage stage
-    #
-    # @return [Integer] weight
-    #
-    # def stage_weight(stage)
-    #   return DataParser::STAGES.size if stage.nil?
-
-    #   DataParser::STAGES.keys.index(stage)
-    # end
-
-    #
-    # Weight of date
-    #
-    # @param [String] date date
-    #
-    # @return [String] weight
-    #
-    # def date_weight(date)
-    #   return "99999999" if date.nil?
-
-    #   date
-    # end
-
-    #
     # Query RDF source for documents
     #
     # @return [RDF::Query::Solutions] query results

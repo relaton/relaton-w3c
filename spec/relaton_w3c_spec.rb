@@ -50,6 +50,13 @@ RSpec.describe RelatonW3c do
       end
     end
 
+    it "TR type" do
+      VCR.use_cassette "w3c_tr_vocab-adms" do
+        doc = RelatonW3c::W3cBibliography.get "W3C TR vocab-adms"
+        expect(doc.formattedref.content).to eq "W3C vocab-adms"
+      end
+    end
+
     it "by URL" do
       VCR.use_cassette "rec_xml_names" do
         doc = RelatonW3c::W3cBibliography.get "https://www.w3.org/TR/xml-names/"

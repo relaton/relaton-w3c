@@ -9,10 +9,10 @@ module RelatonW3c
 
     class << self
       # @param text [String]
-      # @return [RelatonW3c::HitCollection]
-      def search(text) # rubocop:disable Metrics/MethodLength
+      # @return [RelatonW3c::W3cBibliographicItem]
+      def search(text) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         ref = DataParser.parse_identifier text.sub(/^W3C\s/, "")
-        file = DataIndex.create_from_repo.search(ref)
+        file = DataIndex.create_from_repo.search ref.gsub(" ", "-").squeeze("-")
         return unless file
 
         url = "#{SOURCE}#{file}"

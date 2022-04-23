@@ -25,10 +25,9 @@ RSpec.describe RelatonW3c::DataIndex do
     end
 
     it "docnumber to parts" do
-      file = "rec-css2-1998012_fonts.yaml"
-      parts = subject.docnumber_to_parts "REC-CSS2-19980512/fonts", file
+      parts = subject.class.docnumber_to_parts "REC-CSS2-19980512/fonts"
       expect(parts).to eq(
-        file: file, stage: "REC", code: "CSS2",
+        stage: "REC", code: "CSS2",
         date: "19980512", suff: "fonts"
       )
     end
