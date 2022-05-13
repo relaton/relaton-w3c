@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
                        "using the IsoBibliographicItem model"
   spec.homepage      = "https://github.com/relaton/relaton-wc3"
   spec.license       = "BSD-2-Clause"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.6.0")
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
@@ -39,8 +39,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "linkeddata", "~> 3.1.0"
   spec.add_dependency "mechanize", "~> 2.8.0"
-  spec.add_dependency "rdf", "~> 3.1.0"
-  spec.add_dependency "rdf-normalize", "~> 0.4.0"
+  spec.add_dependency "rdf", "~> 3.2.0"
+  spec.add_dependency "rdf-normalize", "~> 0.5.0"
   spec.add_dependency "relaton-bib", "~> 1.11.0"
   spec.add_dependency "rubyzip", "~> 2.3.0"
   spec.add_dependency "shex", "~> 0.6.0"

@@ -72,7 +72,7 @@ module RelatonW3c
     # @return [Integer] comparison result
     #
     def compare_index_items(aid, bid) # rubocop:disable Metrics/AbcSize
-      ret = aid[:code] <=> bid[:code]
+      ret = aid[:code].downcase <=> bid[:code].downcase
       ret = stage_weight(bid[:stage]) <=> stage_weight(aid[:stage]) if ret.zero?
       ret = date_weight(bid[:date]) <=> date_weight(aid[:date]) if ret.zero?
       # ret = aid[:type] <=> bid[:type] if ret.zero?
@@ -136,7 +136,7 @@ module RelatonW3c
         %r{
           ^(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE|TR))-)?
           (?<code>\w+(?:[+-][\w.]+)*?)
-          (?:-(?<date>\d{8}|\d{6}))?
+          (?:-(?<date>\d{8}|\d{6}|\d{4}))?
           (?:/(?<suff>\w+))?$
         }xi =~ docnumber
         entry = { code: code }

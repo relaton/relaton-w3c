@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2022-04-19</fetched>
+  <fetched>2022-05-12</fetched>
   <formattedref format="text/plain">W3C xml-names</formattedref>
   <uri type="src">https://www.w3.org/TR/xml-names/</uri>
   <docnumber>xml-names</docnumber>
@@ -15,6 +15,10 @@
       <formattedref format="text/plain">W3C REC-xml-names-20060816</formattedref>
     </bibitem>
   </relation>
+  <series>
+    <title format="text/plain">W3C technicalReport</title>
+    <number>xml-names</number>
+  </series>
   <ext>
     <doctype>recommendation</doctype>
   </ext>

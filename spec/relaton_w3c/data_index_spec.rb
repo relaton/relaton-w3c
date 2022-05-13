@@ -24,12 +24,19 @@ RSpec.describe RelatonW3c::DataIndex do
       expect(subject.instance_variable_get(:@index)).to eq [{ file: "dir/bib.xml", code: "bib" }]
     end
 
-    it "docnumber to parts" do
-      parts = subject.class.docnumber_to_parts "REC-CSS2-19980512/fonts"
-      expect(parts).to eq(
-        stage: "REC", code: "CSS2",
-        date: "19980512", suff: "fonts"
-      )
+    context "docnumber to parts" do
+      it "with stage, code, date, suffix" do
+        parts = subject.class.docnumber_to_parts "REC-CSS2-19980512/fonts"
+        expect(parts).to eq(
+          stage: "REC", code: "CSS2",
+          date: "19980512", suff: "fonts"
+        )
+      end
+
+      it "with year" do
+        parts = subject.class.docnumber_to_parts "REC-xml-1998"
+        expect(parts).to eq(stage: "REC", code: "xml", date: "1998")
+      end
     end
 
     it "save index" do
@@ -44,6 +51,12 @@ RSpec.describe RelatonW3c::DataIndex do
         a = { code: "2dcontext" }
         b = { code: "2dcontext2" }
         expect(subject.compare_index_items(a, b)).to eq(-1)
+      end
+
+      it "upcase & downcase code" do
+        a = { code: "XML-FRAG" }
+        b = { code: "xml" }
+        expect(subject.compare_index_items(a, b)).to eq(1)
       end
 
       it "code & date" do
