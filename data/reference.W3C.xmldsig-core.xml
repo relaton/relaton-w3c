@@ -22,5 +22,5 @@
     </author>
     <date day="6" month="October" year="2000"/>
   </front>
-  <seriesInfo value="xmldsig-core" name="W3C Recommendation"/>
+  <seriesInfo value="REC-xmldsig-core" name="W3C"/>
 </reference>

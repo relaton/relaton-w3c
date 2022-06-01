@@ -16,5 +16,5 @@
     </author>
     <date day="2" month="August" year="2002"/>
   </front>
-  <seriesInfo value="xmlenc-core" name="W3C Candidate Recommendation"/>
+  <seriesInfo value="CR-xmlenc-core" name="W3C"/>
 </reference>

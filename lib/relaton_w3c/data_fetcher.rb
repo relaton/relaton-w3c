@@ -68,7 +68,7 @@ module RelatonW3c
     end
 
     #
-    # Query RDF source for documents
+    # Query RDF source for versioned documents
     #
     # @return [RDF::Query::Solutions] query results
     #
@@ -87,6 +87,11 @@ module RelatonW3c
       data.query sse
     end
 
+    #
+    # Query RDF source for unversioned documents
+    #
+    # @return [Array<RDF::Query::Solution>] query results
+    #
     def query_unversioned_docs
       sse = SPARQL.parse(%(
         PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>

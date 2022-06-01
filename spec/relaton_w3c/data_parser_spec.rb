@@ -13,13 +13,18 @@ RSpec.describe RelatonW3c::DataParser do
   end
 
   context "instance" do
-    subject do
-      rdf = RDF::Repository.load "spec/fixtures/tr.rdf"
-      expect(RDF::Repository).to receive(:load).with("http://www.w3.org/2002/01/tr-automation/tr.rdf").and_return(rdf)
-      fetcher = RelatonW3c::DataFetcher.new "dir", "bibxml"
-      sol = fetcher.query_versioned_docs.filter(link: "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html").first
-      RelatonW3c::DataParser.new sol, fetcher
+    let(:rdf) { RDF::Repository.load "spec/fixtures/tr.rdf" }
+    let(:fetcher) { RelatonW3c::DataFetcher.new "dir", "bibxml" }
+
+    before do
+      allow(RDF::Repository).to receive(:load).with("http://www.w3.org/2002/01/tr-automation/tr.rdf").and_return(rdf)
     end
+
+    let(:solution) do
+      fetcher.query_versioned_docs.filter(link: "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html").first
+    end
+
+    subject { RelatonW3c::DataParser.new solution, fetcher }
 
     it "skip parsing doc" do
       expect(subject).to receive(:types_stages).and_return ["not_allowed_type"]
@@ -59,6 +64,19 @@ RSpec.describe RelatonW3c::DataParser do
       expect(title).to be_instance_of RelatonBib::TypedTitleStringCollection
       expect(title.first).to be_instance_of RelatonBib::TypedTitleString
       expect(title.first.title.content).to eq "CSS3 module: Web Fonts"
+    end
+
+    context "unvesioned doc" do
+      let(:solution) do
+        fetcher.query_unversioned_docs.detect { |sol| sol.version_of == "https://www.w3.org/TR/WD-font/" }
+      end
+
+      it "parse title" do
+        title = subject.parse_title
+        expect(title).to be_instance_of RelatonBib::TypedTitleStringCollection
+        expect(title.first).to be_instance_of RelatonBib::TypedTitleString
+        expect(title.first.title.content).to eq "Web Fonts"
+      end
     end
 
     it "parse link" do

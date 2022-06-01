@@ -52,5 +52,5 @@
     </author>
     <date day="8" month="May" year="2000"/>
   </front>
-  <seriesInfo value="soap11" name="W3C Note"/>
+  <seriesInfo value="NOTE-soap11" name="W3C"/>
 </reference>

@@ -46,5 +46,5 @@
     </author>
     <date day="30" month="March" year="2001"/>
   </front>
-  <seriesInfo value="xkms" name="W3C Note"/>
+  <seriesInfo value="NOTE-xkms" name="W3C"/>
 </reference>

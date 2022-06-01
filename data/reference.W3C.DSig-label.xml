@@ -28,5 +28,5 @@
     </author>
     <date day="27" month="May" year="1998"/>
   </front>
-  <seriesInfo name="W3C Recommendation" value="REC-DSig-label"/>
+  <seriesInfo name="W3C" value="REC-DSig-label"/>
 </reference>

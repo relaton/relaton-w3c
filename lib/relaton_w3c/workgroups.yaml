@@ -103,6 +103,8 @@
   name: Web Services Architecture Working Group
 'https://www.w3.org/2011/webappsec':
   name: Web Application Security Working Group
+'https://www.w3.org/groups/wg/webappsec':
+  name: Web Application Security Working Group
 'https://www.w3.org/Social/WG':
   name: Social Web Working Group
 'https://www.w3.org/XML/Core':

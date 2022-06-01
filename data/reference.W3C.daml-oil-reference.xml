@@ -35,5 +35,5 @@
     </author>
     <date day="18" month="December" year="2001"/>
   </front>
-  <seriesInfo value="daml+oil-reference" name="W3C Note"/>
+  <seriesInfo value="NOTE-daml+oil-reference" name="W3C"/>
 </reference>
