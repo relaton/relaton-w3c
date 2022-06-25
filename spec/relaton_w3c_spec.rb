@@ -53,7 +53,7 @@ RSpec.describe RelatonW3c do
     it "TR type" do
       VCR.use_cassette "w3c_tr_vocab-adms" do
         doc = RelatonW3c::W3cBibliography.get "W3C TR vocab-adms"
-        expect(doc.formattedref.content).to eq "W3C vocab-adms"
+        expect(doc.docidentifier[0].id).to eq "W3C vocab-adms"
       end
     end
 
