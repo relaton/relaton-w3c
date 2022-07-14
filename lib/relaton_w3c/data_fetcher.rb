@@ -20,22 +20,21 @@ module RelatonW3c
       @ext = format.sub(/^bib/, "")
       dir = File.dirname(File.expand_path(__FILE__))
       @group_names = YAML.load_file(File.join(dir, "workgroups.yaml"))
-      @data = RDF::Repository.load("http://www.w3.org/2002/01/tr-automation/tr.rdf")
-      @files = []
       @index = DataIndex.new
     end
 
     #
     # Initialize fetcher and run fetch
     #
+    # @param [String] source source name "w3c-tr-archive" or "w3c-rdf"
     # @param [Strin] output directory to save files, default: "data"
     # @param [Strin] format format of output files (xml, yaml, bibxml), default: yaml
     #
-    def self.fetch(output: "data", format: "yaml")
+    def self.fetch(source, output: "data", format: "yaml")
       t1 = Time.now
       puts "Started at: #{t1}"
-      FileUtils.mkdir_p output unless Dir.exist? output
-      new(output, format).fetch
+      FileUtils.mkdir_p output
+      new(output, format).fetch source
       t2 = Time.now
       puts "Stopped at: #{t2}"
       puts "Done in: #{(t2 - t1).round} sec."
@@ -44,19 +43,89 @@ module RelatonW3c
     #
     # Parse documents
     #
-    def fetch # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      query_versioned_docs.each do |sl|
-        save_doc DataParser.parse(sl, self)
-      rescue StandardError => e
-        warn "Error: document #{sl.link} #{e.message}"
-        warn e.backtrace.join("\n")
+    # @param [String] source source name "w3c-tr-archive" or "w3c-rdf"
+    #
+    def fetch(source) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+      each_dataset(source) do |rdf|
+        %i[versioned unversioned].each do |type|
+          send("query_#{type}_docs", rdf).each do |sl|
+            bib = DataParser.parse(rdf, sl, self)
+            add_has_edition_relation(bib) if type == :unversioned
+            save_doc bib
+          rescue StandardError => e
+            link = sl.respond_to?(:link) ? sl.link : sl.version_of
+            warn "Error: document #{link} #{e.message}"
+            warn e.backtrace.join("\n")
+          end
+        end
       end
-      query_unversioned_docs.each do |sl|
-        save_doc DataParser.parse(sl, self)
-      rescue StandardError => e
-        warn "Error: document #{sl.version_of} #{e.message}"
-        warn e.backtrace.join("\n")
+      @index.sort!.save
+    end
+
+    #
+    # Add hasEdition relations form previous parsed document
+    #
+    # @param [RelatonW3c::W3cBibliographicItem] bib bibligraphic item
+    #
+    def add_has_edition_relation(bib) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
+      file = file_name bib.docnumber
+      return unless File.exist? file
+
+      b = case @format
+          when "xml" then XMLParser.from_xml(File.read(file, encoding: "UTF-8"))
+          when "yaml"
+            hash = YAML.load_file(file)
+            W3cBibliographicItem.from_hash(hash)
+          when "bibxml" then BibXMLParser.parse File.read(file, encoding: "UTF-8")
+          end
+      b.relation.each do |r|
+        same_edition = bib.relation.detect { |r2| same_edition?(r, r2) }
+        bib.relation << r unless same_edition
       end
+    end
+
+    #
+    # Compare two relations
+    #
+    # @param [RelatonW3c::W3cBibliographicItem] rel1 relation 1
+    # @param [RelatonW3c::W3cBibliographicItem] rel2 relation 2
+    #
+    # @return [Boolean] true if relations are same
+    #
+    def same_edition?(rel1, rel2)
+      return false unless rel1.type == "hasEdition" && rel1.type == rel2.type
+
+      ids1 = rel1.bibitem.docidentifier.map(&:id)
+      ids2 = rel2.bibitem.docidentifier.map(&:id)
+      (ids1 & ids2).any?
+    end
+
+    #
+    # Yield fetching for each dataset
+    #
+    # @param [String] source source name "w3c-tr-archive" or "w3c-rdf"
+    #
+    # @yield [RDF::Repository] RDF repository
+    #
+    def each_dataset(source, &_block) # rubocop:disable Metrics/MethodLength
+      case source
+      when "w3c-tr-archive"
+        Dir["w3c-tr-archive/*.rdf"].map do |f|
+          @files = []
+          yield RDF::Repository.load(f)
+        end
+      when "w3c-rdf"
+        @files = []
+        rdf = RDF::Repository.load("http://www.w3.org/2002/01/tr-automation/tr.rdf")
+        yield rdf
+        parse_static_dataset
+      end
+    end
+
+    #
+    # Parse static dataset
+    #
+    def parse_static_dataset
       Dir[File.expand_path("../../data/*", __dir__)].each do |file|
         xml = File.read file, encoding: "UTF-8"
         save_doc BibXMLParser.parse(xml), warn_duplicate: false
@@ -64,7 +133,6 @@ module RelatonW3c
         warn "Error: document #{file} #{e.message}"
         warn e.backtrace.join("\n")
       end
-      @index.sort!.save
     end
 
     #
@@ -72,19 +140,16 @@ module RelatonW3c
     #
     # @return [RDF::Query::Solutions] query results
     #
-    def query_versioned_docs # rubocop:disable Metrics/MethodLength
+    def query_versioned_docs(rdf)
       sse = SPARQL.parse(%(
         PREFIX : <http://www.w3.org/2001/02pd/rec54#>
         PREFIX dc: <http://purl.org/dc/elements/1.1/>
         PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
-        # PREFIX mat: <http://www.w3.org/2002/05/matrix/vocab#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        SELECT ?link ?title ?date ?version_of
-        WHERE {
-          ?link dc:title ?title ; dc:date ?date ; doc:versionOf ?version_of .
-        }
+        SELECT ?link ?title ?date
+        WHERE { ?link dc:title ?title ; dc:date ?date . }
       ))
-      data.query sse
+      rdf.query sse
     end
 
     #
@@ -92,13 +157,16 @@ module RelatonW3c
     #
     # @return [Array<RDF::Query::Solution>] query results
     #
-    def query_unversioned_docs
+    def query_unversioned_docs(rdf)
       sse = SPARQL.parse(%(
         PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
         SELECT ?version_of
-        WHERE { ?x doc:versionOf ?version_of . }
+        WHERE {
+          ?link doc:versionOf ?version_of .
+          FILTER ( isURI(?link) && isURI(?version_of) && ?link != ?version_of )
+        }
       ))
-      data.query(sse).uniq &:version_of
+      rdf.query(sse).uniq { |s| s.version_of.to_s.sub(/^https?:\/\//, "").sub(/\/$/, "") }
     end
 
     #

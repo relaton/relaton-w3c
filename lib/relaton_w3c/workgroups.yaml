@@ -1,348 +1,483 @@
-'https://www.w3.org/DOM/Group':
+'www.w3.org/DOM/Group':
   name: Web Hypertext Application Technology Working Group
   abbrev: WHATWG
-'https://www.w3.org/2002/mmi':
+'www.w3.org/2002/mmi':
   name: Multimodal Interaction Working Group
-'https://www.w3.org/Math':
+'www.w3.org/Math':
   name: Math Working Group
-'https://www.w3.org/html/wg':
+'www.w3.org/html/wg':
   name: HTML Working Group
   abbrev: HTMLWG
-'https://www.w3.org/groups/wg/htmlwg':
+'www.w3.org/groups/wg/htmlwg':
   name: HTML Working Group
   abbrev: HTMLWG
-'https://www.w3.org/XML/EXI':
+'www.w3.org/XML/EXI':
   name: Efficient Extensible Interchange Working Group
   abbrev: EXIWG
-'https://www.w3.org/2007/OWL':
+'www.w3.org/2007/OWL':
   name: OWL Working Group
   abbrev: OWLWG
-'https://www.w3.org/2001/sw/BestPractices':
+'www.w3.org/2001/sw/BestPractices':
   name: Semantic Web Best Practices and Deployment Working Group
   abbrev: SWBPD
-'https://www.w3.org/2000/xp/Group':
+'www.w3.org/2000/xp/Group':
   name: XML Protocol Working Group
-'https://www.w3.org/2011/audio':
+'www.w3.org/2011/audio':
   name: Audio Working Group
-'https://www.w3.org/2001/12/URI':
+'www.w3.org/2001/12/URI':
   name: URI Interest Group
-'https://www.w3.org/2005/MWI/BPWG':
+'www.w3.org/2005/MWI/BPWG':
   name: Mobile Web Best Practices Working Group
   abbrev: BPWG
-'https://www.w3.org/WAI/EO':
+'www.w3.org/WAI/EO':
   name: Education and Outreach Working Group 
   abbrev: EOWG
-'https://www.w3.org/WAI/about/groups/eowg':
+'www.w3.org/WAI/about/groups/eowg':
   name: Education and Outreach Working Group 
   abbrev: EOWG
-'https://www.w3.org/2001/sw/WebOnt':
+'www.w3.org/2001/sw/WebOnt':
   name: Web-Ontology Working Group
-'http://www.w3.org/MarkUp/Forms':
+'www.w3.org/MarkUp/Forms':
   name: Forms Working Group
-'https://www.w3.org/Style/CSS':
+'www.w3.org/Style/CSS':
   name: Cascading Style Sheets Working Group
   abbrev: CSSWG
-'https://www.w3.org/2001/tag':
+'www.w3.org/2001/tag':
   name: Technical Architecture Group
   abbrev: TAG
-'https://www.w3.org/2002/ws/policy':
+'www.w3.org/2002/ws/policy':
   name: Web Services Policy Working Group
-'https://www.w3.org/2008/xmlsec':
+'www.w3.org/2008/xmlsec':
   name: XML Security Working Group
-'https://www.w3.org/2011/prov':
+'www.w3.org/2011/prov':
   name: Provenance Working Group
-'https://www.w3.org/2019/webapps':
+'www.w3.org/2019/webapps':
   name: Web Applications Working Group
-'https://www.w3.org/WebPlatform/WG':
+'www.w3.org/WebPlatform/WG':
   name: Web Applications Working Group
-'https://www.w3.org/2008/webapps':
+'www.w3.org/2008/webapps':
   name: Web Applications Working Group
-'https://www.w3.org/groups/wg/webapps':
+'www.w3.org/groups/wg/webapps':
   name: Web Applications Working Group
-'https://www.w3.org/das':
+'www.w3.org/das':
   name: Devices and Sensors Working Group
   abbrev: DAS WG
-'https://www.w3.org/2007/uwa':
+'www.w3.org/2007/uwa':
   name: Ubiquitous Web Applications Working Group
   abbrev: UWA
-'https://www.w3.org/Style/XSL':
+'www.w3.org/Style/XSL':
   name: Extensible Stylesheet Language Family
-'https://www.w3.org/XML/Query':
+'www.w3.org/XML/Query':
   name: XML Query Working Group
-'https://www.w3.org/immersive-web':
+'www.w3.org/immersive-web':
   name: Immersive Web Working Group
-'https://www.w3.org/2002/ws/addr':
+'www.w3.org/2002/ws/addr':
   name: Web Services Addressing Working Group
-'https://www.w3.org/WAI/GL':
+'www.w3.org/WAI/GL':
   name: Accessibility Guidelines Working Group
   abbrev: AG WG
-'https://www.w3.org/WAI/APA':
+'www.w3.org/WAI/APA':
   name: Accessible Platform Architectures
   abbrev: APA WG
-'https://www.w3.org/2011/rdf-wg':
+'www.w3.org/2011/rdf-wg':
   name: RDF Working Group
-'https://www.w3.org/Voice':
+'www.w3.org/Voice':
   name: Voice Browser Working Group
-'https://www.w3.org/webperf':
+'www.w3.org/webperf':
   name: Web Performance Working Group
-'https://www.w3.org/Graphics/SVG/WG':
+'www.w3.org/Graphics/SVG/WG':
   name: SVG Working Group
-'https://www.w3.org/International/core':
+'www.w3.org/International/core':
   name: Internationalization Working Group
-'https://www.w3.org/WebCommerce/IG':
+'www.w3.org/WebCommerce/IG':
   name: Web Commerce Interest Group
   abbrev: WCIG
-'https://www.w3.org/AudioVideo/TT':
+'www.w3.org/AudioVideo/TT':
   name: Timed Text Working Group
   abbrev: TTWG
-'https://www.w3.org/2002/ws/desc':
+'www.w3.org/2002/ws/desc':
   name: Web Services Description Working Group
-'https://www.w3.org/2001/sw/RDFCore':
+'www.w3.org/2001/sw/RDFCore':
   name: RDFCore Working Group
-'https://www.w3.org/2002/ws/arch':
+'www.w3.org/2002/ws/arch':
   name: Web Services Architecture Working Group
-'https://www.w3.org/2011/webappsec':
+'www.w3.org/2011/webappsec':
   name: Web Application Security Working Group
-'https://www.w3.org/groups/wg/webappsec':
+'www.w3.org/groups/wg/webappsec':
   name: Web Application Security Working Group
-'https://www.w3.org/Social/WG':
+'www.w3.org/Social/WG':
   name: Social Web Working Group
-'https://www.w3.org/XML/Core':
+'www.w3.org/XML/Core':
   name: XML Core Working Group
-'https://www.w3.org/2006/07/SWD':
+'www.w3.org/2006/07/SWD':
   name: Semantic Web Deployment Working Group
   abbrew: SWD
-'https://www.w3.org/WAI/PF':
+'www.w3.org/WAI/PF':
   name: Protocols and Formats Working Group
   abbrev: PFWG
-'https://www.w3.org/XML/Group/Binary':
+'www.w3.org/XML/Group/Binary':
   name: XML Binary Characterization Working Group
-'https://www.w3.org/2012/sysapps':
+'www.w3.org/2012/sysapps':
   name: System Applications Working Group
-'https://www.w3.org/2017/vc':
+'www.w3.org/2017/vc':
   name: Verifiable Credentials Working Group
   abbrev: VCWG
-'https://www.w3.org/sw':
+'www.w3.org/sw':
   name: Service Workers Working Group
-'https://www.w3.org/XML/SML':
+'www.w3.org/XML/SML':
   name: Service Modeling Language
   abbrev: SML WG
-'https://www.w3.org/WoT/WG':
+'www.w3.org/WoT/WG':
   name: Web of Things Working Group
   abbrev: WoT WG
-'https://www.w3.org/2017/dxwg':
+'www.w3.org/2017/dxwg':
   name: Dataset Exchange Working Group
   abbrev: DXWG
-'https://www.w3.org/groups/wg/webmachinelearning':
+'www.w3.org/groups/wg/webmachinelearning':
   name: Web Machine Learning Working Group
-'https://www.w3.org/2008/WebVideo/Annotations':
+'www.w3.org/2008/WebVideo/Annotations':
   name: Media Annotations Working Group
   abbrev: MAWG
-'https://www.w3.org/2001/sw/DataAccess':
+'www.w3.org/2001/sw/DataAccess':
   name: SPARQL Working Group
-'https://www.w3.org/publishing/groups/publ-wg':
+'www.w3.org/publishing/groups/publ-wg':
   name: Audiobooks Working Group
-'https://www.w3.org/2013/csvw':
+'www.w3.org/2013/csvw':
   name: CSV on the Web Working Group
-'https://www.w3.org/AudioVideo':
+'www.w3.org/AudioVideo':
   name: Synchronized Multimedia Working Group
   abbrev: SYMM WG
-'https://www.w3.org/2001/sw/grddl-wg':
+'www.w3.org/2001/sw/grddl-wg':
   name: GRDDL Working Group
-'https://www.w3.org/XML/Schema':
+'www.w3.org/XML/Schema':
   name: XML Schema Working Group
-'https://www.w3.org/2012/ldp':
+'www.w3.org/2012/ldp':
   name: Linked Data Platform Working Group
   abbrev: LDP WG
-'https://www.w3.org/2006/appformats':
+'www.w3.org/2006/appformats':
   name: Web Application Formats Working Group
   abbrev: WAF WG
-'https://www.w3.org/2007/powder':
+'www.w3.org/2007/powder':
   name: Protocol for Web Description Resources Working Group
   abbrev: POWDER WG
-'https://www.w3.org/2010/02/rdfa':
+'www.w3.org/2010/02/rdfa':
   name: RDFa Working Group
-'https://www.w3.org/2021/sdw':
+'www.w3.org/2021/sdw':
   name: Spatial Data on the Web Working Group
-  abbrev: SDW WG
-'https://www.w3.org/groups/wg/webrtc':
+  abbrev: SDWWG
+'www.w3.org/groups/wg/webrtc':
   name: Web Real-Time Communications Working Group
-'https://www.w3.org/2001/di/Group':
+'www.w3.org/2001/di/Group':
   name: Device Independence Working Group
   abbrev: DIWG
-'https://www.w3.org/2001/sw/interest':
+'www.w3.org/2001/sw/interest':
   name: Semantic Web Interest Group
   abbrev: SWIG
-'https://www.w3.org/2016/poe':
+'www.w3.org/2016/poe':
   name: Permissions and Obligations Expression Working Group
   abbrev: POE WG
-'https://www.w3.org/WoT/IG':
+'www.w3.org/WoT/IG':
   name: WoT Interest Group
-'https://www.w3.org/Payments/WG':
+'www.w3.org/Payments/WG':
   name: Web Payments Working Group
-'https://www.w3.org/dpub/IG':
+'www.w3.org/dpub/IG':
   name: Digital Publishing Interest Group
-'https://www.w3.org/2008/geolocation':
+'www.w3.org/2008/geolocation':
   name: Geolocation Working Group
-'https://www.w3.org/2005/MWI/DDWG':
+'www.w3.org/2005/MWI/DDWG':
   name: Mobile Web Initiative Device Description Working Group
-'https://www.w3.org/2005/rules/wg.html':
+'www.w3.org/2005/rules/wg.html':
   name: RIF Working Group
-'https://www.w3.org/groups/wg/distributed-tracing':
+'www.w3.org/groups/wg/distributed-tracing':
   name: Distributed Tracing Working Group
-'https://www.w3.org/publishing/groups/epub-wg':
+'www.w3.org/publishing/groups/epub-wg':
   name: EPUB 3 Working Group
-'https://www.w3.org/2010/POI':
+'www.w3.org/2010/POI':
   name: Points of Interest Working Group
   abbrev: POI WG
-'https://www.w3.org/MarkUp':
+'www.w3.org/MarkUp':
   name: XHTML2 Working Group
-'https://www.w3.org/2011/gld':
+'www.w3.org/2011/gld':
   name: Government Linked Data Working Group
   abbrev: GLD WG
-'https://www.w3.org/2014/secondscreen':
+'www.w3.org/2014/secondscreen':
   name: Second Screen Working Group
-'https://www.w3.org/securepay':
+'www.w3.org/securepay':
   name: Web Payment Security Interest Group
   abbrev: WPSIG
-'https://www.w3.org/2008/WebVideo/Fragments':
+'www.w3.org/2008/WebVideo/Fragments':
   name: Media Fragments Working Group
-'https://www.w3.org/2011/mbui':
+'www.w3.org/2011/mbui':
   name: Model-Based User Interfaces Working Group 
   abbrev: MBUI WG
-'https://www.w3.org/International/its':
+'www.w3.org/International/its':
   name: ITS Working Group
-'https://www.w3.org/QA/WG':
+'www.w3.org/QA/WG':
   name: Quality Assurance Working Group
   abbrev: QAWG
-'https://www.w3.org/P3P/Group/Specification':
+'www.w3.org/P3P/Group/Specification':
   name: P3P Specification Working Group
-'https://www.w3.org/2011/webtv':
+'www.w3.org/2011/webtv':
   name: Media and Entertainment Interest Group
-'https://www.w3.org/2001/sw/hcls':
+'www.w3.org/2001/sw/hcls':
   name: Semantic Web Health Care and Life Sciences Interest Group
   abbrev: HCLS IG
-'https://www.w3.org/2002/ws/chor':
+'www.w3.org/2002/ws/chor':
   name: Web Services Choreography Working Group
-'https://www.w3.org/2005/MWI/Tests':
+'www.w3.org/2005/MWI/Tests':
   name: Mobile Web Test Suites Working Group
-'https://www.w3.org/XML/Group/Linking':
+'www.w3.org/XML/Group/Linking':
   name: XML Linking Working Group
-'https://www.w3.org/WAI/ARIA':
+'www.w3.org/WAI/ARIA':
   name: Accessible Rich Internet Applications Working Group
   abbrev: ARIA WG
-'https://www.w3.org/wasm':
+'www.w3.org/wasm':
   name: WebAssembly Working Group
-'https://www.w3.org/groups/wg/wasm':
+'www.w3.org/groups/wg/wasm':
   name: WebAssembly Working Group
-'https://www.w3.org/groups/wg/webediting':
+'www.w3.org/groups/wg/webediting':
   name: Web Editing Working Group
-'https://www.w3.org/2014/data-shapes':
+'www.w3.org/2014/data-shapes':
   name: RDF Data Shapes Working Group
-'https://www.w3.org/Mobile/IG':
+'www.w3.org/Mobile/IG':
   name: Web and Mobile Interest Group
-'https://www.w3.org/2019/did-wg':
+'www.w3.org/2019/did-wg':
   name: Decentralized Identifier Working Group
   abbrev: DID WG
-'https://www.w3.org/egov/IG':
+'www.w3.org/egov/IG':
   name: eGovernment Interest Group
-'https://www.w3.org/WAI/ER':
+  abbrev: EGOV IG
+'www.w3.org/WAI/ER':
   name: Evaluation and Repair Tools Working Group
   abbrev: ERT WG
-'https://www.w3.org/2002/ws/soapjms':
+'www.w3.org/2002/ws/soapjms':
   name: SOAP-JMS Binding Working Group
-'https://www.w3.org/media-wg':
+'www.w3.org/media-wg':
   name: Media Working Group
-'https://www.w3.org/2018/json-ld-wg':
+'www.w3.org/2018/json-ld-wg':
   name: JSON-LD Working Group
-'https://www.w3.org/2020/gpu':
+'www.w3.org/2020/gpu':
   name: GPU for the Web Working Group
-'https://www.w3.org/Fonts/WG':
+'www.w3.org/Fonts/WG':
   name: Web Fonts Working Group
-'https://www.w3.org/groups/wg/auto':
+'www.w3.org/groups/wg/auto':
   name: Automotive Working Group
-'https://www.w3.org/2001/sw/rdb2rdf':
+'www.w3.org/2001/sw/rdb2rdf':
   name: RDB2RDF Working Group
-'https://www.w3.org/2006/WSC':
+'www.w3.org/2006/WSC':
   name: Web Security Context Working Group
-'https://www.w3.org/Graphics/WebCGM/WG':
+'www.w3.org/Graphics/WebCGM/WG':
   name: WebCGM Working Group
-'https://www.w3.org/XML/Processing':
+'www.w3.org/XML/Processing':
   name: XML Processing Model Working Group
-'https://www.w3.org/testing/browser':
+'www.w3.org/testing/browser':
   name: Browser Testing and Tools Working Group
-'https://www.w3.org/2004/CDF':
+'www.w3.org/2004/CDF':
   name: Compound Document Formats Working Group
   abbrev: CDF WG
-'https://www.w3.org/2012/webcrypto':
+'www.w3.org/2012/webcrypto':
   name: Web Cryptography Working Group
-'https://www.w3.org/2002/ws/ra':
+'www.w3.org/2002/ws/ra':
   name: Web Services Resource Access Working Group
-'https://www.w3.org/2010/webevents':
+'www.w3.org/2010/webevents':
   name: Web Events Working Group
-'https://www.w3.org/WAI/UA':
+'www.w3.org/WAI/UA':
   name: User Agent Accessibility Guidelines Working Group
   abbrev: UAWG
-'https://www.w3.org/groups/wg/pointer-events':
+'www.w3.org/groups/wg/pointer-events':
   name: Pointer Events Working Group
-'https://www.w3.org/International/multilingualweb/lt':
+'www.w3.org/International/multilingualweb/lt':
   name: MultilingualWeb-LT Working Group
-'https://www.w3.org/2017/sdwig':
+'www.w3.org/2017/sdwig':
   name: Spatial Data on the Web Interest Group
   abbrev: SDWIG
-'https://www.w3.org/Privacy':
+'www.w3.org/Privacy':
   name: Privacy Interest Group
   abbrev: PING
-'https://www.w3.org/Mobile/CCPP/Group':
+'www.w3.org/Mobile/CCPP/Group':
   name: Composite Capability/Preference Profiles Working Group
   abbrev: CC/PP WG
-'https://www.w3.org/2008/MW4D':
+'www.w3.org/2008/MW4D':
   name: MW4D Interest Group
   abbrev: MW4D IG
-'https://www.w3.org/2011/tracking-protection':
+'www.w3.org/2011/tracking-protection':
   name: Tracking Protection Working Group
-'https://www.w3.org/annotation':
+'www.w3.org/annotation':
   name: Annotation Working Group
-'https://www.w3.org/WAI/AU':
+'www.w3.org/WAI/AU':
   name: Authoring Tool Accessibility Guidelines Working Group
   abbrev: ATAG WG
-'https://www.w3.org/MarkUp/CoordGroup':
+'www.w3.org/MarkUp/CoordGroup':
   name: Hypertext Coordination Group
   abbrev: HCG
-'https://www.w3.org/2021/miniapps':
+'www.w3.org/2021/miniapps':
   name: MiniApps Working Group
-'https://www.w3.org/webauthn':
+'www.w3.org/webauthn':
   name: Web Authentication Working Group
   abbrev: WebAuthn WG
-'https://www.w3.org/2002/ws/sawsdl':
+'www.w3.org/2002/ws/sawsdl':
   name: Semantic Annotations for WSDL Working Group
   abbrev: SAWSDL WG
-'https://www.w3.org/2010/web-notifications':
+'www.w3.org/2010/web-notifications':
   name: Web Notification Working Group
-'https://www.w3.org/2006/webapi':
+'www.w3.org/2006/webapi':
   name: Web API Working Group
-'https://www.w3.org/webtransport':
+'www.w3.org/webtransport':
   name: WebTransport Working Group
-'https://www.w3.org/WAI/RD':
+'www.w3.org/WAI/RD':
   name: Research and Development Working Group
   abbrev: RDWG
-'https://www.w3.org/XML/XPPL':
+'www.w3.org/XML/XPPL':
   name: XML Print and Page Layout Working Group
   abbrev: XPPL WG
-'https://www.w3.org/2007/xmlsec':
+'www.w3.org/2007/xmlsec':
   name: XML Security Specifications Maintenance Working Group
-'https://www.w3.org/2013/dwbp':
+'www.w3.org/2013/dwbp':
   name: Data on the Web Best Practices Working Group
   abbrev: DWBP WG
-'https://www.w3.org/2012/nfc':
+'www.w3.org/2012/nfc':
   name: Near Field Communications Working Group
   abbrev: NFC WG
-'https://www.w3.org/2002/ws/databinding':
+'www.w3.org/2002/ws/databinding':
   name: XML Schema Patterns for Databinding Working Group
-'https://www.w3.org/2018/chinese-web-ig':
+'www.w3.org/2018/chinese-web-ig':
   name: Chinese Web Interest Group
-'https://www.w3.org/2016/tvcontrol':
+'www.w3.org/2016/tvcontrol':
   name: TV Control Working Group
-'https://www.w3.org/WAI/IndieUI':
+'www.w3.org/WAI/IndieUI':
   name: Independent User Interface Working Group
   abbrev: Indie UI WG
+'www.w3.org/WCA/Group':
+  name: Web Characterization Activity Working Group
+  abbrev: WCA WG
+'www.w3.org/Style/Group':
+  name: Cascading Style Sheets Working Group
+  abbrev: CSS WG
+'www.w3.org/XML/Group/Core':
+  name: XML Core Working Group
+'www.w3.org/Math/Group':
+  name: Math Working Group
+'www.w3.org/XML/Group/Fragments':
+  name: XML Fragment Working Group
+'www.w3.org/MarkUp/Group':
+  name: XHTML2 Working Group
+'www.w3.org/AudioVideo/Group':
+  name: Synchronized Multimedia Working Group
+  abbrev: SYMM WG
+'www.w3.org/Protocols/HTTP-NG/Group/PDG':
+  name: HTTP-NG Protocol Design Group
+'www.w3.org/Graphics/SVG/Group':
+  name: SVG Working Group
+'www.w3.org/Style/XSL/Group':
+  name: Extensible Stylesheet Language Family
+'www.w3.org/International/Group':
+  name: Internationalization Working Group
+'www.w3.org/AudioVideo/Group/SymmIG':
+  name: Synchronized Multimedia Interest Group
+  abbrev: SYMM IG
+'www.w3.org/TV/TVWeb':
+  name: TVWeb Interest Group
+'www.w3.org/Protocols/HTTP-NG':
+  name: HTTP-NG Working Group
+'www.w3.org/Mobile/Group/IG':
+  name: Web and Mobile Interest Group
+'www.w3.org/XML/Group/Syntax':
+  name: XML Syntax Working Group
+'www.w3.org/XML/Group/Infoset':
+  name: XML Information Set Working Group
+'www.w3.org/XML/Group/Schema':
+  name: XML Schema Working Group
+'www.w3.org/ECommerce/Micropayments/Group/MarkupWG':
+  name: Micropayment Markup Working Group
+'www.w3.org/Voice/Group':
+  name: Voice Browser Working Group
+'www.w3.org/Signature':
+  name: XML Signature WG
+'www.w3.org/2000/10/URI':
+  name: URI Planning Interest Group
+'www.w3.org/XML/Group/Schemas':
+  name: XML Schema Working Group
+'www.w3.org/XML/Group/Query':
+  name: XML Query Working Group
+'www.w3.org/PICS/Group':
+  name: Platform for Internet Content Selection Working Group
+  abbrev: PICS WG
+'www.w3.org/PICS/Rules/Group':
+  name: PICSRules Working Group
+'www.w3.org/RDF/Group/Syntax':
+  name: RDF Working Group
+'www.w3.org/MarkUp/Forms/Group':
+  name: Forms Working Group
+'www.w3.org/2002/mmi/Group':
+  name: Multimodal Interaction Working Group
+'www.w3.org/Encryption/2001':
+  name: XML Encryption WG
+'www.w3.org/WAI/PF/Group':
+  name: Protocols and Formats Working Group
+  abbrev: PFWG
+'www.w3.org/2001/XKMS':
+  name: XML Key Management Working Group
+'www.w3.org/DSig/Group':
+  name: XML Signature WG
+'www.w3.org/QA/IG':
+  name: Quality Assurance Interest Group
+  abbrev: QA IG
+'www.w3.org/AudioVideo/TT/Group':
+  name: Timed Text Working Group
+  abbrev: TTWG
+'www.w3.org/2004/CDF/Group':
+  name: Compound Document Formats Working Group
+  abbrev: CDF WG
+'www.w3.org/International/geo':
+  name: Internationalization GEO Working Group
+'www.w3.org/2005/MWI/BPWG/Group':
+  name: Mobile Web Best Practices Working Group
+  abbrev: BPWG
+'www.w3.org/2005/MWI/DDWG/Group':
+  name: Mobile Web Initiative Device Description Working Group
+'www.w3.org/2005/Incubator/wcl':
+  name: Content Label Incubator Group
+  abbrev: WCL-XG
+'www.w3.org/XML/Group/EXI':
+  name: Efficient Extensible Interchange Working Group
+  abbrev: EXIWG
+'www.w3.org/2005/rules/wg':
+  name: RIF Working Group
+'www.w3.org/Style/CSS/members':
+  name: Cascading Style Sheets Working Group
+'www.w3.org/2001/sw/sweo':
+  name: Semantic Web Education and Outreach Interest Group
+  abbrev: SWEO IG
+'www.w3.org/Graphics/SVG':
+  name: SVG Working Group
+'www.w3.org/2009/dap':
+  name: Devices and Sensors Working Group
+  abbrev: DAS WG
+'www.w3.org/2007/eGov/IG':
+  name: eGovernment Interest Group
+  abbrev: EGOV IG
+'www.w3.org/2010/webperf':
+  name: Web Performance Working Group
+'www.w3.org/2011/04/webrtc':
+  name: Web Real-Time Communications Working Group
+'www.w3.org/2012/pointerevents':
+  name: Pointer Events Working Group
+'www.w3.org/community/webpayments':
+  name: Web Payments Community Group
+'www.w3.org/MarkUp/Forms/2009/charter2010.html':
+  name: Forms Working Group Charter
+'www.w3.org/2014/automotive':
+  name: Automotive Working Group
+'www.w3.org/Payments/IG':
+  name: Web Commerce Interest Group
+  abbrev: WCIG
+'www.w3.org/2015/spatial':
+  name: Spatial Data on the Web Working Group
+  abbrev: SDWWG
+'www.w3.org/auto/wg':
+  name: Automotive Working Group
+'www.w3.org/2018/distributed-tracing':
+  name: Distributed Tracing Working Group
+'www.w3.org/2019/html':
+  name: HTML Working Group
+  abbrev: HTMLWG

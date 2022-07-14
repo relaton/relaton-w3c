@@ -1,6 +1,16 @@
 RSpec.describe RelatonW3c::DataIndex do
   subject { RelatonW3c::DataIndex.new }
 
+  context "class methods" do
+    it "create_from_file" do
+      expect(File).to receive(:read).with("index-w3c.yaml").and_return :yaml
+      expect(RelatonBib).to receive(:parse_yaml).with(:yaml, [Symbol]).and_return :index
+      idx = described_class.create_from_file
+      expect(idx.instance_variable_get(:@index)).to eq :index
+      expect(idx.instance_variable_get(:@index_file)).to eq "index-w3c.yaml"
+    end
+  end
+
   context "initialize data index" do
     it "without filename & data" do
       expect(subject.instance_variable_get(:@index_file)).to eq "index-w3c.yaml"
@@ -19,9 +29,15 @@ RSpec.describe RelatonW3c::DataIndex do
   end
 
   context "instance" do
-    it "add file to index" do
+    it "add record to index" do
       subject.add "bib", "dir/bib.xml"
       expect(subject.instance_variable_get(:@index)).to eq [{ file: "dir/bib.xml", code: "bib" }]
+    end
+
+    it "update record in index" do
+      subject.add "bib1", "dir/bib.xml"
+      subject.add "bib2", "dir/bib.xml"
+      expect(subject.instance_variable_get(:@index)).to eq [{ file: "dir/bib.xml", code: "bib2" }]
     end
 
     context "docnumber to parts" do

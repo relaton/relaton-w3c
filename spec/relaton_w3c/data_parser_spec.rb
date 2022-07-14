@@ -2,12 +2,13 @@ RSpec.describe RelatonW3c::DataParser do
   it "create instance and run parsing" do
     parser = double "parser"
     expect(parser).to receive(:parse)
-    expect(RelatonW3c::DataParser).to receive(:new).with(:sol, :fetcher).and_return(parser)
-    RelatonW3c::DataParser.parse :sol, :fetcher
+    expect(RelatonW3c::DataParser).to receive(:new).with(:rdf, :sol, :fetcher).and_return(parser)
+    RelatonW3c::DataParser.parse :rdf, :sol, :fetcher
   end
 
   it "initialize parser" do
-    subj = RelatonW3c::DataParser.new :sol, :fetcher
+    subj = RelatonW3c::DataParser.new :rdf, :sol, :fetcher
+    expect(subj.instance_variable_get(:@rdf)).to eq :rdf
     expect(subj.instance_variable_get(:@sol)).to eq :sol
     expect(subj.instance_variable_get(:@fetcher)).to eq :fetcher
   end
@@ -16,15 +17,11 @@ RSpec.describe RelatonW3c::DataParser do
     let(:rdf) { RDF::Repository.load "spec/fixtures/tr.rdf" }
     let(:fetcher) { RelatonW3c::DataFetcher.new "dir", "bibxml" }
 
-    before do
-      allow(RDF::Repository).to receive(:load).with("http://www.w3.org/2002/01/tr-automation/tr.rdf").and_return(rdf)
-    end
-
     let(:solution) do
-      fetcher.query_versioned_docs.filter(link: "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html").first
+      fetcher.query_versioned_docs(rdf).filter(link: "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html").first
     end
 
-    subject { RelatonW3c::DataParser.new solution, fetcher }
+    subject { RelatonW3c::DataParser.new rdf, solution, fetcher }
 
     it "skip parsing doc" do
       expect(subject).to receive(:types_stages).and_return ["not_allowed_type"]
@@ -68,7 +65,7 @@ RSpec.describe RelatonW3c::DataParser do
 
     context "unvesioned doc" do
       let(:solution) do
-        fetcher.query_unversioned_docs.detect { |sol| sol.version_of == "https://www.w3.org/TR/WD-font/" }
+        fetcher.query_unversioned_docs(rdf).detect { |sol| sol.version_of == "https://www.w3.org/TR/WD-font/" }
       end
 
       it "parse title" do
@@ -140,7 +137,7 @@ RSpec.describe RelatonW3c::DataParser do
         rel = double "rel", link: "https://www.w3.org/TR/1998/REC-CSS2-19980512"
         expect(data).to receive(:query).with(kind_of(SPARQL::Algebra::Operator::Prefix)).and_return [rel]
         fetcher = double "fetcher", data: data
-        parser = RelatonW3c::DataParser.new sol, fetcher
+        parser = RelatonW3c::DataParser.new data, sol, fetcher
         relation = parser.parse_relation
         expect(relation).to be_instance_of Array
         expect(relation.size).to eq 1
@@ -152,7 +149,7 @@ RSpec.describe RelatonW3c::DataParser do
 
     it "parse formattedref" do
       sol = double "sol", version_of: "CSS2"
-      parser = RelatonW3c::DataParser.new sol, nil
+      parser = RelatonW3c::DataParser.new rdf, sol, nil
       fref = parser.parse_formattedref
       expect(fref).to be_instance_of RelatonBib::FormattedRef
       expect(fref.content).to eq "W3C CSS2"
@@ -181,6 +178,12 @@ RSpec.describe RelatonW3c::DataParser do
       expect do
         subject.parse_editorialgroup
       end.to output(/Working group name not found for/).to_stderr
+    end
+
+    it "#version_of" do
+      vo = subject.version_of
+      expect(vo).to be_instance_of RDF::Query::Solutions
+      expect(vo.size).to eq 1
     end
   end
 end

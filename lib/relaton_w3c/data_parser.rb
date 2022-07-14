@@ -25,7 +25,8 @@ module RelatonW3c
     # @param [RDF::Query::Solution] sol entry from the SPARQL query
     # @param [RelatonW3c::DataFetcher] fetcher data fetcher
     #
-    def initialize(sol, fetcher)
+    def initialize(rdf, sol, fetcher)
+      @rdf = rdf
       @sol = sol
       @fetcher = fetcher
     end
@@ -38,8 +39,8 @@ module RelatonW3c
     #
     # @return [RelatonW3c:W3cBibliographicItem, nil] bibliographic item
     #
-    def self.parse(sol, fetcher)
-      new(sol, fetcher).parse
+    def self.parse(rdf, sol, fetcher)
+      new(rdf, sol, fetcher).parse
     end
 
     #
@@ -100,7 +101,7 @@ module RelatonW3c
     #
     def parse_link
       link = @sol.respond_to?(:link) ? @sol.link : @sol.version_of
-      [RelatonBib::TypedUri.new(type: "src", content: link.to_s)]
+      [RelatonBib::TypedUri.new(type: "src", content: link.to_s.strip)]
     end
 
     #
@@ -131,7 +132,7 @@ module RelatonW3c
     #
     def identifier(link = nil)
       url = link || (@sol.respond_to?(:link) ? @sol.link : @sol.version_of)
-      self.class.parse_identifier(url.to_s)
+      self.class.parse_identifier(url.to_s.strip)
     end
 
     #
@@ -142,7 +143,7 @@ module RelatonW3c
     # @return [String] identifier
     #
     def self.parse_identifier(url)
-      if /.+\/(\w+(?:-[\w.]+)+(?:\/\w+)?)/ =~ url.to_s
+      if /.+\/(\w+(?:[-+][\w.]+)+(?:\/\w+)?)/ =~ url.to_s
         $1.to_s
       else url.to_s.split("/").last
       end
@@ -184,10 +185,10 @@ module RelatonW3c
           PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           SELECT ?type
           WHERE {
-            { <#{@sol.link}> rdf:type ?type }
+            { <#{@sol.link.to_s.strip}> rdf:type ?type }
           }
         ))
-        @fetcher.data.query(sse).map { |s| s.type.to_s.split("#").last }
+        @rdf.query(sse).map { |s| s.type.to_s.split("#").last }
       end
     end
 
@@ -220,7 +221,7 @@ module RelatonW3c
       if @sol.respond_to?(:link)
         relations + editor_drafts
       else
-        document_versions.map { |r| create_relation(r.link.to_s, "hasEdition") }
+        document_versions.map { |r| create_relation(r.link.to_s.strip, "hasEdition") }
       end
     end
 
@@ -253,9 +254,9 @@ module RelatonW3c
         PREFIX : <http://www.w3.org/2001/02pd/rec54#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         SELECT ?rel
-        WHERE { <#{@sol.link}> :ED ?rel . }
+        WHERE { <#{@sol.link.to_s.strip}> :ED ?rel . }
       ))
-      @fetcher.data.query(sse).map do |s|
+      @rdf.query(sse).map do |s|
         create_relation(s.rel.to_s, "hasDraft", "Editor's draft")
       end
     end
@@ -273,28 +274,51 @@ module RelatonW3c
         PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
         PREFIX mat: <http://www.w3.org/2002/05/matrix/vocab#>
         SELECT ?rel
-        WHERE { <#{@sol.link}> #{predicate} ?rel . }
+        WHERE { <#{@sol.link.to_s.strip}> #{predicate} ?rel . }
       ))
-      @fetcher.data.query(sse).order_by(:rel)
+      @rdf.query(sse).order_by(:rel)
     end
 
     #
     # Query document versions relations
     #
-    # @return [RDF::Query::Solutions] query results
+    # @return [Array<RDF::Query::Solution>] query results
     #
     def document_versions # rubocop:disable Metrics/MethodLength
-      @document_versions ||= begin
+      @document_versions ||= version_of.each_with_object([]) do |s, acc|
         sse = SPARQL.parse(%(
           PREFIX : <http://www.w3.org/2001/02pd/rec54#>
           PREFIX dc: <http://purl.org/dc/elements/1.1/>
           PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
           PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
           SELECT ?link ?title ?date
-          WHERE { ?link doc:versionOf <#{@sol.version_of}> ; dc:title ?title ; dc:date ?date }
+          WHERE {
+            ?link doc:versionOf <#{s.version_of}> ;
+            dc:title ?title ;
+            dc:date ?date .
+          }
         ))
-        @fetcher.data.query(sse)
+        @rdf.query(sse).each { |r| acc << r }
       end
+    end
+
+    #
+    # Query for document versions
+    #
+    # @return [RDF::Query::Solutions] query results
+    #
+    def version_of
+      return [@sol] unless @sol.respond_to?(:link)
+
+      sse = SPARQL.parse(%(
+        PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
+        SELECT ?version_of
+        WHERE {
+          <#{@sol.link.to_s.strip}> doc:versionOf ?version_of .
+          FILTER ( isURI(?version_of) && <#{@sol.link.to_s.strip}> != str(?version_of) )
+        }
+      ))
+      @rdf.query(sse)
     end
 
     #
@@ -339,10 +363,10 @@ module RelatonW3c
         PREFIX contact: <http://www.w3.org/2000/10/swap/pim/contact#>
         SELECT ?full_name
         WHERE {
-          <#{@sol.link}> :editor/contact:fullName ?full_name
+          <#{@sol.link.to_s.strip}> :editor/contact:fullName ?full_name
         }
       ))
-      @fetcher.data.query(sse).order_by(:full_name).map do |ed|
+      @rdf.query(sse).order_by(:full_name).map do |ed|
         cn = RelatonBib::LocalizedString.new(ed.full_name.to_s, "en", "Latn")
         n = RelatonBib::FullName.new completename: cn
         p = RelatonBib::Person.new name: n
@@ -363,12 +387,13 @@ module RelatonW3c
         PREFIX contact: <http://www.w3.org/2000/10/swap/pim/contact#>
         SELECT ?home_page
         WHERE {
-          <#{@sol.link}> org:deliveredBy/contact:homePage ?home_page
+          <#{@sol.link.to_s.strip}> org:deliveredBy/contact:homePage ?home_page
         }
       ))
-      res = @fetcher.data.query(sse).order_by(:home_page)
+      res = @rdf.query(sse).order_by(:home_page)
       tc = res.each_with_object([]) do |edg, obj|
-        wg = @fetcher.group_names[edg.home_page.to_s.sub(/\/$/, "")]
+        group_path = edg.home_page.to_s.sub(/^https?:\/\//, "").sub(/\/$/, "")
+        wg = @fetcher.group_names[group_path]
         if wg
           rwg = RelatonBib::WorkGroup.new name: wg["name"]
           obj << RelatonBib::TechnicalCommittee.new(rwg)

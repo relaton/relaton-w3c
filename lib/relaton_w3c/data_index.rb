@@ -14,15 +14,24 @@ module RelatonW3c
     end
 
     #
-    # Add document to index
+    # Add document to index or update it if already exists
     #
     # @param [String] docnumber document number
     # @param [String] file path to document file
     #
-    def add(docnumber, file)
+    def add(docnumber, file) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
       dnparts = self.class.docnumber_to_parts docnumber
-      dnparts[:file] = file
-      @index << dnparts
+      rec = @index.detect { |i| i[:file] == file }
+      if rec
+        rec[:code] = dnparts[:code]
+        dnparts[:stage] ? rec[:stage] = dnparts[:stage] : rec.delete(:stage)
+        dnparts[:type] ? rec[:type] = dnparts[:type] : rec.delete(:type)
+        dnparts[:date] ? rec[:date] = dnparts[:date] : rec.delete(:date)
+        dnparts[:suff] ? rec[:suff] = dnparts[:suff] : rec.delete(:suff)
+      else
+        dnparts[:file] = file
+        @index << dnparts
+      end
     end
 
     #
@@ -111,18 +120,24 @@ module RelatonW3c
       #
       # @return [RelatonW3c::DataIndex] data index
       #
-      def create_from_repo # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-        resp = Zip::InputStream.new URI("#{W3cBibliography::SOURCE}index-w3c.zip").open
+      def create_from_repo
+        uri = URI("#{W3cBibliography::SOURCE}index-w3c.zip").open
+        resp = Zip::InputStream.new uri
         zip = resp.get_next_entry
+        index = RelatonBib.parse_yaml(zip.get_input_stream.read, [Symbol])
+        new index: index
+      end
 
-        # Newer versions of Psych uses the `permitted_classes:` parameter
-        index = if YAML.method(:safe_load).parameters.collect(&:last).index(:permitted_classes)
-                  YAML.safe_load(zip.get_input_stream.read, permitted_classes: [Symbol])
-                else
-                  YAML.safe_load(zip.get_input_stream.read, [Symbol])
-                end
-
-        DataIndex.new index: index
+      #
+      # Create index from a file
+      #
+      # @param [String] index_file path to index file
+      #
+      # @return [RelatonW3c::DataIndex] data index
+      #
+      def create_from_file(index_file = "index-w3c.yaml")
+        index = RelatonBib.parse_yaml(File.read(index_file), [Symbol])
+        new index_file: index_file, index: index
       end
 
       #

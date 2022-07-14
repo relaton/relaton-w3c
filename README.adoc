@@ -151,13 +151,16 @@ RelatonW3c::W3cBibliographicItem.new **bib_hash
 
 === Fetch data
 
-There is a W3C dataset http://www.w3.org/2002/01/tr-automation/tr.rdf which can be converted into RelatonXML/BibXML/BibYAML formats. The static files from the `path_to_gem/withdrawn` directory are added to output during fetching data.
-
-The method `RelatonW3c::DataFetcher.fetch(output: "data", format: "yaml")` converts all the documents from the dataset and save them to the `./data` folder in YAML format.
+The method `RelatonW3c::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and save them to the `./data` folder in YAML format.
 Arguments:
 
+- `source` - name of dataset (`w3c-rdf` or `w3c-tr-archive`)
 - `output` - folder to save documents (default './data').
 - `format` - format in which the documents are saved. Possible formats are: `yaml`, `xml`, `bibxml` (default `yaml`).
+
+The available datasets are:
+- `w3c-rdf` - The dataset is fetched from http://www.w3.org/2002/01/tr-automation/tr.rdf. The static files from the `path_to_gem/withdrawn` directory are added to output during fetching data.
+- `w3c-tr-archive` - The archive dataset files should be downloaded from https://github.com/relaton/w3c-tr-archive repository and placed into `w3c-tr-archive` folder.
 
 [source,ruby]
 ----

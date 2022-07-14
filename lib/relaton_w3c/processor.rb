@@ -9,7 +9,7 @@ module RelatonW3c
       @prefix = "W3C"
       @defaultprefix = %r{^W3C\s}
       @idtype = "W3C"
-      @datasets = %w[w3c-rdf]
+      @datasets = %w[w3c-rdf w3c-tr-archive]
     end
 
     # @param code [String]
@@ -28,8 +28,8 @@ module RelatonW3c
     # @option opts [String] :output directory to output documents
     # @option opts [String] :format
     #
-    def fetch_data(_source, opts)
-      DataFetcher.fetch(**opts)
+    def fetch_data(source, opts)
+      DataFetcher.fetch(source, **opts)
     end
 
     # @param xml [String]
