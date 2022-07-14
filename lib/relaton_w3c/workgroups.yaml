@@ -481,3 +481,5 @@
 'www.w3.org/2019/html':
   name: HTML Working Group
   abbrev: HTMLWG
+'www.w3.org/groups/wg/audio':
+  name: Audio Working Group
