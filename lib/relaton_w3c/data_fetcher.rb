@@ -118,22 +118,22 @@ module RelatonW3c
         @files = []
         rdf = RDF::Repository.load("http://www.w3.org/2002/01/tr-automation/tr.rdf")
         yield rdf
-        parse_static_dataset
+        # parse_static_dataset
       end
     end
 
     #
     # Parse static dataset
     #
-    def parse_static_dataset
-      Dir[File.expand_path("../../data/*", __dir__)].each do |file|
-        xml = File.read file, encoding: "UTF-8"
-        save_doc BibXMLParser.parse(xml), warn_duplicate: false
-      rescue StandardError => e
-        warn "Error: document #{file} #{e.message}"
-        warn e.backtrace.join("\n")
-      end
-    end
+    # def parse_static_dataset
+    #   Dir[File.expand_path("../../data/*", __dir__)].each do |file|
+    #     xml = File.read file, encoding: "UTF-8"
+    #     save_doc BibXMLParser.parse(xml), warn_duplicate: false
+    #   rescue StandardError => e
+    #     warn "Error: document #{file} #{e.message}"
+    #     warn e.backtrace.join("\n")
+    #   end
+    # end
 
     #
     # Query RDF source for versioned documents

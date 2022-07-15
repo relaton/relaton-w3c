@@ -159,7 +159,7 @@ Arguments:
 - `format` - format in which the documents are saved. Possible formats are: `yaml`, `xml`, `bibxml` (default `yaml`).
 
 The available datasets are:
-- `w3c-rdf` - The dataset is fetched from http://www.w3.org/2002/01/tr-automation/tr.rdf. The static files from the `path_to_gem/withdrawn` directory are added to output during fetching data.
+- `w3c-rdf` - The dataset is fetched from http://www.w3.org/2002/01/tr-automation/tr.rdf.
 - `w3c-tr-archive` - The archive dataset files should be downloaded from https://github.com/relaton/w3c-tr-archive repository and placed into `w3c-tr-archive` folder.
 
 [source,ruby]
