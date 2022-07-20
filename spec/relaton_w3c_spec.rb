@@ -68,12 +68,12 @@ RSpec.describe RelatonW3c do
       end
     end
 
-    # it "W3C xml" do
-    #   VCR.use_cassette "w3c_xml" do
-    #     doc = RelatonW3c::W3cBibliography.get "W3C xml"
-    #     expect(doc.docidentifier[0].id).to eq "W3C xml"
-    #   end
-    # end
+    it "W3C xml" do
+      VCR.use_cassette "w3c_xml" do
+        doc = RelatonW3c::W3cBibliography.get "W3C xml"
+        expect(doc.docidentifier[0].id).to eq "W3C xml"
+      end
+    end
 
     it "not found" do
       VCR.use_cassette "not_found" do

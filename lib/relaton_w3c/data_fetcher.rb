@@ -20,7 +20,7 @@ module RelatonW3c
       @ext = format.sub(/^bib/, "")
       dir = File.dirname(File.expand_path(__FILE__))
       @group_names = YAML.load_file(File.join(dir, "workgroups.yaml"))
-      @index = DataIndex.new
+      @index = DataIndex.create_from_file
     end
 
     #

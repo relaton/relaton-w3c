@@ -3,6 +3,7 @@ RSpec.describe RelatonW3c::DataIndex do
 
   context "class methods" do
     it "create_from_file" do
+      expect(File).to receive(:exist?).with("index-w3c.yaml").and_return(true)
       expect(File).to receive(:read).with("index-w3c.yaml").and_return :yaml
       expect(RelatonBib).to receive(:parse_yaml).with(:yaml, [Symbol]).and_return :index
       idx = described_class.create_from_file

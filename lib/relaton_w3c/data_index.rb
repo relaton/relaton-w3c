@@ -136,7 +136,10 @@ module RelatonW3c
       # @return [RelatonW3c::DataIndex] data index
       #
       def create_from_file(index_file = "index-w3c.yaml")
-        index = RelatonBib.parse_yaml(File.read(index_file), [Symbol])
+        index = if File.exist?(index_file)
+                  RelatonBib.parse_yaml(File.read(index_file), [Symbol])
+                else []
+                end
         new index_file: index_file, index: index
       end
 

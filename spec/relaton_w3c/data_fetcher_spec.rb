@@ -19,7 +19,7 @@ RSpec.describe RelatonW3c::DataFetcher do
     let(:index) { double("index") }
 
     before do
-      expect(RelatonW3c::DataIndex).to receive(:new).and_return(index)
+      expect(RelatonW3c::DataIndex).to receive(:create_from_file).and_return(index)
     end
 
     it "initialize fetcher" do
