@@ -67,21 +67,52 @@ module RelatonW3c
     #
     # @param [RelatonW3c::W3cBibliographicItem] bib bibligraphic item
     #
-    def add_has_edition_relation(bib) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
+    def add_has_edition_relation(bib) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
       file = file_name bib.docnumber
-      return unless File.exist? file
-
-      b = case @format
-          when "xml" then XMLParser.from_xml(File.read(file, encoding: "UTF-8"))
-          when "yaml"
-            hash = YAML.load_file(file)
-            W3cBibliographicItem.from_hash(hash)
-          when "bibxml" then BibXMLParser.parse File.read(file, encoding: "UTF-8")
-          end
-      b.relation.each do |r|
-        same_edition = bib.relation.detect { |r2| same_edition?(r, r2) }
-        bib.relation << r unless same_edition
+      if File.exist? file
+        item = send "read_#{@format}", file
+        item.relation.each do |r1|
+          r1.type = "hasEdition" if r1.type == "instance"
+          same_edition = bib.relation.detect { |r2| same_edition?(r1, r2) }
+          bib.relation << r1 unless same_edition
+        end
       end
+      bib.relation.select { |r| r.type == "hasEdition" }
+        .max_by { |r| r.bibitem.id.match(/(?<=-)\d{8}$/).to_s }&.type = "instance"
+    end
+
+    #
+    # Read XML file
+    #
+    # @param [String] file file name
+    #
+    # @return [RelatonW3c::W3cBibliographicItem] bibliographic item
+    #
+    def read_xml(file)
+      XMLParser.from_xml(File.read(file, encoding: "UTF-8"))
+    end
+
+    #
+    # Read YAML file
+    #
+    # @param [String] file file name
+    #
+    # @return [RelatonW3c::W3cBibliographicItem] bibliographic item
+    #
+    def read_yaml(file)
+      hash = YAML.load_file(file)
+      W3cBibliographicItem.from_hash(hash)
+    end
+
+    #
+    # Read BibXML file
+    #
+    # @param [String] file file name
+    #
+    # @return [RelatonW3c::W3cBibliographicItem] bibliographic item
+    #
+    def read_bibxml(file)
+      BibXMLParser.parse File.read(file, encoding: "UTF-8")
     end
 
     #

@@ -153,12 +153,15 @@ RSpec.describe RelatonW3c::DataFetcher do
           expect(subject).to receive(:file_name).and_return("bib.xml")
           expect(File).to receive(:exist?).with("bib.xml").and_return(true)
           expect(File).to receive(:read).with("bib.xml", encoding: "UTF-8").and_return(:bibxml)
-          prev_rel_bib = double("prev_rel_bib", docidentifier: [double("id1", id: "bib1")])
+          prev_docid = double("id1", id: "rel-20110111")
+          prev_rel_bib = double("prev_rel_bib", docidentifier: [prev_docid], id: "rel-20110111")
           prev_rel = double("prev_rel", bibitem: prev_rel_bib, type: "hasEdition")
           prev_bib = double("prev_bib", relation: [prev_rel])
           expect(RelatonW3c::BibXMLParser).to receive(:parse).with(:bibxml).and_return(prev_bib)
-          rel_bib = double("rel_bib", docidentifier: [double("id2", id: "bib2")])
+          docid = double("id2", id: "rel-20121122")
+          rel_bib = double("rel_bib", docidentifier: [docid], id: "rel-20121122")
           rel = double("rel", bibitem: rel_bib, type: "hasEdition")
+          expect(rel).to receive(:type=).with("instance")
           bib = double("bib", relation: [rel], docnumber: "bib")
           subject.add_has_edition_relation bib
           expect(bib.relation).to eq [rel, prev_rel]

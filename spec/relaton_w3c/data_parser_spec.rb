@@ -1,4 +1,7 @@
 RSpec.describe RelatonW3c::DataParser do
+  let(:rdf) { RDF::Repository.load "spec/fixtures/tr.rdf" }
+  let(:fetcher) { RelatonW3c::DataFetcher.new "dir", "bibxml" }
+
   it "create instance and run parsing" do
     parser = double "parser"
     expect(parser).to receive(:parse)
@@ -13,10 +16,7 @@ RSpec.describe RelatonW3c::DataParser do
     expect(subj.instance_variable_get(:@fetcher)).to eq :fetcher
   end
 
-  context "instance" do
-    let(:rdf) { RDF::Repository.load "spec/fixtures/tr.rdf" }
-    let(:fetcher) { RelatonW3c::DataFetcher.new "dir", "bibxml" }
-
+  context "instance versioned" do
     let(:solution) do
       fetcher.query_versioned_docs(rdf).filter(link: "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html").first
     end
@@ -79,9 +79,12 @@ RSpec.describe RelatonW3c::DataParser do
     it "parse link" do
       link = subject.parse_link
       expect(link).to be_instance_of Array
-      expect(link.first).to be_instance_of RelatonBib::TypedUri
+      expect(link.size).to eq 2
+      link.each { |l| expect(l).to be_instance_of RelatonBib::TypedUri }
       expect(link.first.type).to eq "src"
       expect(link.first.content.to_s).to eq "https://www.w3.org/TR/1998/REC-CSS2-19980512/fonts.html"
+      expect(link[1].type).to eq "current"
+      expect(link[1].content.to_s).to eq "https://drafts.csswg.org/css-fonts-3/"
     end
 
     it "parse docid" do
@@ -106,7 +109,7 @@ RSpec.describe RelatonW3c::DataParser do
     end
 
     it "parse doctype" do
-      expect(subject.parse_doctype).to eq "recommendation"
+      expect(subject.parse_doctype).to eq "technicalReport"
     end
 
     it "parse date" do
@@ -120,18 +123,13 @@ RSpec.describe RelatonW3c::DataParser do
       it "obsoletes & hasDraft" do
         relation = subject.parse_relation
         expect(relation).to be_instance_of Array
-        expect(relation.size).to eq 2
+        expect(relation.size).to eq 1
         expect(relation.first).to be_instance_of RelatonBib::DocumentRelation
         expect(relation.first.type).to eq "obsoletes"
         expect(relation.first.bibitem.formattedref.content).to eq "W3C PR-DSig-label-19980403"
-        expect(relation[1]).to be_instance_of RelatonBib::DocumentRelation
-        expect(relation[1].type).to eq "hasDraft"
-        expect(relation[1].description).to be_instance_of RelatonBib::FormattedString
-        expect(relation[1].description.content).to eq "Editor's draft"
-        expect(relation[1].bibitem.formattedref.content).to eq "W3C css-fonts-3"
       end
 
-      it "instace (version)" do
+      it "instance (version)" do
         sol = double "sol", version_of: "CSS2"
         data = double "data"
         rel = double "rel", link: "https://www.w3.org/TR/1998/REC-CSS2-19980512"
@@ -184,6 +182,19 @@ RSpec.describe RelatonW3c::DataParser do
       vo = subject.version_of
       expect(vo).to be_instance_of RDF::Query::Solutions
       expect(vo.size).to eq 1
+    end
+  end
+
+  context "instance unversioned" do
+    let(:solution) do
+      fetcher.query_unversioned_docs(rdf).detect { |s| s.version_of.to_s == "https://www.w3.org/TR/css3-fonts/" }
+    end
+
+    subject { RelatonW3c::DataParser.new rdf, solution, fetcher }
+
+    it "#types_stages" do
+      ts = subject.types_stages
+      expect(ts).to eq ["REC", "Retired"]
     end
   end
 end

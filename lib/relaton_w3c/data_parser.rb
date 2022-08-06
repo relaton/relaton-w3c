@@ -101,7 +101,7 @@ module RelatonW3c
     #
     def parse_link
       link = @sol.respond_to?(:link) ? @sol.link : @sol.version_of
-      [RelatonBib::TypedUri.new(type: "src", content: link.to_s.strip)]
+      [RelatonBib::TypedUri.new(type: "src", content: link.to_s.strip)] + editor_drafts
     end
 
     #
@@ -176,29 +176,64 @@ module RelatonW3c
     #
     # @return [Array<String>] types and stages
     #
-    def types_stages # rubocop:disable Metrics/MethodLength
-      return unless @sol.respond_to?(:link)
-
+    def types_stages
       @types_stages ||= begin
-        sse = SPARQL.parse(%(
-          PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-          SELECT ?type
-          WHERE {
-            { <#{@sol.link.to_s.strip}> rdf:type ?type }
-          }
-        ))
+        sse = @sol.respond_to?(:link) ? versioned_types_stages : unversioned_types_stages
         @rdf.query(sse).map { |s| s.type.to_s.split("#").last }
       end
     end
 
     #
+    # Create SPARQL query for versioned types and stages
+    #
+    # @return [SPARQL::Algebra::Operator::Prefix] SPARQL query
+    #
+    def versioned_types_stages
+      SPARQL.parse(%(
+        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?type
+        WHERE {
+          { <#{@sol.link.to_s.strip}> rdf:type ?type }
+        }
+      ))
+    end
+
+    #
+    # Create SPARQL query for unversioned types and stages
+    #
+    # @return [SPARQL::Algebra::Operator::Prefix] SPARQL query
+    #
+    def unversioned_types_stages
+      SPARQL.parse(%(
+        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
+        SELECT ?type
+        WHERE {
+          ?link doc:versionOf <#{@sol.version_of}>; rdf:type ?type .
+          FILTER ( isURI(?link) && STR(?link) != <#{@sol.version_of}> )
+        }
+      ))
+    end
+
+    #
     # Parse doctype
     #
-    # @return [Strinf] doctype
+    # @return [String, nil] doctype
     #
     def parse_doctype
-      DOCTYPES[type] || "recommendation"
+      DOCTYPES[type] || DOCTYPES[type_from_link]
+    end
+
+    #
+    # Fetch type from link
+    #
+    # @return [String, nil] type
+    #
+    def type_from_link
+      link = @sol.respond_to?(:link) ? @sol.link : @sol.version_of
+      link.to_s.strip.match(/www\.w3\.org\/(TR)/)&.to_a&.fetch 1
     end
 
     #
@@ -219,7 +254,7 @@ module RelatonW3c
     #
     def parse_relation
       if @sol.respond_to?(:link)
-        relations + editor_drafts
+        relations
       else
         document_versions.map { |r| create_relation(r.link.to_s.strip, "hasEdition") }
       end
@@ -250,14 +285,16 @@ module RelatonW3c
     # @return [Array<RelatonBib::DocumentRelation>] relation
     #
     def editor_drafts # rubocop:disable Metrics/MethodLength
+      return [] unless @sol.respond_to?(:link)
+
       sse = SPARQL.parse(%(
         PREFIX : <http://www.w3.org/2001/02pd/rec54#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        SELECT ?rel
-        WHERE { <#{@sol.link.to_s.strip}> :ED ?rel . }
+        SELECT ?latest
+        WHERE { <#{@sol.link.to_s.strip}> :ED ?latest . }
       ))
       @rdf.query(sse).map do |s|
-        create_relation(s.rel.to_s, "hasDraft", "Editor's draft")
+        RelatonBib::TypedUri.new(type: "current", content: s.latest.to_s.strip)
       end
     end
 

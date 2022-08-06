@@ -2,7 +2,7 @@ module RelatonW3c
   class W3cBibliographicItem < RelatonBib::BibliographicItem
     TYPES = %w[
       candidateRecommendation groupNote proposedEditedRecommendation
-      proposedRecommendation recommendation retired workingDraft
+      proposedRecommendation recommendation retired workingDraft technicalReport
     ].freeze
 
     # @param doctype [String]
