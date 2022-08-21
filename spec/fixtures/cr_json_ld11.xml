@@ -1,7 +1,8 @@
 <bibdata type="standard">
-  <fetched>2022-06-07</fetched>
+  <fetched>2022-08-20</fetched>
   <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
+  <uri type="current">https://w3c.github.io/json-ld-syntax/</uri>
   <docidentifier type="W3C" primary="true">W3C REC-json-ld11-20200716</docidentifier>
   <docnumber>REC-json-ld11-20200716</docnumber>
   <date type="published">
@@ -49,19 +50,12 @@
       <docidentifier type="W3C" primary="true">W3C json-ld-syntax/errata</docidentifier>
     </bibitem>
   </relation>
-  <relation type="hasDraft">
-    <description format="text/plain">Editor's draft</description>
-    <bibitem>
-      <formattedref format="text/plain">W3C json-ld-syntax</formattedref>
-      <docidentifier type="W3C" primary="true">W3C json-ld-syntax</docidentifier>
-    </bibitem>
-  </relation>
   <series>
     <title format="text/plain">W3C REC</title>
     <number>REC-json-ld11-20200716</number>
   </series>
   <ext>
-    <doctype>recommendation</doctype>
+    <doctype>technicalReport</doctype>
     <editorialgroup>
       <technical-committee>JSON-LD Working Group</technical-committee>
     </editorialgroup>

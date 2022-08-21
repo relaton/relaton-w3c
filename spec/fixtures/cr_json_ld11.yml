@@ -27,64 +27,71 @@ date:
 contributor:
 - person:
     name:
-      completename: Gregg Kellogg
+      completename:
+        content: Gregg Kellogg
   role:
   - editor
   - author
 - person:
     name:
-      completename: Pierre-Antoine Champin
+      completename:
+        content: Pierre-Antoine Champin
     affiliation:
     - organization:
         name:
-        - LIRIS - Université de Lyon
+        - content: LIRIS - Université de Lyon
         url: https://liris.cnrs.fr/
   role:
   - editor
   - author
 - person:
     name:
-      completename: Dave Longley
+      completename:
+        content: Dave Longley
     affiliation:
     - organization:
         name:
-        - Digital Bazaar
+        - content: Digital Bazaar
         url: https://digitalbazaar.com/
   role:
   - editor
 - person:
     name:
-      completename: Manu Sporny
+      completename:
+        content: Manu Sporny
     affiliation:
     - organization:
         name:
-        - Digital Bazaar
+        - content: Digital Bazaar
         url: https://digitalbazaar.com/
   role:
   - author
 - person:
     name:
-      completename: Dave Longley
+      completename:
+        content: Dave Longley
     affiliation:
     - organization:
         name:
-        - Digital Bazaar
+        - content: Digital Bazaar
         url: https://digitalbazaar.com/
   role:
   - author
 - person:
     name:
-      completename: Markus Lanthaler
+      completename:
+        content: Markus Lanthaler
     affiliation:
     - organization:
         name:
-        - Google
+        - content: Google
         url: https://www.google.com/
   role:
   - author
 - person:
     name:
-      completename: Niklas Lindström
+      completename:
+        content: Niklas Lindström
   role:
   - author
 revdate: '2020-01-01'
@@ -134,77 +141,85 @@ relation:
     contributor:
     - person:
         name:
-          completename: Manu Sporny
+          completename:
+            content: Manu Sporny
         affiliation:
         - organization:
             name:
-            - Digital Bazaar
+            - content: Digital Bazaar
             url: http://digitalbazaar.com/
       role:
       - editor
     - person:
         name:
-          completename: Gregg Kellogg
+          completename:
+            content: Gregg Kellogg
         affiliation:
         - organization:
             name:
-            - Kellogg Associates
+            - content: Kellogg Associates
             url: http://kellogg-assoc.com/
       role:
       - editor
     - person:
         name:
-          completename: Markus Lanthaler
+          completename:
+            content: Markus Lanthaler
         affiliation:
         - organization:
             name:
-            - Graz University of Technology
+            - content: Graz University of Technology
             url: http://www.tugraz.at/
       role:
       - editor
     - person:
         name:
-          completename: Manu Sporny
+          completename:
+            content: Manu Sporny
         affiliation:
         - organization:
             name:
-            - Digital Bazaar
+            - content: Digital Bazaar
             url: http://digitalbazaar.com/
       role:
       - author
     - person:
         name:
-          completename: Dave Longley
+          completename:
+            content: Dave Longley
         affiliation:
         - organization:
             name:
-            - Digital Bazaar
+            - content: Digital Bazaar
             url: http://digitalbazaar.com/
       role:
       - author
     - person:
         name:
-          completename: Gregg Kellogg
+          completename:
+            content: Gregg Kellogg
         affiliation:
         - organization:
             name:
-            - Kellogg Associates
+            - content: Kellogg Associates
             url: http://kellogg-assoc.com/
       role:
       - author
     - person:
         name:
-          completename: Markus Lanthaler
+          completename:
+            content: Markus Lanthaler
         affiliation:
         - organization:
             name:
-            - Graz University of Technology
+            - content: Graz University of Technology
             url: http://www.tugraz.at/
       role:
       - author
     - person:
         name:
-          completename: Niklas Lindström
+          completename:
+            content: Niklas Lindström
       role:
       - author
     revdate: '2014-01-01'
@@ -231,5 +246,5 @@ relation:
 fetched: '2020-04-04'
 id: CR-json-ld11-20200316
 keyword:
-- Data
+- content: Data
 doctype: candidateRecommendation

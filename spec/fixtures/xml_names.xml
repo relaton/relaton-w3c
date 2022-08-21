@@ -1,18 +1,21 @@
 <bibdata type="standard">
-  <fetched>2022-07-29</fetched>
+  <fetched>2022-08-20</fetched>
   <title format="text/plain">Namespaces in XML 1.0 (Third Edition)</title>
   <uri type="src">https://www.w3.org/TR/xml-names/</uri>
   <docidentifier type="W3C" primary="true">W3C xml-names</docidentifier>
   <docnumber>xml-names</docnumber>
   <language>en</language>
   <script>Latn</script>
+  <status>
+    <stage>recommendation</stage>
+  </status>
   <relation type="hasEdition">
     <bibitem>
       <formattedref format="text/plain">W3C REC-xml-names-20060816</formattedref>
       <docidentifier type="W3C" primary="true">W3C REC-xml-names-20060816</docidentifier>
     </bibitem>
   </relation>
-  <relation type="hasEdition">
+  <relation type="instance">
     <bibitem>
       <formattedref format="text/plain">W3C REC-xml-names-20091208</formattedref>
       <docidentifier type="W3C" primary="true">W3C REC-xml-names-20091208</docidentifier>
@@ -25,10 +28,10 @@
     </bibitem>
   </relation>
   <series>
-    <title format="text/plain">W3C technicalReport</title>
+    <title format="text/plain">W3C REC</title>
     <number>xml-names</number>
   </series>
   <ext>
-    <doctype>recommendation</doctype>
+    <doctype>technicalReport</doctype>
   </ext>
 </bibdata>
