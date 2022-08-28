@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-  <include href="../../grammars/isodoc.rng">
+  <include href="../../grammars/w3c.rng">
     <start>
       <ref name="bibdata"/>
     </start>
-    <define name="DocumentType">
-      <choice>
-        <value>candidateRecommendation</value>
-        <value>recommendation</value>
-      </choice>
-    </define>
   </include>
 </grammar>
