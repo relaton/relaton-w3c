@@ -20,6 +20,7 @@ module RelatonW3c
         return unless resp.code == "200"
 
         hash = YAML.safe_load resp.body
+        hash["fetched"] = Date.today.to_s
         item_hash = ::RelatonW3c::HashConverter.hash_to_bib(hash)
         ::RelatonW3c::W3cBibliographicItem.new(**item_hash)
       rescue SocketError, Timeout::Error, Errno::EINVAL, Errno::ECONNRESET,

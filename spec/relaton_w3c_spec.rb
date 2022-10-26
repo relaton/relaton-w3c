@@ -17,7 +17,7 @@ RSpec.describe RelatonW3c do
         doc = RelatonW3c::W3cBibliography.get "W3C REC-json-ld11-20200716"
         expect(doc).to be_instance_of RelatonW3c::W3cBibliographicItem
         file = "spec/fixtures/cr_json_ld11.xml"
-        xml = doc.to_xml(bibdata: true).sub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
+        xml = doc.to_xml(bibdata: true)
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
           .sub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
@@ -40,13 +40,13 @@ RSpec.describe RelatonW3c do
       VCR.use_cassette "rec_xml_names" do
         doc = RelatonW3c::W3cBibliography.get "W3C xml-names"
         file = "spec/fixtures/rec_xml_names.xml"
-        xml = doc.to_xml(bibdata: true).sub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
+        xml = doc.to_xml(bibdata: true)
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
           .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
-        # schema = Jing.new "spec/fixtures/isobib.rng"
-        # errors = schema.validate file
-        # expect(errors).to eq []
+        schema = Jing.new "spec/fixtures/isobib.rng"
+        errors = schema.validate file
+        expect(errors).to eq []
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe RelatonW3c do
       VCR.use_cassette "rec_xml_names" do
         doc = RelatonW3c::W3cBibliography.get "https://www.w3.org/TR/xml-names/"
         file = "spec/fixtures/xml_names.xml"
-        xml = doc.to_xml(bibdata: true).sub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
+        xml = doc.to_xml(bibdata: true)
         File.write file, xml, encoding: "UTF-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
           .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
