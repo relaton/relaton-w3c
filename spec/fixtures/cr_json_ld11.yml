@@ -30,8 +30,8 @@ contributor:
       completename:
         content: Gregg Kellogg
   role:
-  - editor
-  - author
+  - type: editor
+  - type: author
 - person:
     name:
       completename:
@@ -42,8 +42,8 @@ contributor:
         - content: LIRIS - Université de Lyon
         url: https://liris.cnrs.fr/
   role:
-  - editor
-  - author
+  - type: editor
+  - type: author
 - person:
     name:
       completename:
@@ -54,7 +54,7 @@ contributor:
         - content: Digital Bazaar
         url: https://digitalbazaar.com/
   role:
-  - editor
+  - type: editor
 - person:
     name:
       completename:
@@ -65,7 +65,7 @@ contributor:
         - content: Digital Bazaar
         url: https://digitalbazaar.com/
   role:
-  - author
+  - type: author
 - person:
     name:
       completename:
@@ -76,7 +76,7 @@ contributor:
         - content: Digital Bazaar
         url: https://digitalbazaar.com/
   role:
-  - author
+  - type: author
 - person:
     name:
       completename:
@@ -87,13 +87,13 @@ contributor:
         - content: Google
         url: https://www.google.com/
   role:
-  - author
+  - type: author
 - person:
     name:
       completename:
         content: Niklas Lindström
   role:
-  - author
+  - type: author
 revdate: '2020-01-01'
 language:
 - en
@@ -149,7 +149,7 @@ relation:
             - content: Digital Bazaar
             url: http://digitalbazaar.com/
       role:
-      - editor
+      - type: editor
     - person:
         name:
           completename:
@@ -160,7 +160,7 @@ relation:
             - content: Kellogg Associates
             url: http://kellogg-assoc.com/
       role:
-      - editor
+      - type: editor
     - person:
         name:
           completename:
@@ -171,7 +171,7 @@ relation:
             - content: Graz University of Technology
             url: http://www.tugraz.at/
       role:
-      - editor
+      - type: editor
     - person:
         name:
           completename:
@@ -182,7 +182,7 @@ relation:
             - content: Digital Bazaar
             url: http://digitalbazaar.com/
       role:
-      - author
+      - type: author
     - person:
         name:
           completename:
@@ -193,7 +193,7 @@ relation:
             - content: Digital Bazaar
             url: http://digitalbazaar.com/
       role:
-      - author
+      - type: author
     - person:
         name:
           completename:
@@ -204,7 +204,7 @@ relation:
             - content: Kellogg Associates
             url: http://kellogg-assoc.com/
       role:
-      - author
+      - type: author
     - person:
         name:
           completename:
@@ -215,13 +215,13 @@ relation:
             - content: Graz University of Technology
             url: http://www.tugraz.at/
       role:
-      - author
+      - type: author
     - person:
         name:
           completename:
             content: Niklas Lindström
       role:
-      - author
+      - type: author
     revdate: '2014-01-01'
     language:
     - en

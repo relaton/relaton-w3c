@@ -54,7 +54,6 @@ module RelatonW3c
       RelatonW3c::W3cBibliographicItem.new(
         type: "standard",
         doctype: parse_doctype,
-        fetched: Date.today.to_s,
         language: ["en"],
         script: ["Latn"],
         docstatus: parse_docstatus,

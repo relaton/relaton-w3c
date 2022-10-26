@@ -43,10 +43,10 @@ RSpec.describe RelatonW3c::DataParser do
       expect(subject).to receive(:parse_contrib).and_return :contributor
       expect(subject).to receive(:parse_editorialgroup).and_return :editorialgroup
       expect(RelatonBib::BibliographicItem).to receive(:new).with(
-        docstatus: :status, doctype: :doctype, fetched: Date.today.to_s, language: ["en"], script: ["Latn"],
+        docstatus: :status, doctype: :doctype, language: ["en"], script: ["Latn"],
         type: "standard", title: :title, link: :link, docid: :docid, formattedref: :formattedref,
         contributor: :contributor, docnumber: :docnumber, series: :series, date: :date, relation: :relation,
-        editorialgroup: :editorialgroup,
+        editorialgroup: :editorialgroup
       ).and_return :bib
       expect(subject.parse).to eq :bib
     end
