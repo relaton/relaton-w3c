@@ -1,5 +1,5 @@
-<bibdata type="standard">
-  <fetched>2022-08-20</fetched>
+<bibdata type="standard" schema-version="v1.2.1">
+  <fetched>2022-12-05</fetched>
   <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
   <uri type="current">https://w3c.github.io/json-ld-syntax/</uri>
@@ -54,7 +54,7 @@
     <title format="text/plain">W3C REC</title>
     <number>REC-json-ld11-20200716</number>
   </series>
-  <ext>
+  <ext schema-version="v1.0.0">
     <doctype>technicalReport</doctype>
     <editorialgroup>
       <technical-committee>JSON-LD Working Group</technical-committee>
