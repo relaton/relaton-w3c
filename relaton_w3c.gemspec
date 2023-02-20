@@ -37,12 +37,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
 
-  spec.add_dependency "linkeddata", "~> 3.1.0"
+  spec.add_dependency "linkeddata", "~> 3.2.0"
   spec.add_dependency "mechanize", "~> 2.8.0"
   spec.add_dependency "rdf", "~> 3.2.0"
   spec.add_dependency "rdf-normalize", "~> 0.5.0"
   spec.add_dependency "relaton-bib", "~> 1.14.0"
   spec.add_dependency "rubyzip", "~> 2.3.0"
-  spec.add_dependency "shex", "~> 0.6.0"
-  spec.add_dependency "sparql", "~> 3.1.0"
+  spec.add_dependency "shex", "~> 0.7.0"
+  spec.add_dependency "sparql", "~> 3.2.0"
 end
