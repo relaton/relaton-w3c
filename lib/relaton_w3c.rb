@@ -1,10 +1,12 @@
 require "relaton_bib"
+require "relaton/index"
 require "relaton_w3c/version"
 require "relaton_w3c/w3c_bibliography"
 require "relaton_w3c/w3c_bibliographic_item"
 require "relaton_w3c/xml_parser"
 require "relaton_w3c/bibxml_parser"
 require "relaton_w3c/hash_converter"
+require "relaton_w3c/pubid"
 require "relaton_w3c/data_fetcher"
 require "relaton_w3c/data_index"
 

@@ -21,6 +21,7 @@ module RelatonW3c
       dir = File.dirname(File.expand_path(__FILE__))
       @group_names = YAML.load_file(File.join(dir, "workgroups.yaml"))
       @index = DataIndex.create_from_file
+      @index1 = Relaton::Index.find_or_create :W3C, file: "index1.yml"
     end
 
     #
@@ -60,6 +61,7 @@ module RelatonW3c
         end
       end
       @index.sort!.save
+      @index1.save
     end
 
     #
@@ -218,7 +220,9 @@ module RelatonW3c
       if @files.include?(file)
         warn "File #{file} already exists. Document: #{bib.docnumber}" if warn_duplicate
       else
-        @index.add bib.docnumber, file
+        pubid = PubId.parse bib.docnumber
+        @index.add pubid, file
+        @index1.add_or_update pubid.to_hash, file
         @files << file
         File.write file, c, encoding: "UTF-8"
       end

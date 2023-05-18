@@ -16,19 +16,21 @@ module RelatonW3c
     #
     # Add document to index or update it if already exists
     #
-    # @param [String] docnumber document number
+    # @param [RelatonW3c::PubId] pubid document number
     # @param [String] file path to document file
     #
-    def add(docnumber, file) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
-      dnparts = self.class.docnumber_to_parts docnumber
+    def add(pubid, file) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
+      # dnparts = self.class.docnumber_to_parts docnumber
+      # pubid = PubId.parse docnumber
       rec = @index.detect { |i| i[:file] == file }
       if rec
-        rec[:code] = dnparts[:code]
-        dnparts[:stage] ? rec[:stage] = dnparts[:stage] : rec.delete(:stage)
-        dnparts[:type] ? rec[:type] = dnparts[:type] : rec.delete(:type)
-        dnparts[:date] ? rec[:date] = dnparts[:date] : rec.delete(:date)
-        dnparts[:suff] ? rec[:suff] = dnparts[:suff] : rec.delete(:suff)
+        rec[:code] = pubid.code
+        pubid.stage ? rec[:stage] = pubid.stage : rec.delete(:stage)
+        pubid.type ? rec[:type] = pubid.type : rec.delete(:type)
+        pubid.date ? rec[:date] = pubid.date : rec.delete(:date)
+        pubid.suff ? rec[:suff] = pubid.suff : rec.delete(:suff)
       else
+        dnparts = pubid.to_hash
         dnparts[:file] = file
         @index << dnparts
       end
@@ -59,16 +61,16 @@ module RelatonW3c
     # @return [String] document's filename
     #
     def search(ref) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      dparts = self.class.docnumber_to_parts(ref)
-      return if dparts[:code].nil?
+      pubid = PubId.parse(ref)
+      return if pubid.code.nil?
 
       @index.detect do |parts|
-        parts[:code].match?(/^#{Regexp.escape dparts[:code]}/i) &&
-          (dparts[:stage].nil? || dparts[:stage].casecmp?(parts[:stage])) &&
-          (dparts[:type].nil? || dparts[:type].casecmp?(parts[:type]) ||
-            (parts[:type].nil? && dparts[:type] == "TR")) &&
-          (dparts[:date].nil? || dparts[:date] == parts[:date]) &&
-          (dparts[:suff].nil? || dparts[:suff].casecmp?(parts[:suff]))
+        parts[:code].match?(/^#{Regexp.escape pubid.code}/i) &&
+          (pubid.stage.nil? || pubid.stage.casecmp?(parts[:stage])) &&
+          (pubid.type.nil? || pubid.type.casecmp?(parts[:type]) ||
+            (parts[:type].nil? && pubid.type == "TR")) &&
+          (pubid.date.nil? || pubid.date == parts[:date]) &&
+          (pubid.suff.nil? || pubid.suff.casecmp?(parts[:suff]))
       end&.fetch(:file)
     end
 
@@ -141,28 +143,6 @@ module RelatonW3c
                 else []
                 end
         new index_file: index_file, index: index
-      end
-
-      #
-      # Parse document number to parts
-      #
-      # @param [String] docnumber document number
-      #
-      # @return [Hash{Symbol=>String}] document parts
-      #
-      def docnumber_to_parts(docnumber) # rubocop:disable Metrics/MethodLength
-        %r{
-          ^(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE|TR))-)?
-          (?<code>\w+(?:[+-][\w.]+)*?)
-          (?:-(?<date>\d{8}|\d{6}|\d{4}))?
-          (?:/(?<suff>\w+))?$
-        }xi =~ docnumber
-        entry = { code: code }
-        entry[:stage] = stage if stage
-        entry[:type] = type if type
-        entry[:date] = date if date
-        entry[:suff] = suff if suff
-        entry
       end
     end
   end
