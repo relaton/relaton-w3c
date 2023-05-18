@@ -21,7 +21,7 @@ module RelatonW3c
       dir = File.dirname(File.expand_path(__FILE__))
       @group_names = YAML.load_file(File.join(dir, "workgroups.yaml"))
       @index = DataIndex.create_from_file
-      @index1 = Relaton::Index.find_or_create :W3C, file: "index1.yml"
+      @index1 = Relaton::Index.find_or_create :W3C, file: "index1.yaml"
     end
 
     #

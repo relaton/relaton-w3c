@@ -21,7 +21,7 @@ RSpec.describe RelatonW3c::DataFetcher do
 
     before do
       expect(RelatonW3c::DataIndex).to receive(:create_from_file).and_return(index)
-      expect(Relaton::Index).to receive(:find_or_create).with(:W3C, file: "index1.yml").and_return(index1)
+      expect(Relaton::Index).to receive(:find_or_create).with(:W3C, file: "index1.yaml").and_return(index1)
     end
 
     it "initialize fetcher" do
