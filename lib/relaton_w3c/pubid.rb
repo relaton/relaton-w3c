@@ -17,17 +17,29 @@ module RelatonW3c
     #
     def self.parse(docnumber) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       %r{
-        ^(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE|TR))-)?
+        (?:^|/)(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE|TR))[\s/-])?
         (?<code>\w+(?:[+-][\w.]+)*?)
         (?:-(?<date>\d{8}|\d{6}|\d{4}))?
-        (?:/(?<suff>\w+))?$
+        (?:/(?<suff>\w+))?(?:$|/)
       }xi =~ docnumber
       entry = { code: code }
       entry[:stage] = stage if stage
-      entry[:type] = type if type
+      entry[:type] = type if type && type != "TR"
       entry[:date] = date if date
       entry[:suff] = suff if suff
       new(**entry)
+    end
+
+    #
+    # Compare document identifiers against Hash ID representation.
+    #
+    # @param [Hash] other hash of document identifier parts
+    #
+    # @return [Boolean] true if document identifiers are same
+    #
+    def ==(other) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      other[:code].casecmp?(code) && other[:stage] == stage && other[:type] == type &&
+        (date.nil? || other[:date] == date) && (suff.nil? || other[:suff]&.casecmp?(suff))
     end
 
     #

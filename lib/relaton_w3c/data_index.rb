@@ -60,19 +60,19 @@ module RelatonW3c
     #
     # @return [String] document's filename
     #
-    def search(ref) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      pubid = PubId.parse(ref)
-      return if pubid.code.nil?
+    # def search(ref) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    #   pubid = PubId.parse(ref)
+    #   return if pubid.code.nil?
 
-      @index.detect do |parts|
-        parts[:code].match?(/^#{Regexp.escape pubid.code}/i) &&
-          (pubid.stage.nil? || pubid.stage.casecmp?(parts[:stage])) &&
-          (pubid.type.nil? || pubid.type.casecmp?(parts[:type]) ||
-            (parts[:type].nil? && pubid.type == "TR")) &&
-          (pubid.date.nil? || pubid.date == parts[:date]) &&
-          (pubid.suff.nil? || pubid.suff.casecmp?(parts[:suff]))
-      end&.fetch(:file)
-    end
+    #   @index.detect do |parts|
+    #     parts[:code].match?(/^#{Regexp.escape pubid.code}/i) &&
+    #       (pubid.stage.nil? || pubid.stage.casecmp?(parts[:stage])) &&
+    #       (pubid.type.nil? || pubid.type.casecmp?(parts[:type]) ||
+    #         (parts[:type].nil? && pubid.type == "TR")) &&
+    #       (pubid.date.nil? || pubid.date == parts[:date]) &&
+    #       (pubid.suff.nil? || pubid.suff.casecmp?(parts[:suff]))
+    #   end&.fetch(:file)
+    # end
 
     #
     # Compare index items
@@ -122,13 +122,13 @@ module RelatonW3c
       #
       # @return [RelatonW3c::DataIndex] data index
       #
-      def create_from_repo
-        uri = URI("#{W3cBibliography::SOURCE}index-w3c.zip").open
-        resp = Zip::InputStream.new uri
-        zip = resp.get_next_entry
-        index = RelatonBib.parse_yaml(zip.get_input_stream.read, [Symbol])
-        new index: index
-      end
+      # def create_from_repo
+      #   uri = URI("#{W3cBibliography::SOURCE}index-w3c.zip").open
+      #   resp = Zip::InputStream.new uri
+      #   zip = resp.get_next_entry
+      #   index = RelatonBib.parse_yaml(zip.get_input_stream.read, [Symbol])
+      #   new index: index
+      # end
 
       #
       # Create index from a file

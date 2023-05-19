@@ -50,5 +50,12 @@ module RelatonW3c
     def grammar_hash
       @grammar_hash ||= ::RelatonW3c.grammar_hash
     end
+
+    #
+    # Remove index file
+    #
+    def remove_index_file
+      Relaton::Index.find_or_create(:W3C, url: true, file: "#{W3cBibliography::INDEX}.yaml").remove_file
+    end
   end
 end
