@@ -13,7 +13,9 @@ module RelatonW3c
       # @return [RelatonW3c::W3cBibliographicItem]
       def search(text) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         pubid = PubId.parse text.sub(/^W3C\s/, "")
-        index = Relaton::Index.find_or_create :W3C, url: "#{SOURCE}#{INDEX}.zip", file: "#{INDEX}.yaml"
+        index = Relaton::Index.find_or_create(
+          :W3C, url: "#{SOURCE}#{INDEX}.zip", file: "#{INDEX}.yaml", id_keys: PubId::PARTS
+        )
         row = index.search { |r| pubid == r[:id] }.first
         return unless row
 

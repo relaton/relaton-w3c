@@ -60,19 +60,19 @@
             "1; mode=block"
           ],
           "X-Github-Request-Id": [
-            "2B40:28C5:202BDBC:263CB16:6466D479"
+            "4D00:41CF:1EE0:26F1:6488F920"
           ],
           "Accept-Ranges": [
             "bytes"
           ],
           "Date": [
-            "Fri, 19 May 2023 01:44:25 GMT"
+            "Tue, 13 Jun 2023 23:17:52 GMT"
           ],
           "Via": [
             "1.1 varnish"
           ],
           "X-Served-By": [
-            "cache-atl18454-ATL"
+            "cache-atl18430-ATL"
           ],
           "X-Cache": [
             "MISS"
@@ -81,7 +81,7 @@
             "0"
           ],
           "X-Timer": [
-            "S1684460666.587030,VS0,VE96"
+            "S1686698272.068495,VS0,VE100"
           ],
           "Vary": [
             "Authorization,Accept-Encoding,Origin"
@@ -89,11 +89,14 @@
           "Access-Control-Allow-Origin": [
             "*"
           ],
+          "Cross-Origin-Resource-Policy": [
+            "cross-origin"
+          ],
           "X-Fastly-Request-Id": [
-            "79e4bc8874a29fac5aef7aba301baac7673b60aa"
+            "2e7806b79a0cd4ca38663834fd22d7db8eaa14b5"
           ],
           "Expires": [
-            "Fri, 19 May 2023 01:49:25 GMT"
+            "Tue, 13 Jun 2023 23:22:52 GMT"
           ],
           "Source-Age": [
             "0"
@@ -104,7 +107,7 @@
           "string": "---\nschema-version: v1.2.3\nid: W3Cvocab-adms\ntitle:\n- content: Asset Description Metadata Schema (ADMS)\n  format: text/plain\nlink:\n- content: https://www.w3.org/TR/vocab-adms/\n  type: src\ntype: standard\ndocid:\n- id: W3C vocab-adms\n  type: W3C\n  primary: true\ndocnumber: vocab-adms\nlanguage:\n- en\nscript:\n- Latn\nrelation:\n- type: instance\n  bibitem:\n    id: W3CNOTE-vocab-adms-20130801\n    docid:\n    - id: W3C NOTE-vocab-adms-20130801\n      type: W3C\n      primary: true\n    formattedref:\n      content: W3C NOTE-vocab-adms-20130801\n      format: text/plain\nseries:\n- title:\n    content: W3C NOTE\n    format: text/plain\n  number: vocab-adms\ndoctype: groupNote\next:\n  schema-version: v1.0.0\n"
         }
       },
-      "recorded_at": "Fri, 19 May 2023 01:44:25 GMT"
+      "recorded_at": "Tue, 13 Jun 2023 23:17:52 GMT"
     }
   ],
   "recorded_with": "VCR 6.1.0"
