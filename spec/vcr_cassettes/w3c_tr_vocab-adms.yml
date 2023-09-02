@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-w3c/main/data/vocab-adms.yaml
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - raw.githubusercontent.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '690'
+      Cache-Control:
+      - max-age=300
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Etag:
+      - W/"21e305e7ea995f61fbf1a368a638040aeed66bbc514d8b6a65cb9df48d3805ed"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Github-Request-Id:
+      - 90B4:09B5:345339:3E97B8:64F33BAA
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Sat, 02 Sep 2023 14:13:19 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-iad-kcgs7200043-IAD
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Timer:
+      - S1693663999.277811,VS0,VE53
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Access-Control-Allow-Origin:
+      - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      X-Fastly-Request-Id:
+      - ee0d71cae26554e112dfef571d8030996ac3cdad
+      Expires:
+      - Sat, 02 Sep 2023 14:18:19 GMT
+      Source-Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjMKaWQ6IFczQ3ZvY2FiLWFkbXMK
+        dGl0bGU6Ci0gY29udGVudDogQXNzZXQgRGVzY3JpcHRpb24gTWV0YWRhdGEg
+        U2NoZW1hIChBRE1TKQogIGZvcm1hdDogdGV4dC9wbGFpbgpsaW5rOgotIGNv
+        bnRlbnQ6IGh0dHBzOi8vd3d3LnczLm9yZy9UUi92b2NhYi1hZG1zLwogIHR5
+        cGU6IHNyYwp0eXBlOiBzdGFuZGFyZApkb2NpZDoKLSBpZDogVzNDIHZvY2Fi
+        LWFkbXMKICB0eXBlOiBXM0MKICBwcmltYXJ5OiB0cnVlCmRvY251bWJlcjog
+        dm9jYWItYWRtcwpsYW5ndWFnZToKLSBlbgpzY3JpcHQ6Ci0gTGF0bgpyZWxh
+        dGlvbjoKLSB0eXBlOiBpbnN0YW5jZQogIGJpYml0ZW06CiAgICBpZDogVzND
+        Tk9URS12b2NhYi1hZG1zLTIwMTMwODAxCiAgICBkb2NpZDoKICAgIC0gaWQ6
+        IFczQyBOT1RFLXZvY2FiLWFkbXMtMjAxMzA4MDEKICAgICAgdHlwZTogVzND
+        CiAgICAgIHByaW1hcnk6IHRydWUKICAgIGZvcm1hdHRlZHJlZjoKICAgICAg
+        Y29udGVudDogVzNDIE5PVEUtdm9jYWItYWRtcy0yMDEzMDgwMQogICAgICBm
+        b3JtYXQ6IHRleHQvcGxhaW4Kc2VyaWVzOgotIHRpdGxlOgogICAgY29udGVu
+        dDogVzNDIE5PVEUKICAgIGZvcm1hdDogdGV4dC9wbGFpbgogIG51bWJlcjog
+        dm9jYWItYWRtcwpkb2N0eXBlOiBncm91cE5vdGUKZXh0OgogIHNjaGVtYS12
+        ZXJzaW9uOiB2MS4wLjAK
+  recorded_at: Sat, 02 Sep 2023 14:13:19 GMT
+recorded_with: VCR 6.2.0

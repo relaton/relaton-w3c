@@ -74,13 +74,13 @@ module RelatonW3c
       if File.exist? file
         item = send "read_#{@format}", file
         item.relation.each do |r1|
-          r1.type = "hasEdition" if r1.type == "instance"
+          r1.type = "hasEdition" if r1.type == "instanceOf"
           same_edition = bib.relation.detect { |r2| same_edition?(r1, r2) }
           bib.relation << r1 unless same_edition
         end
       end
       bib.relation.select { |r| r.type == "hasEdition" }
-        .max_by { |r| r.bibitem.id.match(/(?<=-)\d{8}$/).to_s }&.type = "instance"
+        .max_by { |r| r.bibitem.id.match(/(?<=-)\d{8}$/).to_s }&.type = "instanceOf"
     end
 
     #

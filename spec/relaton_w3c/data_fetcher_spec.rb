@@ -167,7 +167,7 @@ RSpec.describe RelatonW3c::DataFetcher do
           docid = double("id2", id: "rel-20121122")
           rel_bib = double("rel_bib", docidentifier: [docid], id: "rel-20121122")
           rel = double("rel", bibitem: rel_bib, type: "hasEdition")
-          expect(rel).to receive(:type=).with("instance")
+          expect(rel).to receive(:type=).with("instanceOf")
           bib = double("bib", relation: [rel], docnumber: "bib")
           subject.add_has_edition_relation bib
           expect(bib.relation).to eq [rel, prev_rel]

@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-w3c/main/data/xml.yaml
+    body:
+      encoding: US-ASCII
+      base64_string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - raw.githubusercontent.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '909'
+      Cache-Control:
+      - max-age=300
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Etag:
+      - W/"6e90c009f764e5fdab9ca872e1461b9276f42d47db8e50eb9f5983782552d253"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Github-Request-Id:
+      - 3006:631E:2EBCA6:393111:64F33BA9
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Sat, 02 Sep 2023 14:13:19 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-iad-kjyo7100164-IAD
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Timer:
+      - S1693663999.448107,VS0,VE49
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Access-Control-Allow-Origin:
+      - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      X-Fastly-Request-Id:
+      - 81838be86143e1ef0c385c48a48f42b7cf45d87d
+      Expires:
+      - Sat, 02 Sep 2023 14:18:19 GMT
+      Source-Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      base64_string: |
+        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjMKaWQ6IFczQ3htbAp0aXRsZToK
+        LSBjb250ZW50OiBFeHRlbnNpYmxlIE1hcmt1cCBMYW5ndWFnZSAoWE1MKSAx
+        LjAgKEZpZnRoIEVkaXRpb24pCiAgZm9ybWF0OiB0ZXh0L3BsYWluCmxpbms6
+        Ci0gY29udGVudDogaHR0cHM6Ly93d3cudzMub3JnL1RSL3htbC8KICB0eXBl
+        OiBzcmMKdHlwZTogc3RhbmRhcmQKZG9jaWQ6Ci0gaWQ6IFczQyB4bWwKICB0
+        eXBlOiBXM0MKICBwcmltYXJ5OiB0cnVlCmRvY251bWJlcjogeG1sCmxhbmd1
+        YWdlOgotIGVuCnNjcmlwdDoKLSBMYXRuCmRvY3N0YXR1czoKICBzdGFnZToK
+        ICAgIHZhbHVlOiByZWNvbW1lbmRhdGlvbgpyZWxhdGlvbjoKLSB0eXBlOiBo
+        YXNFZGl0aW9uCiAgYmliaXRlbToKICAgIGlkOiBXM0NSRUMteG1sLTIwMDYw
+        ODE2CiAgICBkb2NpZDoKICAgIC0gaWQ6IFczQyBSRUMteG1sLTIwMDYwODE2
+        CiAgICAgIHR5cGU6IFczQwogICAgICBwcmltYXJ5OiB0cnVlCiAgICBmb3Jt
+        YXR0ZWRyZWY6CiAgICAgIGNvbnRlbnQ6IFczQyBSRUMteG1sLTIwMDYwODE2
+        CiAgICAgIGZvcm1hdDogdGV4dC9wbGFpbgotIHR5cGU6IGluc3RhbmNlCiAg
+        YmliaXRlbToKICAgIGlkOiBXM0NSRUMteG1sLTIwMDgxMTI2CiAgICBkb2Np
+        ZDoKICAgIC0gaWQ6IFczQyBSRUMteG1sLTIwMDgxMTI2CiAgICAgIHR5cGU6
+        IFczQwogICAgICBwcmltYXJ5OiB0cnVlCiAgICBmb3JtYXR0ZWRyZWY6CiAg
+        ICAgIGNvbnRlbnQ6IFczQyBSRUMteG1sLTIwMDgxMTI2CiAgICAgIGZvcm1h
+        dDogdGV4dC9wbGFpbgpzZXJpZXM6Ci0gdGl0bGU6CiAgICBjb250ZW50OiBX
+        M0MgUkVDCiAgICBmb3JtYXQ6IHRleHQvcGxhaW4KICBudW1iZXI6IHhtbApk
+        b2N0eXBlOiB0ZWNobmljYWxSZXBvcnQKZXh0OgogIHNjaGVtYS12ZXJzaW9u
+        OiB2MS4wLjAK
+  recorded_at: Sat, 02 Sep 2023 14:13:19 GMT
+recorded_with: VCR 6.2.0
