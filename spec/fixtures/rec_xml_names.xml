@@ -15,7 +15,7 @@
       <docidentifier type="W3C" primary="true">W3C REC-xml-names-20060816</docidentifier>
     </bibitem>
   </relation>
-  <relation type="instance">
+  <relation type="instanceOf">
     <bibitem>
       <formattedref format="text/plain">W3C REC-xml-names-20091208</formattedref>
       <docidentifier type="W3C" primary="true">W3C REC-xml-names-20091208</docidentifier>
