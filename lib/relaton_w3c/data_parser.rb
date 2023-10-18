@@ -434,7 +434,7 @@ module RelatonW3c
           rwg = RelatonBib::WorkGroup.new name: wg["name"]
           obj << RelatonBib::TechnicalCommittee.new(rwg)
         else
-          warn "Working group name not found for #{edg.home_page}"
+          Util.warn "WARNING: Working group name not found for: `#{edg.home_page}`"
         end
       end
       RelatonBib::EditorialGroup.new tc

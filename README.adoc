@@ -42,8 +42,8 @@ end
 [source,ruby]
 ----
 item = RelatonW3c::W3cBibliography.get "W3C REC-json-ld11-20200716"
-[relaton-w3c] (W3C REC-json-ld11-20200716) fetching...
-[relaton-w3c] (W3C REC-json-ld11-20200716) found `REC-json-ld11-20200716`
+[relaton-w3c] (W3C REC-json-ld11-20200716) Fetching from Relaton repository ...
+[relaton-w3c] (W3C REC-json-ld11-20200716) Found: `REC-json-ld11-20200716`
 => #<RelatonW3c::W3cBibliographicItem:0x00007fc4ea03c6c0
 ...
 ----

@@ -1,6 +1,8 @@
 require "jing"
 
 RSpec.describe RelatonW3c do
+  before { RelatonW3c.instance_variable_set :@configuration, nil }
+
   it "has a version number" do
     expect(RelatonW3c::VERSION).not_to be nil
   end
@@ -12,8 +14,8 @@ RSpec.describe RelatonW3c do
   end
 
   context "get document" do
-    it "by title only" do
-      VCR.use_cassette "cr_json_ld11" do
+    it "by title only", vcr: "cr_json_ld11" do
+      expect do
         doc = RelatonW3c::W3cBibliography.get "W3C REC-json-ld11-20200716"
         expect(doc).to be_instance_of RelatonW3c::W3cBibliographicItem
         file = "spec/fixtures/cr_json_ld11.xml"
@@ -24,7 +26,10 @@ RSpec.describe RelatonW3c do
         schema = Jing.new "grammars/relaton-w3c-compile.rng"
         errors = schema.validate file
         expect(errors).to eq []
-      end
+      end.to output(
+        include("[relaton-w3c] (W3C REC-json-ld11-20200716) Fetching from Relaton repository ...",
+                "[relaton-w3c] (W3C REC-json-ld11-20200716) Found: `REC-json-ld11-20200716`"),
+      ).to_stderr
     end
 
     it "dated" do
@@ -80,7 +85,7 @@ RSpec.describe RelatonW3c do
         expect do
           bib = RelatonW3c::W3cBibliography.get "W3C not-found"
           expect(bib).to be_nil
-        end.to output(/not found/).to_stderr
+        end.to output(/\[relaton-w3c\] \(W3C not-found\) Not found\./).to_stderr
       end
     end
   end

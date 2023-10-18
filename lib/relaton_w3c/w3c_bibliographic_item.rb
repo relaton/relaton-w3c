@@ -8,7 +8,7 @@ module RelatonW3c
     # @param doctype [String]
     def initialize(**args)
       if args[:doctype] && !TYPES.include?(args[:doctype])
-        warn "[relaton-w3c] invalid document type: #{args[:doctype]}"
+        Util.warn "Invalid document type: `#{args[:doctype]}`"
       end
       super
     end
