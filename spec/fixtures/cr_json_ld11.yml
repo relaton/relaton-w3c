@@ -1,5 +1,5 @@
 ---
-schema-version: v1.2.4
+schema-version: v1.2.5
 title:
 - type: main
   content: JSON-LD 1.1
@@ -248,6 +248,7 @@ fetched: '2020-04-04'
 id: CR-json-ld11-20200316
 keyword:
 - content: Data
-doctype: candidateRecommendation
+doctype:
+  type: candidateRecommendation
 ext:
   schema-version: v1.0.0

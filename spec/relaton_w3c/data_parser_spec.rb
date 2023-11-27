@@ -109,7 +109,9 @@ RSpec.describe RelatonW3c::DataParser do
     end
 
     it "parse doctype" do
-      expect(subject.parse_doctype).to eq "technicalReport"
+      doctype = subject.parse_doctype
+      expect(doctype).to be_instance_of RelatonW3c::DocumentType
+      expect(doctype.type).to eq "technicalReport"
     end
 
     it "parse date" do

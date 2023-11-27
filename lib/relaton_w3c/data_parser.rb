@@ -222,7 +222,8 @@ module RelatonW3c
     # @return [String, nil] doctype
     #
     def parse_doctype
-      DOCTYPES[type] || DOCTYPES[type_from_link]
+      type = DOCTYPES[type] || DOCTYPES[type_from_link]
+      DocumentType.new(type: type) if type
     end
 
     #

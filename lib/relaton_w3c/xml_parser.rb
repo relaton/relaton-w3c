@@ -8,10 +8,10 @@ module RelatonW3c
       # @returtn [Hash]
       def item_data(item)
         data = super
-        ext = item.at "./ext"
-        return data unless ext
+        # ext = item.at "./ext"
+        # return data unless ext
 
-        data[:doctype] = ext.at("./doctype")&.text
+        # data[:doctype] = ext.at("./doctype")&.text
         data
       end
 
