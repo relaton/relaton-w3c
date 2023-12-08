@@ -10,7 +10,7 @@ describe RelatonW3c::PubId do
 
     it "with year" do
       parts = described_class.parse("REC-xml-1998").to_hash
-      expect(parts).to eq(stage: "REC", code: "xml", date: "1998")
+      expect(parts).to eq(stage: "REC", code: "xml", year: "1998")
     end
   end
 end

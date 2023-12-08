@@ -57,9 +57,16 @@ RSpec.describe RelatonW3c do
       end
     end
 
-    it "latest version", vcr: "latest" do
-      doc = RelatonW3c::W3cBibliography.get "W3C css"
-      expect(doc.docidentifier[0].id).to eq "W3C css-2023"
+    context "latest version" do
+      it "last year", vcr: "last_year" do
+        doc = RelatonW3c::W3cBibliography.get "W3C css"
+        expect(doc.docidentifier[0].id).to eq "W3C css-2023"
+      end
+
+      # it "last date", vcr: "last_date" do
+      #   doc = RelatonW3c::W3cBibliography.get "W3C NOTE-css-2018"
+      #   expect(doc.docidentifier[0].id).to eq "W3C NOTE-css-2018"
+      # end
     end
 
     it "TR type" do

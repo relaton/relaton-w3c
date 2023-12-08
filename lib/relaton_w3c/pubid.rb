@@ -1,6 +1,6 @@
 module RelatonW3c
   class PubId
-    PARTS = %i[code stage type date suff].freeze
+    PARTS = %i[code stage type year date suff].freeze
 
     PARTS.each { |part| attr_accessor part }
 
@@ -19,12 +19,14 @@ module RelatonW3c
       %r{
         (?:^|/)(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE|TR))[\s/-])?
         (?<code>\w+(?:[+-][\w.]+)*?)
-        (?:-(?<date>\d{8}|\d{6}|\d{4}))?
+        (?:-(?<year>\d{4}))?
+        (?:-(?<date>\d{8}|\d{6}))?
         (?:/(?<suff>\w+))?(?:$|/)
       }xi =~ docnumber
       entry = { code: code }
       entry[:stage] = stage if stage
       entry[:type] = type if type && type != "TR"
+      entry[:year] = year if year
       entry[:date] = date if date
       entry[:suff] = suff if suff
       new(**entry)
@@ -39,7 +41,8 @@ module RelatonW3c
     #
     def ==(other) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       other[:code].casecmp?(code) && other[:stage] == stage && other[:type] == type &&
-        (date.nil? || other[:date] == date) && (suff.nil? || other[:suff]&.casecmp?(suff))
+        (year.nil? || other[:year] == year) && (date.nil? || other[:date] == date) &&
+        (suff.nil? || other[:suff]&.casecmp?(suff))
     end
 
     #

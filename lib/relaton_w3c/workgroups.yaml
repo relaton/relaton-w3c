@@ -30,10 +30,10 @@
   name: Mobile Web Best Practices Working Group
   abbrev: BPWG
 'www.w3.org/WAI/EO':
-  name: Education and Outreach Working Group 
+  name: Education and Outreach Working Group
   abbrev: EOWG
 'www.w3.org/WAI/about/groups/eowg':
-  name: Education and Outreach Working Group 
+  name: Education and Outreach Working Group
   abbrev: EOWG
 'www.w3.org/2001/sw/WebOnt':
   name: Web-Ontology Working Group
@@ -208,7 +208,7 @@
 'www.w3.org/2008/WebVideo/Fragments':
   name: Media Fragments Working Group
 'www.w3.org/2011/mbui':
-  name: Model-Based User Interfaces Working Group 
+  name: Model-Based User Interfaces Working Group
   abbrev: MBUI WG
 'www.w3.org/International/its':
   name: ITS Working Group
@@ -483,3 +483,26 @@
   abbrev: HTMLWG
 'www.w3.org/groups/wg/audio':
   name: Audio Working Group
+'www.w3.org/groups/wg/webperf':
+  name: Web Performance Working Group
+'www.w3.org/groups/wg/webauthn':
+  name: Web Authentication Working Group
+  abbrev: WebAuthn WG
+'www.w3.org/Privacy/IG':
+  name: Privacy Interest Group
+  abbrev: PING
+'www.w3.org/groups/wg/json-ld':
+  name: JSON-LD Working Group
+'www.w3.org/groups/wg/rdf-star':
+  name: RDF-star Working Group
+'www.w3.org/groups/wg/png':
+  name: Portable Network Graphics (PNG) Working Group
+  abbrev: PNG WG
+'www.w3.org/web-networks':
+  name: Web & Networks Interest Group
+'www.w3.org/groups/wg/pm':
+  name: Publishing Maintenance Working Group
+  abbrev: PM WG
+'www.w3.org/groups/wg/rch':
+  name: RDF Dataset Canonicalization and Hash Working Group
+  abbrev: RCH WG
