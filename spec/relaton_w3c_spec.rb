@@ -28,7 +28,7 @@ RSpec.describe RelatonW3c do
         expect(errors).to eq []
       end.to output(
         include("[relaton-w3c] (W3C REC-json-ld11-20200716) Fetching from Relaton repository ...",
-                "[relaton-w3c] (W3C REC-json-ld11-20200716) Found: `REC-json-ld11-20200716`"),
+                "[relaton-w3c] (W3C REC-json-ld11-20200716) Found: `W3C REC-json-ld11-20200716`"),
       ).to_stderr
     end
 
@@ -55,6 +55,11 @@ RSpec.describe RelatonW3c do
           expect(errors).to eq []
         end
       end
+    end
+
+    it "latest version", vcr: "latest" do
+      doc = RelatonW3c::W3cBibliography.get "W3C css"
+      expect(doc.docidentifier[0].id).to eq "W3C css-2023"
     end
 
     it "TR type" do
