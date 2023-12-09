@@ -19,8 +19,8 @@ module RelatonW3c
       %r{
         (?:^|/)(?:(?:(?<stage>WD|CRD|CR|PR|PER|REC|SPSD|OBSL|RET)|(?<type>D?NOTE|TR))[\s/-])?
         (?<code>\w+(?:[+-][\w.]+)*?)
-        (?:-(?<year>\d{4}))?
-        (?:-(?<date>\d{8}|\d{6}))?
+        (?:-(?<year>(?:18|19|20)\d{2}))?
+        (?:-(?<date>\d{8}|\d{6}|\d{4}))?
         (?:/(?<suff>\w+))?(?:$|/)
       }xi =~ docnumber
       entry = { code: code }
