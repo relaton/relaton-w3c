@@ -16,7 +16,7 @@ module RelatonW3c
         index = Relaton::Index.find_or_create(
           :W3C, url: "#{SOURCE}#{INDEX}.zip", file: "#{INDEX}.yaml", id_keys: PubId::PARTS
         )
-        row = index.search { |r| pubid == r[:id] }.sort_by{ |r| r[:id][:date].to_i }.last
+        row = index.search { |r| pubid == r[:id] }.sort_by{ |r| (r[:id][:date] || r[:id][:year]).to_i }.last
         return unless row
 
         url = "#{SOURCE}#{row[:file]}"
