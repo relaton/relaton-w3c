@@ -393,7 +393,11 @@ module RelatonW3c
     # @return [Array<RelatonBib::ContributionInfo>] contributor
     #
     def parse_contrib # rubocop:disable Metrics/MethodLength
-      return [] unless @sol.respond_to?(:link)
+      publisher = RelatonBib::Organization.new(
+        name: "World Wide Web Consortium", abbreviation: "W3C", url: "https://www.w3.org/"
+      )
+      contribs = [RelatonBib::ContributionInfo.new(entity: publisher, role: [type: "publisher"])]
+      return contribs unless @sol.respond_to?(:link)
 
       sse = SPARQL.parse(%(
         PREFIX : <http://www.w3.org/2001/02pd/rec54#>
@@ -403,12 +407,16 @@ module RelatonW3c
           <#{@sol.link.to_s.strip}> :editor/contact:fullName ?full_name
         }
       ))
-      @rdf.query(sse).order_by(:full_name).map do |ed|
-        cn = RelatonBib::LocalizedString.new(ed.full_name.to_s, "en", "Latn")
-        n = RelatonBib::FullName.new completename: cn
-        p = RelatonBib::Person.new name: n
-        RelatonBib::ContributionInfo.new entity: p, role: [type: "editor"]
+      @rdf.query(sse).order_by(:full_name).each_with_object(contribs) do |ed, obj|
+        obj << create_editor(ed.full_name.to_s)
       end
+    end
+
+    def create_editor(name)
+      cn = RelatonBib::LocalizedString.new(name, "en", "Latn")
+      n = RelatonBib::FullName.new completename: cn
+      p = RelatonBib::Person.new name: n
+      RelatonBib::ContributionInfo.new(entity: p, role: [type: "editor"])
     end
 
     #

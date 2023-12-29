@@ -158,10 +158,18 @@ RSpec.describe RelatonW3c::DataParser do
     it "parse contrib" do
       contrib = subject.parse_contrib
       expect(contrib).to be_instance_of Array
-      expect(contrib.size).to eq 2
-      expect(contrib.first).to be_instance_of RelatonBib::ContributionInfo
-      expect(contrib.first.role[0].type).to eq "editor"
-      expect(contrib.first.entity.name.completename.content).to eq "Philip DesAutels"
+      expect(contrib.size).to eq 3
+      expect(contrib[0]).to be_instance_of RelatonBib::ContributionInfo
+      expect(contrib[0].role[0].type).to eq "publisher"
+      expect(contrib[0].entity).to be_instance_of RelatonBib::Organization
+      expect(contrib[0].entity.name[0].content).to eq "World Wide Web Consortium"
+      expect(contrib[0].entity.abbreviation.content).to eq "W3C"
+      expect(contrib[0].entity.url).to eq "https://www.w3.org/"
+      expect(contrib[1]).to be_instance_of RelatonBib::ContributionInfo
+      expect(contrib[1].role[0].type).to eq "editor"
+      expect(contrib[1].entity).to be_instance_of RelatonBib::Person
+      expect(contrib[1].entity.name.completename.content).to eq "Philip DesAutels"
+      expect(contrib[2].entity.name.completename.content).to eq "Yanghua Chu"
     end
 
     it "parse editorialgroup" do
