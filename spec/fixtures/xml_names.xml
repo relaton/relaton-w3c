@@ -1,9 +1,17 @@
 <bibdata type="standard" schema-version="v1.2.7">
-  <fetched>2022-12-05</fetched>
+  <fetched>2023-12-29</fetched>
   <title format="text/plain">Namespaces in XML 1.0 (Third Edition)</title>
   <uri type="src">https://www.w3.org/TR/xml-names/</uri>
   <docidentifier type="W3C" primary="true">W3C xml-names</docidentifier>
   <docnumber>xml-names</docnumber>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>World Wide Web Consortium</name>
+      <abbreviation>W3C</abbreviation>
+      <uri>https://www.w3.org/</uri>
+    </organization>
+  </contributor>
   <language>en</language>
   <script>Latn</script>
   <status>

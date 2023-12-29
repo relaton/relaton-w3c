@@ -1,5 +1,5 @@
 <bibdata type="standard" schema-version="v1.2.7">
-  <fetched>2023-12-08</fetched>
+  <fetched>2023-12-29</fetched>
   <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
   <uri type="current">https://w3c.github.io/json-ld-syntax/</uri>
@@ -8,6 +8,14 @@
   <date type="published">
     <on>2020-07-16</on>
   </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>World Wide Web Consortium</name>
+      <abbreviation>W3C</abbreviation>
+      <uri>https://www.w3.org/</uri>
+    </organization>
+  </contributor>
   <contributor>
     <role type="editor"/>
     <person>
