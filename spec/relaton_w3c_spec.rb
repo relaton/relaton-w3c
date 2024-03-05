@@ -14,6 +14,11 @@ RSpec.describe RelatonW3c do
   end
 
   context "get document" do
+    before do
+      allow_any_instance_of(Relaton::Index::Type).to receive(:actual?).and_return(false)
+      allow_any_instance_of(Relaton::Index::FileIO).to receive(:check_file).and_return(nil)
+    end
+
     it "by title only", vcr: "cr_json_ld11" do
       expect do
         doc = RelatonW3c::W3cBibliography.get "W3C REC-json-ld11-20200716"

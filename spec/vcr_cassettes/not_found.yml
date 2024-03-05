@@ -43,17 +43,17 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 05 Mar 2024 22:31:22 GMT
+      - Tue, 05 Mar 2024 22:31:54 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-pdk-katl1840034-PDK
+      - cache-pdk-katl1840069-PDK
       X-Cache:
       - HIT
       X-Cache-Hits:
       - '1'
       X-Timer:
-      - S1709677883.699348,VS0,VE1
+      - S1709677915.836586,VS0,VE2
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -61,11 +61,11 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - dd5e168c15bd2124c0a693a0586c461c6bbd2e8b
+      - e638b47e8c277cf6fd5febe48660a8e89e8b4b7c
       Expires:
-      - Tue, 05 Mar 2024 22:36:22 GMT
+      - Tue, 05 Mar 2024 22:36:54 GMT
       Source-Age:
-      - '5'
+      - '37'
     body:
       encoding: UTF-8
       base64_string: |
@@ -1800,96 +1800,5 @@ http_interactions:
         n02HcLikM7cib2fDvJ3Qzpd8hf53X/H/AVBLAQIeAxQAAAAIAByTZVj1ano2
         lC8BAB5jCQALABgAAAAAAAEAAACkgQAAAABpbmRleDEueWFtbFVUBQADd2Pn
         ZXV4CwABBOkDAAAEfwAAAFBLBQYAAAAAAQABAFEAAADZLwEAAAA=
-  recorded_at: Tue, 05 Mar 2024 22:31:22 GMT
-- request:
-    method: get
-    uri: https://raw.githubusercontent.com/relaton/relaton-data-w3c/main/data/css-2023.yaml
-    body:
-      encoding: US-ASCII
-      base64_string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - raw.githubusercontent.com
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '841'
-      Cache-Control:
-      - max-age=300
-      Content-Security-Policy:
-      - default-src 'none'; style-src 'unsafe-inline'; sandbox
-      Content-Type:
-      - text/plain; charset=utf-8
-      Etag:
-      - W/"51015295e257ad0be5b1ee5b62e52cde77236460dced9d0498715db337a4e6cf"
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Github-Request-Id:
-      - E12C:19A568:1A55D:20401:65E793C4
-      Accept-Ranges:
-      - bytes
-      Date:
-      - Tue, 05 Mar 2024 22:31:23 GMT
-      Via:
-      - 1.1 varnish
-      X-Served-By:
-      - cache-pdk-katl1840084-PDK
-      X-Cache:
-      - HIT
-      X-Cache-Hits:
-      - '1'
-      X-Timer:
-      - S1709677883.097559,VS0,VE74
-      Vary:
-      - Authorization,Accept-Encoding,Origin
-      Access-Control-Allow-Origin:
-      - "*"
-      Cross-Origin-Resource-Policy:
-      - cross-origin
-      X-Fastly-Request-Id:
-      - 913f7e90b14aee5e5836a086f293c38729e29d0a
-      Expires:
-      - Tue, 05 Mar 2024 22:36:23 GMT
-      Source-Age:
-      - '0'
-    body:
-      encoding: ASCII-8BIT
-      base64_string: |
-        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjgKaWQ6IFczQ2Nzcy0yMDIzCnRp
-        dGxlOgotIGNvbnRlbnQ6IENTUyBTbmFwc2hvdCAyMDIzCiAgZm9ybWF0OiB0
-        ZXh0L3BsYWluCmxpbms6Ci0gY29udGVudDogaHR0cHM6Ly93d3cudzMub3Jn
-        L1RSL2Nzcy0yMDIzLwogIHR5cGU6IHNyYwp0eXBlOiBzdGFuZGFyZApkb2Np
-        ZDoKLSBpZDogVzNDIGNzcy0yMDIzCiAgdHlwZTogVzNDCiAgcHJpbWFyeTog
-        dHJ1ZQpkb2NudW1iZXI6IGNzcy0yMDIzCmNvbnRyaWJ1dG9yOgotIG9yZ2Fu
-        aXphdGlvbjoKICAgIG5hbWU6CiAgICAtIGNvbnRlbnQ6IFdvcmxkIFdpZGUg
-        V2ViIENvbnNvcnRpdW0KICAgIGFiYnJldmlhdGlvbjoKICAgICAgY29udGVu
-        dDogVzNDCiAgICB1cmw6IGh0dHBzOi8vd3d3LnczLm9yZy8KICByb2xlOgog
-        IC0gdHlwZTogcHVibGlzaGVyCmxhbmd1YWdlOgotIGVuCnNjcmlwdDoKLSBM
-        YXRuCnJlbGF0aW9uOgotIHR5cGU6IGluc3RhbmNlT2YKICBiaWJpdGVtOgog
-        ICAgaWQ6IFczQ05PVEUtY3NzLTIwMjMtMjAyMzEyMDcKICAgIGRvY2lkOgog
-        ICAgLSBpZDogVzNDIE5PVEUtY3NzLTIwMjMtMjAyMzEyMDcKICAgICAgdHlw
-        ZTogVzNDCiAgICAgIHByaW1hcnk6IHRydWUKICAgIGZvcm1hdHRlZHJlZjoK
-        ICAgICAgY29udGVudDogVzNDIE5PVEUtY3NzLTIwMjMtMjAyMzEyMDcKICAg
-        ICAgZm9ybWF0OiB0ZXh0L3BsYWluCnNlcmllczoKLSB0aXRsZToKICAgIGNv
-        bnRlbnQ6IFczQyBOT1RFCiAgICBmb3JtYXQ6IHRleHQvcGxhaW4KICBudW1i
-        ZXI6IGNzcy0yMDIzCmRvY3R5cGU6CiAgdHlwZTogdGVjaG5pY2FsUmVwb3J0
-        CmV4dDoKICBzY2hlbWEtdmVyc2lvbjogdjEuMC4wCg==
-  recorded_at: Tue, 05 Mar 2024 22:31:23 GMT
+  recorded_at: Tue, 05 Mar 2024 22:31:54 GMT
 recorded_with: VCR 6.2.0
