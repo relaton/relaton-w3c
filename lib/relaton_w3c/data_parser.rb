@@ -8,15 +8,15 @@ module RelatonW3c
     }.freeze
 
     STAGES = {
-      "RET" => "retired",
-      "SPSD" => "supersededRecommendation",
-      "OBSL" => "obsoletedRecommendation",
-      "WD" => "workingDraft",
-      "CRD" => "candidateRecommendationDraft",
-      "CR" => "candidateRecommendation",
-      "PR" => "proposedRecommendation",
-      "PER" => "proposedEditedRecommendation",
-      "REC" => "recommendation",
+      "RET" => "Retired",
+      "SPSD" => "Superseded Recommendation",
+      "OBSL" => "Obsoleted Recommendation",
+      "WD" => "Working Draft",
+      "CRD" => "Candidate Recommendation Draft",
+      "CR" => "Candidate Recommendation",
+      "PR" => "Proposed Recommendation",
+      "PER" => "Proposed Edited Recommendation",
+      "REC" => "Recommendation",
     }.freeze
 
     #
