@@ -55,8 +55,7 @@ module RelatonW3c
             save_doc bib
           rescue StandardError => e
             link = sl.respond_to?(:link) ? sl.link : sl.version_of
-            warn "Error: document #{link} #{e.message}"
-            warn e.backtrace.join("\n")
+            Util.error "Error: document #{link} #{e.message}\n#{e.backtrace.join("\n")}"
           end
         end
       end
@@ -218,7 +217,7 @@ module RelatonW3c
       # id = bib.docidentifier.detect(&:primary)&.id || bib.formattedref.content
       file = file_name(bib.docnumber)
       if @files.include?(file)
-        warn "File #{file} already exists. Document: #{bib.docnumber}" if warn_duplicate
+        Util.warn "File #{file} already exists. Document: #{bib.docnumber}" if warn_duplicate
       else
         pubid = PubId.parse bib.docnumber
         @index.add pubid, file
