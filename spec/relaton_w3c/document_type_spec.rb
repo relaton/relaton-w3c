@@ -4,6 +4,6 @@ describe RelatonW3c::DocumentType do
   it "invalid document type warning" do
     expect do
       described_class.new type: "invalid_type"
-    end.to output(/\[relaton-w3c\] WARNING: invalid doctype: `invalid_type`/).to_stderr_from_any_process
+    end.to output(/\[relaton-w3c\] WARN: invalid doctype: `invalid_type`/).to_stderr_from_any_process
   end
 end

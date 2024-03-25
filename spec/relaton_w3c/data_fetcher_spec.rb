@@ -79,7 +79,7 @@ RSpec.describe RelatonW3c::DataFetcher do
         expect(RDF::Repository).to receive(:load).with(:file).and_return rdf
         expect { subject.fetch "w3c-tr-archive" }.to output(
           /Error: document http:\/\/w3.org\/doc1 StandardError/,
-        ).to_stderr
+        ).to_stderr_from_any_process
       end
     end
 
@@ -142,13 +142,13 @@ RSpec.describe RelatonW3c::DataFetcher do
         it "warn" do
           expect do
             subject.save_doc bib
-          end.to output(/File dir\/bib.xml already exists/).to_stderr
+          end.to output(/File dir\/bib.xml already exists/).to_stderr_from_any_process
         end
 
         it "do not warn if file exist" do
           expect do
             subject.save_doc bib, warn_duplicate: false
-          end.not_to output.to_stderr
+          end.not_to output.to_stderr_from_any_process
         end
       end
     end

@@ -1,7 +1,6 @@
 require "relaton_bib"
 require "relaton/index"
 require "relaton_w3c/version"
-require "relaton_w3c/config"
 require "relaton_w3c/util"
 require "relaton_w3c/document_type"
 require "relaton_w3c/w3c_bibliography"
