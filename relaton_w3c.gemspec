@@ -31,13 +31,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "linkeddata", "~> 3.2.0"
-  spec.add_dependency "mechanize", "~> 2.8.0"
-  spec.add_dependency "rdf", "~> 3.2.0"
-  spec.add_dependency "rdf-normalize", "~> 0.6.0"
+  spec.add_dependency "linkeddata", "~> 3.2"
+  spec.add_dependency "mechanize", "~> 2.10"
+  spec.add_dependency "rdf", "~> 3.2"
+  spec.add_dependency "rdf-normalize", "~> 0.6"
   spec.add_dependency "relaton-bib", "~> 1.18.0"
   spec.add_dependency "relaton-index", "~> 0.2.8"
-  spec.add_dependency "rubyzip", "~> 2.3.0"
-  spec.add_dependency "shex", "~> 0.7.0"
-  spec.add_dependency "sparql", "~> 3.2.0"
+  spec.add_dependency "rubyzip", "~> 2.3"
+  spec.add_dependency "shex", "~> 0.7"
+  spec.add_dependency "csv", "~> 3.0"
+  spec.add_dependency "sparql", "~> 3.2"
 end
