@@ -185,7 +185,7 @@ RSpec.describe RelatonW3c::DataParser do
       expect(fetcher).to receive(:group_names).and_return Hash.new
       expect do
         subject.parse_editorialgroup
-      end.to output(/Working group name not found for/).to_stderr
+      end.to output(/Working group name not found for/).to_stderr_from_any_process
     end
 
     it "#version_of" do

@@ -39,15 +39,15 @@ module RelatonW3c
       # @param opts [Hash] options
       # @return [RelatonW3c::W3cBibliographicItem]
       def get(ref, _year = nil, _opts = {})
-        Util.warn "(#{ref}) Fetching from Relaton repository ..."
+        Util.info "Fetching from Relaton repository ...", key: ref
         result = search(ref)
         unless result
-          Util.warn "(#{ref}) Not found."
+          Util.info "Not found.", key: ref
           return
         end
 
         found = result.docidentifier.first.id
-        Util.warn "(#{ref}) Found: `#{found}`"
+        Util.info "Found: `#{found}`", key: ref
         result
       end
     end

@@ -32,9 +32,9 @@ RSpec.describe RelatonW3c do
         errors = schema.validate file
         expect(errors).to eq []
       end.to output(
-        include("[relaton-w3c] (W3C REC-json-ld11-20200716) Fetching from Relaton repository ...",
-                "[relaton-w3c] (W3C REC-json-ld11-20200716) Found: `W3C REC-json-ld11-20200716`"),
-      ).to_stderr
+        include("[relaton-w3c] INFO: (W3C REC-json-ld11-20200716) Fetching from Relaton repository ...",
+                "[relaton-w3c] INFO: (W3C REC-json-ld11-20200716) Found: `W3C REC-json-ld11-20200716`"),
+      ).to_stderr_from_any_process
     end
 
     it "dated" do
@@ -104,7 +104,7 @@ RSpec.describe RelatonW3c do
         expect do
           bib = RelatonW3c::W3cBibliography.get "W3C not-found"
           expect(bib).to be_nil
-        end.to output(/\[relaton-w3c\] \(W3C not-found\) Not found\./).to_stderr
+        end.to output(/\[relaton-w3c\] INFO: \(W3C not-found\) Not found\./).to_stderr_from_any_process
       end
     end
   end
