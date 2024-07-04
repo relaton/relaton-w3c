@@ -23,24 +23,13 @@ Or install it yourself as:
 
 == Usage
 
-=== Configuration
-
-Configuration is optional. The available option is `logger` which is a `Logger` instance. By default, the logger is `Logger.new($stderr)` with `Logger::WARN` level. To change the logger level, use `RelatonW3c.configure` block.
+=== Search for a standard using keywords
 
 [source,ruby]
 ----
 require 'relaton_w3c'
 => true
 
-RelatonW3c.configure do |config|
-  config.logger.level = Logger::DEBUG
-end
-----
-
-=== Search for a standard using keywords
-
-[source,ruby]
-----
 item = RelatonW3c::W3cBibliography.get "W3C REC-json-ld11-20200716"
 [relaton-w3c] (W3C REC-json-ld11-20200716) Fetching from Relaton repository ...
 [relaton-w3c] (W3C REC-json-ld11-20200716) Found: `REC-json-ld11-20200716`
@@ -138,6 +127,10 @@ Stopped at: 2021-11-19 13:34:40 +0100
 Done in: 155 sec.
 => nil
 ----
+
+=== Logging
+
+RelatonW3c uses the relaton-logger gem for logging. By default, it logs to STDOUT. To change the log levels and add other loggers, read the https://github.com/relaton/relaton-logger#usage[relaton-logger] documentation.
 
 == Development
 

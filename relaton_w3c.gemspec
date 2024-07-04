@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mechanize", "~> 2.10"
   spec.add_dependency "rdf", "~> 3.2"
   spec.add_dependency "rdf-normalize", "~> 0.6"
-  spec.add_dependency "relaton-bib", "~> 1.18.0"
+  spec.add_dependency "relaton-bib", "~> 1.19.0"
   spec.add_dependency "relaton-index", "~> 0.2.8"
   spec.add_dependency "rubyzip", "~> 2.3"
   spec.add_dependency "shex", "~> 0.7"
