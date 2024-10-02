@@ -280,9 +280,9 @@ module RelatonW3c
     end
 
     #
-    # Parse editor drafts relation
+    # Parse editor drafts links
     #
-    # @return [Array<RelatonBib::DocumentRelation>] relation
+    # @return [Array<RelatonBib::TypedUri>] links
     #
     def editor_drafts # rubocop:disable Metrics/MethodLength
       return [] unless @sol.respond_to?(:link)
@@ -311,7 +311,10 @@ module RelatonW3c
         PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
         PREFIX mat: <http://www.w3.org/2002/05/matrix/vocab#>
         SELECT ?rel
-        WHERE { <#{@sol.link.to_s.strip}> #{predicate} ?rel . }
+        WHERE {
+          <#{@sol.link.to_s.strip}> #{predicate} ?rel .
+          FILTER ( isURI(?rel) )
+        }
       ))
       @rdf.query(sse).order_by(:rel)
     end
@@ -371,7 +374,8 @@ module RelatonW3c
       id = pub_id(url)
       fref = RelatonBib::FormattedRef.new content: id
       docid = RelatonBib::DocumentIdentifier.new(type: "W3C", id: id, primary: true)
-      bib = W3cBibliographicItem.new formattedref: fref, docid: [docid]
+      link = [RelatonBib::TypedUri.new(type: "src", content: url)]
+      bib = W3cBibliographicItem.new formattedref: fref, docid: [docid], link: link
       dsc = RelatonBib::FormattedString.new content: desc if desc
       RelatonBib::DocumentRelation.new(type: type, bibitem: bib, description: dsc)
     end

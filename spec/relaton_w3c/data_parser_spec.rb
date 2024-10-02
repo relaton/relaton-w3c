@@ -147,6 +147,18 @@ RSpec.describe RelatonW3c::DataParser do
       end
     end
 
+    context "create relation" do
+      let(:rel) { subject.create_relation "https://www.w3.org/TR/1998/REC-CSS2-19980512", "obsoletes", "Desc" }
+      it { expect(rel).to be_instance_of RelatonBib::DocumentRelation }
+      it { expect(rel.type).to eq "obsoletes" }
+      it { expect(rel.description.content).to eq "Desc" }
+      it { expect(rel.bibitem.formattedref.content).to eq "W3C REC-CSS2-19980512" }
+      it { expect(rel.bibitem.docidentifier[0].id).to eq "W3C REC-CSS2-19980512" }
+      it { expect(rel.bibitem.docidentifier[0].type).to eq "W3C" }
+      it { expect(rel.bibitem.link[0].content.to_s).to eq "https://www.w3.org/TR/1998/REC-CSS2-19980512" }
+      it { expect(rel.bibitem.link[0].type).to eq "src" }
+    end
+
     it "parse formattedref" do
       sol = double "sol", version_of: "CSS2"
       parser = RelatonW3c::DataParser.new rdf, sol, nil
