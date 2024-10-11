@@ -506,3 +506,16 @@
 'www.w3.org/groups/wg/rch':
   name: RDF Dataset Canonicalization and Hash Working Group
   abbrev: RCH WG
+'www.w3.org/groups/wg/browser-tools-testing':
+  name: Browser Testing and Tools Working Group
+'www.w3.org/groups/wg/did':
+  name: Decentralized Identifier Working Group
+  abbrev: DID WG
+'www.w3.org/Member/Board':
+  name: Board of Directors
+'www.w3.org/groups/wg/webtransport':
+  name: WebTransport Working Group
+'www.w3.org/groups/wg/fedid':
+  name: Federated Identity Working Group
+'www.w3.org/groups/wg/gpu':
+  name: GPU for the Web Working Group

@@ -2,11 +2,12 @@ require "rdf"
 require "linkeddata"
 require "sparql"
 require "mechanize"
-require "relaton_w3c/data_parser"
+require_relative "rdf_archive"
+require_relative "data_parser"
 
 module RelatonW3c
   class DataFetcher
-    attr_reader :data, :group_names
+    attr_reader :data, :group_names, :rdf_archive
 
     #
     # Data fetcher initializer
@@ -20,6 +21,7 @@ module RelatonW3c
       @ext = format.sub(/^bib/, "")
       dir = File.dirname(File.expand_path(__FILE__))
       @group_names = YAML.load_file(File.join(dir, "workgroups.yaml"))
+      @files = Set.new
       @index = DataIndex.create_from_file
       @index1 = Relaton::Index.find_or_create :W3C, file: "index1.yaml"
     end
@@ -31,14 +33,18 @@ module RelatonW3c
     # @param [Strin] output directory to save files, default: "data"
     # @param [Strin] format format of output files (xml, yaml, bibxml), default: yaml
     #
-    def self.fetch(source, output: "data", format: "yaml")
+    def self.fetch(output: "data", format: "yaml")
       t1 = Time.now
       puts "Started at: #{t1}"
       FileUtils.mkdir_p output
-      new(output, format).fetch source
+      new(output, format).fetch
       t2 = Time.now
       puts "Stopped at: #{t2}"
       puts "Done in: #{(t2 - t1).round} sec."
+    end
+
+    def rdf_archive
+      @rdf_archive ||= RDFArchive.new
     end
 
     #
@@ -46,17 +52,16 @@ module RelatonW3c
     #
     # @param [String] source source name "w3c-tr-archive" or "w3c-rdf"
     #
-    def fetch(source) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      each_dataset(source) do |rdf|
-        %i[versioned unversioned].each do |type|
-          send("query_#{type}_docs", rdf).each do |sl|
-            bib = DataParser.parse(rdf, sl, self)
-            add_has_edition_relation(bib) if type == :unversioned
-            save_doc bib
-          rescue StandardError => e
-            link = sl.respond_to?(:link) ? sl.link : sl.version_of
-            Util.error "Error: document #{link} #{e.message}\n#{e.backtrace.join("\n")}"
-          end
+    def fetch # (source) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+      rdf = rdf_archive.get_data
+      %i[versioned unversioned].each do |type|
+        send("query_#{type}_docs", rdf).each do |sl|
+          bib = DataParser.parse(rdf, sl, self)
+          add_has_edition_relation(bib) if type == :unversioned
+          save_doc bib
+        rescue StandardError => e
+          link = sl.respond_to?(:link) ? sl.link : sl.version_of
+          Util.error "Error: document #{link} #{e.message}\n#{e.backtrace.join("\n")}"
         end
       end
       @index.sort!.save
@@ -131,41 +136,6 @@ module RelatonW3c
       ids2 = rel2.bibitem.docidentifier.map(&:id)
       (ids1 & ids2).any?
     end
-
-    #
-    # Yield fetching for each dataset
-    #
-    # @param [String] source source name "w3c-tr-archive" or "w3c-rdf"
-    #
-    # @yield [RDF::Repository] RDF repository
-    #
-    def each_dataset(source, &_block) # rubocop:disable Metrics/MethodLength
-      case source
-      when "w3c-tr-archive"
-        Dir["w3c-tr-archive/*.rdf"].map do |f|
-          @files = []
-          yield RDF::Repository.load(f)
-        end
-      when "w3c-rdf"
-        @files = []
-        rdf = RDF::Repository.load("http://www.w3.org/2002/01/tr-automation/tr.rdf")
-        yield rdf
-        # parse_static_dataset
-      end
-    end
-
-    #
-    # Parse static dataset
-    #
-    # def parse_static_dataset
-    #   Dir[File.expand_path("../../data/*", __dir__)].each do |file|
-    #     xml = File.read file, encoding: "UTF-8"
-    #     save_doc BibXMLParser.parse(xml), warn_duplicate: false
-    #   rescue StandardError => e
-    #     warn "Error: document #{file} #{e.message}"
-    #     warn e.backtrace.join("\n")
-    #   end
-    # end
 
     #
     # Query RDF source for versioned documents

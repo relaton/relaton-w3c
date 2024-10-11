@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2001/02pd/rec54#" xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:doc="http://www.w3.org/2000/10/swap/pim/doc#" xmlns:log="http://www.w3.org/2000/10/swap/log#" xmlns:mat="http://www.w3.org/2002/05/matrix/vocab#" xmlns:org="http://www.w3.org/2001/04/roadmap/org#" xmlns:rcs="http://www.w3.org/2001/03swell/rcs#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rec="http://www.w3.org/2001/02pd/rec54#" xmlns:s="http://www.w3.org/2000/01/rdf-schema#" xmlns:trp="file:/home/dom/WWW/2002/01/tr-automation/tr-process#" xmlns:os="http://www.w3.org/2000/10/swap/os#" xmlns:rct="file:/home/dom/WWW/2002/01/tr-automation/recent.n3#">
+
+    <NOTE rdf:about="http://www.w3.org/1999/04/Editing/01">
+        <dc:date>1999-05-10</dc:date>
+        <dc:title>Editing the Web: Detecting the Lost Update Problem Using Unreserved Checkout</dc:title>
+        <doc:versionOf rdf:resource="http://www.w3.org/1999/04/Editing/"/>
+        <editor rdf:parseType="Resource">
+            <contact:fullName>Henrik Frystyk Nielsen</contact:fullName>
+        </editor>
+        <editor rdf:parseType="Resource">
+            <contact:fullName>Daniel LaLiberte</contact:fullName>
+        </editor>
+    </NOTE>
+<Retired rdf:about="http://www.w3.org/1999/05/WCA-terms/01">
+        <rdf:type rdf:resource="http://www.w3.org/2001/02pd/rec54#WD"/>
+        <dc:date>1999-05-24</dc:date>
+        <dc:title>Web Characterization Terminology &amp; Definitions Sheet</dc:title>
+        <doc:versionOf rdf:resource="http://www.w3.org/1999/05/WCA-terms/"/>
+        <editor rdf:parseType="Resource">
+            <contact:fullName>Brian Lavoie</contact:fullName>
+        </editor>
+        <editor rdf:parseType="Resource">
+            <contact:fullName>Henrik Frystyk Nielsen</contact:fullName>
+        </editor>
+    </Retired></rdf:RDF>

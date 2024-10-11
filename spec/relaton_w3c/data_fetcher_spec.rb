@@ -8,16 +8,16 @@ RSpec.describe RelatonW3c::DataFetcher do
   it "create output dir and run fetcher" do
     expect(FileUtils).to receive(:mkdir_p).with("dir")
     fetcher = double("fetcher")
-    expect(fetcher).to receive(:fetch)
-    expect(RelatonW3c::DataFetcher)
-      .to receive(:new).with("dir", "xml").and_return(fetcher)
-    RelatonW3c::DataFetcher.fetch "w3c-rdf", output: "dir", format: "xml"
+    expect(fetcher).to receive(:fetch).with(no_args)
+    expect(RelatonW3c::DataFetcher).to receive(:new).with("dir", "xml").and_return(fetcher)
+    RelatonW3c::DataFetcher.fetch output: "dir", format: "xml"
   end
 
   context "instance" do
     subject { RelatonW3c::DataFetcher.new("dir", "bibxml") }
     let(:index) { double("index") }
     let(:index1) { double("index1") }
+    let(:rdf) { RDF::Repository.load "spec/fixtures/tr.rdf" }
 
     before do
       expect(RelatonW3c::DataIndex).to receive(:create_from_file).and_return(index)
@@ -39,11 +39,10 @@ RSpec.describe RelatonW3c::DataFetcher do
         expect(index).to receive(:sort!).and_return(index)
         expect(index).to receive(:save)
         expect(index1).to receive(:save)
+        expect_any_instance_of(RelatonW3c::RDFArchive).to receive(:get_data).and_return(rdf)
       end
 
       context do
-        let(:rdf) { RDF::Repository.load "spec/fixtures/tr.rdf" }
-
         before do
           expect(subject).to receive(:save_doc).with(:bib).exactly(16).times
           expect(RelatonW3c::DataParser).to receive(:parse)
@@ -51,52 +50,26 @@ RSpec.describe RelatonW3c::DataFetcher do
             .and_return(:bib).exactly(16).times
         end
 
-        it "w3c-rdf" do
-          expect(RDF::Repository).to receive(:load).with("http://www.w3.org/2002/01/tr-automation/tr.rdf").and_return(rdf)
+        it do
           expect(subject).to receive(:add_has_edition_relation).with(:bib).exactly(8).times
-          # expect(subject).to receive(:save_doc).with(:bib, warn_duplicate: false).exactly(25).times
-          # expect(RelatonW3c::BibXMLParser).to receive(:parse).with(kind_of(String))
-          #   .and_return(:bib).exactly(25).times
-          subject.fetch "w3c-rdf"
-        end
-
-        it "w3c-tr-archive" do
-          expect(Dir).to receive(:[]).with("w3c-tr-archive/*.rdf").and_return [:file]
-          expect(RDF::Repository).to receive(:load).with(:file).and_return(rdf)
-          expect(subject).to receive(:add_has_edition_relation).with(:bib).exactly(8).times
-          subject.fetch "w3c-tr-archive"
+          subject.fetch
         end
       end
 
       it "warn if error is raised" do
-        rdf = double("rdf")
         sol1 = double("sol1", link: "http://w3.org/doc1")
         sol2 = double("sol2", version_of: "http://w3.org/doc2")
         expect(rdf).to receive(:query).and_return [sol1], [sol2]
         expect(RelatonW3c::DataParser).to receive(:parse).with(rdf, sol1, subject).and_raise StandardError
         expect(RelatonW3c::DataParser).to receive(:parse).with(rdf, sol2, subject).and_raise StandardError
-        expect(Dir).to receive(:[]).with("w3c-tr-archive/*.rdf").and_return [:file]
-        expect(RDF::Repository).to receive(:load).with(:file).and_return rdf
-        expect { subject.fetch "w3c-tr-archive" }.to output(
+        expect { subject.fetch }.to output(
           /Error: document http:\/\/w3.org\/doc1 StandardError/,
         ).to_stderr_from_any_process
       end
     end
 
-    # context "parse static dataset" do
-    #   it "warn if error is raised" do
-    #     expect(Dir).to receive(:[]).with(/data\/*/).and_return [:file]
-    #     expect(File).to receive(:read).with(:file, encoding: "UTF-8").and_raise StandardError
-    #     expect do
-    #       subject.parse_static_dataset
-    #     end.to output(/Error: document file StandardError/).to_stderr
-    #   end
-    # end
-
     context "save doc" do
       let(:bib) { double("bib", docnumber: "bib") }
-
-      before { subject.instance_variable_set(:@files, []) }
 
       it "skip" do
         expect(subject).not_to receive(:file_name)
@@ -135,7 +108,7 @@ RSpec.describe RelatonW3c::DataFetcher do
 
       context "when file exists" do
         before do
-          subject.instance_variable_set(:@files, ["dir/bib.xml"])
+          subject.instance_variable_get(:@files) << "dir/bib.xml"
           expect(bib).to receive(:to_bibxml).and_return("<xml/>")
         end
 
