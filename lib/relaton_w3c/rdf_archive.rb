@@ -31,15 +31,15 @@ module RelatonW3c
       newer_elements = {}
       newer.root.element_children.each do |element|
         rdf_about = element.attribute('about')&.value
-        newer_elements[rdf_about] = element if rdf_about
+        newer_elements[rdf_about.sub(/^http\s:/, "")] = element if rdf_about
       end
 
       # Replace elements in the older document
       older.root.element_children.each do |element|
         rdf_about = element.attribute('about')&.value
-        if rdf_about && newer_elements[rdf_about]
-          element.replace(newer_elements[rdf_about])
-          newer_elements.delete(rdf_about)
+        if rdf_about && newer_elements[url = rdf_about.sub(/^http\s:/, "")]
+          element.replace(newer_elements[url])
+          newer_elements.delete(url)
         end
       end
 

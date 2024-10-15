@@ -110,6 +110,7 @@ RSpec.describe RelatonW3c::DataFetcher do
         before do
           subject.instance_variable_get(:@files) << "dir/bib.xml"
           expect(bib).to receive(:to_bibxml).and_return("<xml/>")
+          expect(File).to receive(:write).with("dir/bib.xml", "<xml/>", encoding: "UTF-8")
         end
 
         it "warn" do

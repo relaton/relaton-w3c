@@ -1,7 +1,7 @@
 <bibdata type="standard" schema-version="v1.2.9">
-  <fetched>2024-10-08</fetched>
-  <title format="text/plain">Namespaces in XML 1.0 (Third Edition)</title>
-  <uri type="src">https://www.w3.org/TR/xml-names/</uri>
+  <fetched>2024-10-14</fetched>
+  <title format="text/plain">Namespaces in XML 1.0 (Second Edition)</title>
+  <uri type="src">http://www.w3.org/TR/xml-names</uri>
   <docidentifier type="W3C" primary="true">W3C xml-names</docidentifier>
   <docnumber>xml-names</docnumber>
   <contributor>
@@ -17,25 +17,11 @@
   <status>
     <stage>Recommendation</stage>
   </status>
-  <relation type="hasEdition">
-    <bibitem>
-      <formattedref format="text/plain">W3C REC-xml-names-20060816</formattedref>
-      <uri type="src">https://www.w3.org/TR/2006/REC-xml-names-20060816/</uri>
-      <docidentifier type="W3C" primary="true">W3C REC-xml-names-20060816</docidentifier>
-    </bibitem>
-  </relation>
   <relation type="instanceOf">
     <bibitem>
-      <formattedref format="text/plain">W3C REC-xml-names-20091208</formattedref>
-      <uri type="src">https://www.w3.org/TR/2009/REC-xml-names-20091208/</uri>
-      <docidentifier type="W3C" primary="true">W3C REC-xml-names-20091208</docidentifier>
-    </bibitem>
-  </relation>
-  <relation type="hasEdition">
-    <bibitem>
-      <formattedref format="text/plain">W3C PER-xml-names-20090806</formattedref>
-      <uri type="src">http://www.w3.org/TR/2009/PER-xml-names-20090806/</uri>
-      <docidentifier type="W3C" primary="true">W3C PER-xml-names-20090806</docidentifier>
+      <formattedref format="text/plain">W3C REC-xml-names-20060816</formattedref>
+      <uri type="src">http://www.w3.org/TR/2006/REC-xml-names-20060816</uri>
+      <docidentifier type="W3C" primary="true">W3C REC-xml-names-20060816</docidentifier>
     </bibitem>
   </relation>
   <series>

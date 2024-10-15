@@ -176,15 +176,9 @@ module RelatonW3c
     #
     # @param [RelatonW3c::W3cBibliographicItem, nil] bib bibliographic item
     #
-    def save_doc(bib, warn_duplicate: true) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    def save_doc(bib, warn_duplicate: true)
       return unless bib
 
-      c = case @format
-          when "xml" then bib.to_xml(bibdata: true)
-          when "yaml" then bib.to_hash.to_yaml
-          else bib.send("to_#{@format}")
-          end
-      # id = bib.docidentifier.detect(&:primary)&.id || bib.formattedref.content
       file = file_name(bib.docnumber)
       if @files.include?(file)
         Util.warn "File #{file} already exists. Document: #{bib.docnumber}" if warn_duplicate
@@ -193,7 +187,15 @@ module RelatonW3c
         @index.add pubid, file
         @index1.add_or_update pubid.to_hash, file
         @files << file
-        File.write file, c, encoding: "UTF-8"
+      end
+      File.write file, serialize(bib), encoding: "UTF-8"
+    end
+
+    def serialize(bib)
+      case @format
+      when "xml" then bib.to_xml(bibdata: true)
+      when "yaml" then bib.to_hash.to_yaml
+      else bib.send("to_#{@format}")
       end
     end
 
