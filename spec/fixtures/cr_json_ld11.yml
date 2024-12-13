@@ -248,7 +248,7 @@ fetched: '2020-04-04'
 id: CR-json-ld11-20200316
 keyword:
 - content: Data
-doctype:
-  type: candidateRecommendation
 ext:
   schema-version: v1.0.0
+  doctype:
+    type: candidateRecommendation
