@@ -1,0 +1,247 @@
+---
+schema_version: v1.2.9
+title:
+- type: main
+  content: JSON-LD 1.1
+  language: en
+  script: Latn
+- content: A JSON-based Serialization for Linked Data
+  language: en
+  script: Latn
+source:
+- content: https://www.w3.org/TR/2020/CR-json-ld11-20200316/
+  type: src
+type: standard
+docidentifier:
+- content: CR-json-ld11-20200316
+  type: W3C
+  primary: true
+date:
+- type: published
+  at: '2020-01-01'
+contributor:
+- person:
+    name:
+      completename:
+        content: Gregg Kellogg
+  role:
+  - type: editor
+  - type: author
+- person:
+    name:
+      completename:
+        content: Pierre-Antoine Champin
+    affiliation:
+    - organization:
+        name:
+        - content: LIRIS - Université de Lyon
+        uri:
+        - content: https://liris.cnrs.fr/
+  role:
+  - type: editor
+  - type: author
+- person:
+    name:
+      completename:
+        content: Dave Longley
+    affiliation:
+    - organization:
+        name:
+        - content: Digital Bazaar
+        uri:
+        - content: https://digitalbazaar.com/
+  role:
+  - type: editor
+- person:
+    name:
+      completename:
+        content: Manu Sporny
+    affiliation:
+    - organization:
+        name:
+        - content: Digital Bazaar
+        uri:
+        - content: https://digitalbazaar.com/
+  role:
+  - type: author
+- person:
+    name:
+      completename:
+        content: Dave Longley
+    affiliation:
+    - organization:
+        name:
+        - content: Digital Bazaar
+        uri:
+        - content: https://digitalbazaar.com/
+  role:
+  - type: author
+- person:
+    name:
+      completename:
+        content: Markus Lanthaler
+    affiliation:
+    - organization:
+        name:
+        - content: Google
+        uri:
+        - content: https://www.google.com/
+  role:
+  - type: author
+- person:
+    name:
+      completename:
+        content: Niklas Lindström
+  role:
+  - type: author
+language:
+- en
+script:
+- Latn
+abstract:
+- content: |-
+    JSON is a useful data serialization and messaging format.
+        This specification defines JSON-LD 1.1, a JSON-based format to serialize
+        Linked Data. The syntax is designed to easily integrate into deployed
+        systems that already use JSON, and provides a smooth upgrade path from
+        JSON to JSON-LD.
+        It is primarily intended to be a way to use Linked Data in Web-based
+        programming environments, to build interoperable Web services, and to
+        store Linked Data in JSON-based storage engines.
+  language: en
+  script: Latn
+relation:
+- type: obsoletedBy
+  bibitem:
+    title:
+    - type: main
+      content: JSON-LD 1.0
+      language: en
+      script: Latn
+    - content: A JSON-based Serialization for Linked Data
+      language: en
+      script: Latn
+    source:
+    - content: https://www.w3.org/TR/2014/REC-json-ld-20140116/
+      type: src
+    type: standard
+    date:
+    - type: published
+      at: '2014-01-01'
+    contributor:
+    - person:
+        name:
+          completename:
+            content: Manu Sporny
+        affiliation:
+        - organization:
+            name:
+            - content: Digital Bazaar
+            uri:
+            - content: http://digitalbazaar.com/
+      role:
+      - type: editor
+    - person:
+        name:
+          completename:
+            content: Gregg Kellogg
+        affiliation:
+        - organization:
+            name:
+            - content: Kellogg Associates
+            uri:
+            - content: http://kellogg-assoc.com/
+      role:
+      - type: editor
+    - person:
+        name:
+          completename:
+            content: Markus Lanthaler
+        affiliation:
+        - organization:
+            name:
+            - content: Graz University of Technology
+            uri:
+            - content: http://www.tugraz.at/
+      role:
+      - type: editor
+    - person:
+        name:
+          completename:
+            content: Manu Sporny
+        affiliation:
+        - organization:
+            name:
+            - content: Digital Bazaar
+            uri:
+            - content: http://digitalbazaar.com/
+      role:
+      - type: author
+    - person:
+        name:
+          completename:
+            content: Dave Longley
+        affiliation:
+        - organization:
+            name:
+            - content: Digital Bazaar
+            uri:
+            - content: http://digitalbazaar.com/
+      role:
+      - type: author
+    - person:
+        name:
+          completename:
+            content: Gregg Kellogg
+        affiliation:
+        - organization:
+            name:
+            - content: Kellogg Associates
+            uri:
+            - content: http://kellogg-assoc.com/
+      role:
+      - type: author
+    - person:
+        name:
+          completename:
+            content: Markus Lanthaler
+        affiliation:
+        - organization:
+            name:
+            - content: Graz University of Technology
+            uri:
+            - content: http://www.tugraz.at/
+      role:
+      - type: author
+    - person:
+        name:
+          completename:
+            content: Niklas Lindström
+      role:
+      - type: author
+    language:
+    - en
+    script:
+    - Latn
+    abstract:
+    - content: |-
+        JSON is a useful data serialization and messaging format.
+            This specification defines JSON-LD, a JSON-based format to serialize
+            Linked Data. The syntax is designed to easily integrate into deployed
+            systems that already use JSON, and provides a smooth upgrade path from
+            JSON to JSON-LD.
+            It is primarily intended to be a way to use Linked Data in Web-based
+            programming environments, to build interoperable Web services, and to
+            store Linked Data in JSON-based storage engines.
+      language: en
+      script: Latn
+fetched: '2020-04-04'
+id: CRjsonld1120200316
+keyword:
+- taxon:
+  - content: Data
+ext:
+  schema_version: v1.0.0
+  doctype:
+    content: technicalReport
+  flavor: w3c

@@ -1,16 +1,16 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "relaton_w3c/version"
+require "relaton/w3c/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "relaton-w3c"
-  spec.version       = RelatonW3c::VERSION
+  spec.version       = Relaton::W3c::VERSION
   spec.authors       = ["Ribose Inc."]
   spec.email         = ["open.source@ribose.com"]
 
-  spec.summary       = "RelatonIso: retrieve W3C Standards for bibliographic "\
+  spec.summary       = "Relaton::W3c: retrieve W3C Standards for bibliographic "\
                        "using the IsoBibliographicItem model"
-  spec.description   = "RelatonIso: retrieve W3C Standards for bibliographic "\
+  spec.description   = "Relaton::W3c: retrieve W3C Standards for bibliographic "\
                        "using the IsoBibliographicItem model"
   spec.homepage      = "https://github.com/relaton/relaton-wc3"
   spec.license       = "BSD-2-Clause"
@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mechanize", "~> 2.10"
   spec.add_dependency "rdf", "~> 3.2"
   spec.add_dependency "rdf-normalize", "~> 0.6"
-  spec.add_dependency "relaton-bib", "~> 1.20.0"
+  spec.add_dependency "relaton-bib", "~> 2.0.0-alpha.1"
   spec.add_dependency "relaton-index", "~> 0.2.8"
   spec.add_dependency "rubyzip", "~> 2.3"
   spec.add_dependency "shex", "~> 0.7"
