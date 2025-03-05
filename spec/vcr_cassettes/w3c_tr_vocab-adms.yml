@@ -29,7 +29,7 @@ http_interactions:
       Content-Type:
       - application/zip
       Etag:
-      - W/"a18025cef419d694d8928a1dd2bce12b17746b0f100a54b8d79f283f1f46927e"
+      - W/"fe07a0914767bcbe507e80b6fc63eba0d08401c632ef21a37db5a06e59b6c96d"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -39,21 +39,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 5EFA:94E2A:2E3273:32ACCB:6758D8BE
+      - 678E:3D5177:A082AE:CB480A:67C8BA8B
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 11 Dec 2024 00:11:47 GMT
+      - Wed, 05 Mar 2025 20:56:50 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100156-IAD
+      - cache-iad-kjyo7100068-IAD
       X-Cache:
       - HIT
       X-Cache-Hits:
       - '1'
       X-Timer:
-      - S1733875907.042351,VS0,VE2
+      - S1741208210.284031,VS0,VE2
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -61,16 +61,16 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 3062b33d020d1eb8aadc2ff9e89daabe7d34366d
+      - b0c3ae6fd22417c9cfe3c4445d921e3ca1ec65f2
       Expires:
-      - Wed, 11 Dec 2024 00:16:47 GMT
+      - Wed, 05 Mar 2025 21:01:50 GMT
       Source-Age:
-      - '4'
+      - '6'
     body:
       encoding: ASCII-8BIT
       base64_string: |
-        UEsDBBQAAAAIABY4T1mnam7H1D0CAOnEFAALABwAaW5kZXgxLnlhbWxVVAkA
-        AxwTDmccEw5ndXgLAAEE6QMAAAR2AAAAtP1Zl+PGlqYJ3/evqLu66IX6nPSR
+        UEsDBBQAAAAIABqAjVmnam7H1D0CAOnEFAALABwAaW5kZXgxLnlhbWxVVAkA
+        AzNaXGc0WlxndXgLAAEE6QMAAAR2AAAAtP1Zl+PGlqYJ3/evqLu66IX6nPSR
         eacMhXTUrZCiI+KkTl/VgoNwd5wgCQgg3T3y139mBhgme/dgIDuzViklN+wH
         Btq4xyRJ/o/kf/xHsf2P/+N/mP/5j6zc5v/xP/7n1ep/mn//j6diZ/5tmx7T
         /9/V6n/9SPc70PivDz8lx7zeN+1/bE5PT1DCW5a27f43Lev9KU2eynqfpbus
@@ -3335,10 +3335,10 @@ http_interactions:
         Jq0/Aoc2sVo6vW3/IUyrBYKTqrjCtPsOwyHgtQkqKwwNoJRDTfFA6Eh7UDO4
         OopnlFX8F4QQnDp0YlGYxCsdD2J59q90GLqgU4vS+b2F/qrogzT8OZPy8k7V
         OPc/U+1WkU3z/yhoYahGqpiEZVbgUOfL+bl2M0KaKQuG/eD6Jr3wle4F/x9Q
-        SwECHgMUAAAACAAWOE9Zp2pux9Q9AgDpxBQACwAYAAAAAAABAAAApIEAAAAA
-        aW5kZXgxLnlhbWxVVAUAAxwTDmd1eAsAAQTpAwAABHYAAABQSwUGAAAAAAEA
+        SwECHgMUAAAACAAagI1Zp2pux9Q9AgDpxBQACwAYAAAAAAABAAAApIEAAAAA
+        aW5kZXgxLnlhbWxVVAUAAzNaXGd1eAsAAQTpAwAABHYAAABQSwUGAAAAAAEA
         AQBRAAAAGT4CAAAA
-  recorded_at: Wed, 11 Dec 2024 00:11:47 GMT
+  recorded_at: Wed, 05 Mar 2025 20:56:50 GMT
 - request:
     method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-w3c/main/data/vocab-adms.yaml
@@ -3362,7 +3362,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '974'
+      - '978'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -3370,7 +3370,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"e988b19295f45fcb7a415fe3058cf3af9748aac0cebe0ca9d0c81d823338c82d"
+      - W/"f9bc7cb84dd1cda6180a79fef50dbbc36d9da692aad230a546c732d03e588a1f"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -3380,21 +3380,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - EA54:B50E9:4B1B2:53D9D:6758D8C3
+      - B23D:2FCD96:9B7532:C4390C:67C8BA91
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 11 Dec 2024 00:11:48 GMT
+      - Wed, 05 Mar 2025 20:56:51 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100059-IAD
+      - cache-iad-kjyo7100147-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1733875908.929203,VS0,VE118
+      - S1741208212.675571,VS0,VE96
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -3402,9 +3402,9 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 9c66ca21101a35f0d67cd3cbb240e0582c3ca4a0
+      - 52015862bb9b089b5570dc5239cea2fedd26766a
       Expires:
-      - Wed, 11 Dec 2024 00:16:48 GMT
+      - Wed, 05 Mar 2025 21:01:51 GMT
       Source-Age:
       - '0'
     body:
@@ -3430,7 +3430,7 @@ http_interactions:
         Y29udGVudDogVzNDIE5PVEUtdm9jYWItYWRtcy0yMDEzMDgwMQogICAgICBm
         b3JtYXQ6IHRleHQvcGxhaW4Kc2VyaWVzOgotIHRpdGxlOgogICAgY29udGVu
         dDogVzNDIE5PVEUKICAgIGZvcm1hdDogdGV4dC9wbGFpbgogIG51bWJlcjog
-        dm9jYWItYWRtcwpkb2N0eXBlOgogIHR5cGU6IHRlY2huaWNhbFJlcG9ydApl
-        eHQ6CiAgc2NoZW1hLXZlcnNpb246IHYxLjAuMAo=
-  recorded_at: Wed, 11 Dec 2024 00:11:48 GMT
+        dm9jYWItYWRtcwpleHQ6CiAgc2NoZW1hLXZlcnNpb246IHYxLjAuMAogIGRv
+        Y3R5cGU6CiAgICB0eXBlOiB0ZWNobmljYWxSZXBvcnQK
+  recorded_at: Wed, 05 Mar 2025 20:56:51 GMT
 recorded_with: VCR 6.3.1
