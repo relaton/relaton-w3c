@@ -9,7 +9,7 @@ module RelatonW3c
       @prefix = "W3C"
       @defaultprefix = %r{^W3C\s}
       @idtype = "W3C"
-      @datasets = %w[w3c-rdf]
+      @datasets = %w[w3c-api]
     end
 
     # @param code [String]

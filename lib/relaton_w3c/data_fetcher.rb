@@ -1,13 +1,10 @@
-require "rdf"
-require "linkeddata"
-require "sparql"
-require "mechanize"
-require_relative "rdf_archive"
+require "w3c_api"
+require_relative "rate_limit_handler"
 require_relative "data_parser"
 
 module RelatonW3c
   class DataFetcher
-    attr_reader :data, :group_names, :rdf_archive
+    include RelatonW3c::RateLimitHandler
 
     #
     # Data fetcher initializer
@@ -19,9 +16,8 @@ module RelatonW3c
       @output = output
       @format = format
       @ext = format.sub(/^bib/, "")
-      dir = File.dirname(File.expand_path(__FILE__))
-      @group_names = YAML.load_file(File.join(dir, "workgroups.yaml"))
       @files = Set.new
+      @fetched_urls = {}
       @index = DataIndex.create_from_file
       @index1 = Relaton::Index.find_or_create :W3C, file: "index1.yaml"
     end
@@ -29,7 +25,6 @@ module RelatonW3c
     #
     # Initialize fetcher and run fetch
     #
-    # @param [String] source source name "w3c-tr-archive" or "w3c-rdf"
     # @param [Strin] output directory to save files, default: "data"
     # @param [Strin] format format of output files (xml, yaml, bibxml), default: yaml
     #
@@ -43,132 +38,46 @@ module RelatonW3c
       puts "Done in: #{(t2 - t1).round} sec."
     end
 
-    def rdf_archive
-      @rdf_archive ||= RDFArchive.new
+    def client
+      @client ||= W3cApi::Client.new
     end
 
     #
     # Parse documents
     #
-    # @param [String] source source name "w3c-tr-archive" or "w3c-rdf"
-    #
-    def fetch # (source) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      rdf = rdf_archive.get_data
-      %i[versioned unversioned].each do |type|
-        send("query_#{type}_docs", rdf).each do |sl|
-          bib = DataParser.parse(rdf, sl, self)
-          add_has_edition_relation(bib) if type == :unversioned
-          save_doc bib
-        rescue StandardError => e
-          link = sl.respond_to?(:link) ? sl.link : sl.version_of
-          Util.error "Error: document #{link} #{e.message}\n#{e.backtrace.join("\n")}"
+    def fetch
+      specs = client.specifications
+      loop do
+        specs.links.specifications.each do |spec|
+          fetch_spec spec
         end
+
+        break unless specs.next?
+
+        specs = specs.next
       end
       @index.sort!.save
       @index1.save
     end
 
-    #
-    # Add hasEdition relations form previous parsed document
-    #
-    # @param [RelatonW3c::W3cBibliographicItem] bib bibligraphic item
-    #
-    def add_has_edition_relation(bib) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
-      file = file_name bib.docnumber
-      if File.exist? file
-        item = send "read_#{@format}", file
-        item.relation.each do |r1|
-          r1.type = "hasEdition" if r1.type == "instanceOf"
-          same_edition = bib.relation.detect { |r2| same_edition?(r1, r2) }
-          bib.relation << r1 unless same_edition
-        end
+    def fetch_spec(unrealized_spec)
+      spec = realize unrealized_spec
+      save_doc DataParser.parse(spec)
+
+      if spec.links.respond_to?(:version_history) && spec.links.version_history
+        version_history = realize spec.links.version_history
+        version_history.links.spec_versions.each { |version| save_doc DataParser.parse(realize version) }
       end
-      bib.relation.select { |r| r.type == "hasEdition" }
-        .max_by { |r| r.bibitem.id.match(/(?<=-)\d{8}$/).to_s }&.type = "instanceOf"
-    end
 
-    #
-    # Read XML file
-    #
-    # @param [String] file file name
-    #
-    # @return [RelatonW3c::W3cBibliographicItem] bibliographic item
-    #
-    def read_xml(file)
-      XMLParser.from_xml(File.read(file, encoding: "UTF-8"))
-    end
+      if spec.links.respond_to?(:predecessor_versions) && spec.links.predecessor_versions
+        predecessor_versions = realize spec.links.predecessor_versions
+        predecessor_versions.links.predecessor_versions.each { |version| save_doc DataParser.parse(realize version) }
+      end
 
-    #
-    # Read YAML file
-    #
-    # @param [String] file file name
-    #
-    # @return [RelatonW3c::W3cBibliographicItem] bibliographic item
-    #
-    def read_yaml(file)
-      hash = YAML.load_file(file)
-      W3cBibliographicItem.from_hash(hash)
-    end
-
-    #
-    # Read BibXML file
-    #
-    # @param [String] file file name
-    #
-    # @return [RelatonW3c::W3cBibliographicItem] bibliographic item
-    #
-    def read_bibxml(file)
-      BibXMLParser.parse File.read(file, encoding: "UTF-8")
-    end
-
-    #
-    # Compare two relations
-    #
-    # @param [RelatonW3c::W3cBibliographicItem] rel1 relation 1
-    # @param [RelatonW3c::W3cBibliographicItem] rel2 relation 2
-    #
-    # @return [Boolean] true if relations are same
-    #
-    def same_edition?(rel1, rel2)
-      return false unless rel1.type == "hasEdition" && rel1.type == rel2.type
-
-      ids1 = rel1.bibitem.docidentifier.map(&:id)
-      ids2 = rel2.bibitem.docidentifier.map(&:id)
-      (ids1 & ids2).any?
-    end
-
-    #
-    # Query RDF source for versioned documents
-    #
-    # @return [RDF::Query::Solutions] query results
-    #
-    def query_versioned_docs(rdf)
-      sse = SPARQL.parse(%(
-        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-        PREFIX dc: <http://purl.org/dc/elements/1.1/>
-        PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        SELECT ?link ?title ?date
-        WHERE { ?link dc:title ?title ; dc:date ?date . }
-      ))
-      rdf.query sse
-    end
-
-    #
-    # Query RDF source for unversioned documents
-    #
-    # @return [Array<RDF::Query::Solution>] query results
-    #
-    def query_unversioned_docs(rdf)
-      sse = SPARQL.parse(%(
-        PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
-        SELECT ?version_of
-        WHERE {
-          ?link doc:versionOf ?version_of .
-          FILTER ( isURI(?link) && isURI(?version_of) && ?link != ?version_of )
-        }
-      ))
-      rdf.query(sse).uniq { |s| s.version_of.to_s.sub(/^https?:\/\//, "").sub(/\/$/, "") }
+      if spec.links.respond_to?(:successor_versions) && spec.links.successor_versions
+        successor_versions = realize spec.links.successor_versions
+        successor_versions.links.successor_versions.each { |version| save_doc DataParser.parse(realize version) }
+      end
     end
 
     #

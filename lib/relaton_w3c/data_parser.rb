@@ -1,5 +1,7 @@
 module RelatonW3c
   class DataParser
+    include RelatonW3c::RateLimitHandler
+
     USED_TYPES = %w[WD NOTE PER PR REC CR].freeze
 
     DOCTYPES = {
@@ -22,25 +24,22 @@ module RelatonW3c
     #
     # Document parser initalization
     #
-    # @param [RDF::Query::Solution] sol entry from the SPARQL query
+    # @param [W3cApi::Models::SpecVersion] sol entry from the SPARQL query
     # @param [RelatonW3c::DataFetcher] fetcher data fetcher
     #
-    def initialize(rdf, sol, fetcher)
-      @rdf = rdf
-      @sol = sol
-      @fetcher = fetcher
+    def initialize(spec)
+      @spec = spec
     end
 
     #
     # Initialize document parser and run it
     #
-    # @param [RDF::Query::Solution] sol entry from the SPARQL query
-    # @param [RelatonW3c::DataFetcher] fetcher data fetcher
+    # @param [W3cApi::Models::SpecVersion] sol entry from the SPARQL query
     #
     # @return [RelatonW3c:W3cBibliographicItem, nil] bibliographic item
     #
-    def self.parse(rdf, sol, fetcher)
-      new(rdf, sol, fetcher).parse
+    def self.parse(spec)
+      new(spec).parse
     end
 
     #
@@ -49,7 +48,7 @@ module RelatonW3c
     # @return [RelatonW3c:W3cBibliographicItem, nil] bibliographic item
     #
     def parse # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      return if @sol.respond_to?(:link) && !types_stages.detect { |ts| USED_TYPES.include?(ts) }
+      # return if @sol.respond_to?(:link) && !types_stages.detect { |ts| USED_TYPES.include?(ts) }
 
       RelatonW3c::W3cBibliographicItem.new(
         type: "standard",
@@ -76,8 +75,10 @@ module RelatonW3c
     # @return [RelatonBib::DocumentStatus, nil] dcoument status
     #
     def parse_docstatus
-      stage = types_stages&.detect { |st| STAGES.include?(st) }
-      RelatonBib::DocumentStatus.new stage: STAGES[stage] if stage
+      # stage = types_stages&.detect { |st| STAGES.include?(st) }
+      return unless @spec.respond_to?(:status) && @spec.status
+
+      RelatonBib::DocumentStatus.new stage: @spec.status
     end
 
     #
@@ -85,12 +86,13 @@ module RelatonW3c
     #
     # @return [RelatonBib::TypedTitleStringCollection] title
     #
-    def parse_title
-      content = if @sol.respond_to?(:title) then @sol.title.to_s
-                else document_versions.max_by { |dv| dv.date.to_s }.title.to_s
-                end
-      t = RelatonBib::TypedTitleString.new content: content
+    def parse_title(spec = @spec)
+      t = RelatonBib::TypedTitleString.new content: spec.title
       RelatonBib::TypedTitleStringCollection.new [t]
+    end
+
+    def doc_uri(spec = @spec)
+      spec.respond_to?(:uri) ? spec.uri : spec.shortlink
     end
 
     #
@@ -99,8 +101,7 @@ module RelatonW3c
     # @return [Array<RelatonBib::TypedUri>] link
     #
     def parse_link
-      link = @sol.respond_to?(:link) ? @sol.link : @sol.version_of
-      [RelatonBib::TypedUri.new(type: "src", content: link.to_s.strip)] + editor_drafts
+      [RelatonBib::TypedUri.new(type: "src", content: doc_uri)] # + editor_drafts
     end
 
     #
@@ -109,14 +110,14 @@ module RelatonW3c
     # @return [Arra<RelatonBib::DocumentIdentifier>] docidentifier
     #
     def parse_docid
-      id = @sol.respond_to?(:link) ? pub_id(@sol.link) : pub_id(@sol.version_of)
+      id = pub_id(doc_uri)
       [RelatonBib::DocumentIdentifier.new(type: "W3C", id: id, primary: true)]
     end
 
     #
     # Generate PubID
     #
-    # @return [RDF::URI] PubID
+    # @return [String] PubID
     #
     def pub_id(url)
       "W3C #{identifier(url)}"
@@ -125,13 +126,12 @@ module RelatonW3c
     #
     # Generate identifier from URL
     #
-    # @param [RDF::URI, nil] link
+    # @param [String] link
     #
     # @return [String] identifier
     #
-    def identifier(link = nil)
-      url = link || (@sol.respond_to?(:link) ? @sol.link : @sol.version_of)
-      self.class.parse_identifier(url.to_s.strip)
+    def identifier(link = doc_uri)
+      self.class.parse_identifier(link)
     end
 
     #
@@ -166,54 +166,9 @@ module RelatonW3c
     # @return [String] type
     #
     def type
-      # thre are many types, we need to find the right one
-      @type ||= types_stages&.detect { |t| USED_TYPES.include?(t) } || "technicalReport"
-    end
-
-    #
-    # Fetches types and stages
-    #
-    # @return [Array<String>] types and stages
-    #
-    def types_stages
-      @types_stages ||= begin
-        sse = @sol.respond_to?(:link) ? versioned_types_stages : unversioned_types_stages
-        @rdf.query(sse).map { |s| s.type.to_s.split("#").last }
-      end
-    end
-
-    #
-    # Create SPARQL query for versioned types and stages
-    #
-    # @return [SPARQL::Algebra::Operator::Prefix] SPARQL query
-    #
-    def versioned_types_stages
-      SPARQL.parse(%(
-        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        SELECT ?type
-        WHERE {
-          { <#{@sol.link.to_s.strip}> rdf:type ?type }
-        }
-      ))
-    end
-
-    #
-    # Create SPARQL query for unversioned types and stages
-    #
-    # @return [SPARQL::Algebra::Operator::Prefix] SPARQL query
-    #
-    def unversioned_types_stages
-      SPARQL.parse(%(
-        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
-        SELECT ?type
-        WHERE {
-          ?link doc:versionOf <#{@sol.version_of}>; rdf:type ?type .
-          FILTER ( isURI(?link) && STR(?link) != <#{@sol.version_of}> )
-        }
-      ))
+      # there are many types, we need to find the right one
+      # @type ||= types_stages&.detect { |t| USED_TYPES.include?(t) } || "technicalReport"
+      @type ||= @spec.respond_to?(:status) ? @spec.status : "technicalReport"
     end
 
     #
@@ -222,8 +177,8 @@ module RelatonW3c
     # @return [String, nil] doctype
     #
     def parse_doctype
-      type = DOCTYPES[type] || DOCTYPES[type_from_link]
-      DocumentType.new(type: type) if type
+      t = DOCTYPES[type] || DOCTYPES[type_from_link]
+      DocumentType.new(type: t) if t
     end
 
     #
@@ -232,8 +187,8 @@ module RelatonW3c
     # @return [String, nil] type
     #
     def type_from_link
-      link = @sol.respond_to?(:link) ? @sol.link : @sol.version_of
-      link.to_s.strip.match(/www\.w3\.org\/(TR)/)&.to_a&.fetch 1
+      # link = @sol.respond_to?(:link) ? @sol.link : @sol.version_of
+      @spec.shortlink.strip.match(/www\.w3\.org\/(TR)/)&.to_a&.fetch 1
     end
 
     #
@@ -242,9 +197,9 @@ module RelatonW3c
     # @return [Array<RelatonBib::BibliographicDate>] date
     #
     def parse_date
-      return [] unless @sol.respond_to?(:date)
+      return [] unless @spec.respond_to?(:date)
 
-      [RelatonBib::BibliographicDate.new(type: "published", on: @sol.date.to_s)]
+      [RelatonBib::BibliographicDate.new(type: "published", on: @spec.date.to_date.to_s)]
     end
 
     #
@@ -253,10 +208,11 @@ module RelatonW3c
     # @return [Array<RelatonBib::DocumentRelation>] relation
     #
     def parse_relation
-      if @sol.respond_to?(:link)
-        relations
+      if @spec.links.respond_to?(:version_history)
+        version_history = realize @spec.links.version_history
+        version_history.links.spec_versions.map { |version| create_relation(version, "hasEdition") }
       else
-        document_versions.map { |r| create_relation(r.link.to_s.strip, "hasEdition") }
+        relations
       end
     end
 
@@ -266,99 +222,21 @@ module RelatonW3c
     # @return [Array<RelatonBib::DocumentRelation>] relations
     #
     def relations # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      {
-        "doc:obsoletes" => { type: "obsoletes" },
-        "mat:hasErrata" => { type: "updatedBy", description: "errata" },
-        # "mat:hasTranslations" => "hasTranslation",
-        # "mat:hasImplReport" => "hasImpReport",
-        ":previousEdition" => { type: "editionOf" },
-      }.reduce([]) do |acc, (predicate, tp)|
-        acc + relation_query(predicate).map do |r|
-          create_relation(r.rel.to_s, tp[:type], tp[:description])
+      rels = []
+      rels << create_relation(@spec.links.specification, "editionOf") if @spec.links.respond_to?(:specification)
+      if @spec.links.respond_to?(:predecessor_versions) && @spec.links.predecessor_versions
+        predecessor_versions = realize @spec.links.predecessor_versions
+        predecessor_versions.links.predecessor_versions.each do |version|
+          rels << create_relation(version, "obsoletes")
         end
       end
-    end
-
-    #
-    # Parse editor drafts links
-    #
-    # @return [Array<RelatonBib::TypedUri>] links
-    #
-    def editor_drafts # rubocop:disable Metrics/MethodLength
-      return [] unless @sol.respond_to?(:link)
-
-      sse = SPARQL.parse(%(
-        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        SELECT ?latest
-        WHERE { <#{@sol.link.to_s.strip}> :ED ?latest . }
-      ))
-      @rdf.query(sse).map do |s|
-        RelatonBib::TypedUri.new(type: "current", content: s.latest.to_s.strip)
+      if @spec.links.respond_to?(:successor_versions) && @spec.links.successor_versions
+        successor_versions = realize @spec.links.successor_versions
+        successor_versions.links.successor_versions.each do |version|
+          rels << create_relation(version, "updatedBy", "errata")
+        end
       end
-    end
-
-    #
-    # Query for relations
-    #
-    # @param [String] predicate relation type
-    #
-    # @return [RDF::Query::Solutions] query result
-    #
-    def relation_query(predicate)
-      sse = SPARQL.parse(%(
-        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-        PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
-        PREFIX mat: <http://www.w3.org/2002/05/matrix/vocab#>
-        SELECT ?rel
-        WHERE {
-          <#{@sol.link.to_s.strip}> #{predicate} ?rel .
-          FILTER ( isURI(?rel) )
-        }
-      ))
-      @rdf.query(sse).order_by(:rel)
-    end
-
-    #
-    # Query document versions relations
-    #
-    # @return [Array<RDF::Query::Solution>] query results
-    #
-    def document_versions # rubocop:disable Metrics/MethodLength
-      @document_versions ||= version_of.each_with_object([]) do |s, acc|
-        sse = SPARQL.parse(%(
-          PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-          PREFIX dc: <http://purl.org/dc/elements/1.1/>
-          PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
-          PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-          SELECT ?link ?title ?date
-          WHERE {
-            ?link doc:versionOf <#{s.version_of}> ;
-            dc:title ?title ;
-            dc:date ?date .
-          }
-        ))
-        @rdf.query(sse).each { |r| acc << r }
-      end
-    end
-
-    #
-    # Query for document versions
-    #
-    # @return [RDF::Query::Solutions] query results
-    #
-    def version_of
-      return [@sol] unless @sol.respond_to?(:link)
-
-      sse = SPARQL.parse(%(
-        PREFIX doc: <http://www.w3.org/2000/10/swap/pim/doc#>
-        SELECT ?version_of
-        WHERE {
-          <#{@sol.link.to_s.strip}> doc:versionOf ?version_of .
-          FILTER ( isURI(?version_of) && <#{@sol.link.to_s.strip}> != str(?version_of) )
-        }
-      ))
-      @rdf.query(sse)
+      rels
     end
 
     #
@@ -370,12 +248,15 @@ module RelatonW3c
     #
     # @return [RelatonBib::DocumentRelation] <description>
     #
-    def create_relation(url, type, desc = nil)
+    def create_relation(version, type, desc = nil)
+      version_spec = realize version
+      url = doc_uri(version_spec)
       id = pub_id(url)
-      fref = RelatonBib::FormattedRef.new content: id
+      # fref = RelatonBib::FormattedRef.new content: id
+      title = parse_title(version_spec)
       docid = RelatonBib::DocumentIdentifier.new(type: "W3C", id: id, primary: true)
       link = [RelatonBib::TypedUri.new(type: "src", content: url)]
-      bib = W3cBibliographicItem.new formattedref: fref, docid: [docid], link: link
+      bib = W3cBibliographicItem.new title: title, docid: [docid], link: link
       dsc = RelatonBib::FormattedString.new content: desc if desc
       RelatonBib::DocumentRelation.new(type: type, bibitem: bib, description: dsc)
     end
@@ -386,9 +267,9 @@ module RelatonW3c
     # @return [RelatonBib::FormattedRef] formattedref
     #
     def parse_formattedref
-      return if @sol.respond_to?(:link)
+      return unless @spec.respond_to?(:uri)
 
-      RelatonBib::FormattedRef.new(content: pub_id(@sol.version_of))
+      RelatonBib::FormattedRef.new(content: pub_id(@spec.uri))
     end
 
     #
@@ -401,26 +282,27 @@ module RelatonW3c
         name: "World Wide Web Consortium", abbreviation: "W3C", url: "https://www.w3.org/"
       )
       contribs = [RelatonBib::ContributionInfo.new(entity: publisher, role: [type: "publisher"])]
-      return contribs unless @sol.respond_to?(:link)
 
-      sse = SPARQL.parse(%(
-        PREFIX : <http://www.w3.org/2001/02pd/rec54#>
-        PREFIX contact: <http://www.w3.org/2000/10/swap/pim/contact#>
-        SELECT ?full_name
-        WHERE {
-          <#{@sol.link.to_s.strip}> :editor/contact:fullName ?full_name
-        }
-      ))
-      @rdf.query(sse).order_by(:full_name).each_with_object(contribs) do |ed, obj|
-        obj << create_editor(ed.full_name.to_s)
+      if @spec.links.respond_to?(:editors)
+        editors = realize @spec.links.editors
+        editors.links.editors&.each do |ed|
+          editor = create_editor(ed)
+          contribs << editor if editor
+        end
       end
+
+      contribs
     end
 
-    def create_editor(name)
-      cn = RelatonBib::LocalizedString.new(name, "en", "Latn")
-      n = RelatonBib::FullName.new completename: cn
-      p = RelatonBib::Person.new name: n
-      RelatonBib::ContributionInfo.new(entity: p, role: [type: "editor"])
+    def create_editor(unrealized_editor)
+      editor = realize unrealized_editor
+      return unless editor
+
+      surname = RelatonBib::LocalizedString.new(editor.family, "en", "Latn")
+      forename = RelatonBib::Forename.new(content: editor.given, language: "en", script: "Latn")
+      name = RelatonBib::FullName.new surname: surname, forename: [forename]
+      person = RelatonBib::Person.new name: name
+      RelatonBib::ContributionInfo.new(entity: person, role: [type: "editor"])
     end
 
     #
@@ -429,27 +311,16 @@ module RelatonW3c
     # @return [RelatonBib::EditorialGroup] editorialgroup
     #
     def parse_editorialgroup # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      return unless @sol.respond_to?(:link)
+      return unless @spec.links.respond_to?(:deliverers)
 
-      sse = SPARQL.parse(%(
-        PREFIX org: <http://www.w3.org/2001/04/roadmap/org#>
-        PREFIX contact: <http://www.w3.org/2000/10/swap/pim/contact#>
-        SELECT ?home_page
-        WHERE {
-          <#{@sol.link.to_s.strip}> org:deliveredBy/contact:homePage ?home_page
-        }
-      ))
-      res = @rdf.query(sse).order_by(:home_page)
-      tc = res.each_with_object([]) do |edg, obj|
-        group_path = edg.home_page.to_s.sub(/^https?:\/\//, "").sub(/\/$/, "")
-        wg = @fetcher.group_names[group_path]
-        if wg
-          rwg = RelatonBib::WorkGroup.new name: wg["name"]
-          obj << RelatonBib::TechnicalCommittee.new(rwg)
-        else
-          Util.warn "Working group name not found for: `#{edg.home_page}`"
-        end
+      deliverers = realize @spec.links.deliverers
+      return unless deliverers.links.deliverers
+
+      tc = deliverers.links.deliverers.map do |edg|
+        wg = RelatonBib::WorkGroup.new(name: edg.title)
+        RelatonBib::TechnicalCommittee.new(wg)
       end
+
       RelatonBib::EditorialGroup.new tc
     end
   end
