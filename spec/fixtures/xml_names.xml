@@ -1,7 +1,7 @@
 <bibdata type="standard" schema-version="v1.2.9">
-  <fetched>2024-12-10</fetched>
+  <fetched>2025-07-06</fetched>
   <title format="text/plain">Namespaces in XML 1.0 (Third Edition)</title>
-  <uri type="src">http://www.w3.org/TR/xml-names</uri>
+  <uri type="src">https://www.w3.org/TR/xml-names/</uri>
   <docidentifier type="W3C" primary="true">W3C xml-names</docidentifier>
   <docnumber>xml-names</docnumber>
   <contributor>
@@ -14,32 +14,85 @@
   </contributor>
   <language>en</language>
   <script>Latn</script>
-  <status>
-    <stage>Proposed Edited Recommendation</stage>
-  </status>
   <relation type="hasEdition">
     <bibitem>
-      <formattedref format="text/plain">W3C PER-xml-names-20060614</formattedref>
-      <uri type="src">http://www.w3.org/TR/2006/PER-xml-names-20060614</uri>
+      <title format="text/plain">Namespaces in XML 1.0 (Third Edition)</title>
+      <uri type="src">https://www.w3.org/TR/2009/REC-xml-names-20091208/</uri>
+      <docidentifier type="W3C" primary="true">W3C REC-xml-names-20091208</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML 1.0 (Third Edition)</title>
+      <uri type="src">https://www.w3.org/TR/2009/PER-xml-names-20090806/</uri>
+      <docidentifier type="W3C" primary="true">W3C PER-xml-names-20090806</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML 1.0 (Second Edition)</title>
+      <uri type="src">https://www.w3.org/TR/2006/REC-xml-names-20060816/</uri>
+      <docidentifier type="W3C" primary="true">W3C REC-xml-names-20060816</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML 1.0 (Second Edition)</title>
+      <uri type="src">https://www.w3.org/TR/2006/PER-xml-names-20060614</uri>
       <docidentifier type="W3C" primary="true">W3C PER-xml-names-20060614</docidentifier>
     </bibitem>
   </relation>
   <relation type="hasEdition">
     <bibitem>
-      <formattedref format="text/plain">W3C REC-xml-names-20060816</formattedref>
-      <uri type="src">http://www.w3.org/TR/2006/REC-xml-names-20060816</uri>
-      <docidentifier type="W3C" primary="true">W3C REC-xml-names-20060816</docidentifier>
+      <title format="text/plain">Namespaces in XML</title>
+      <uri type="src">https://www.w3.org/TR/1999/REC-xml-names-19990114/</uri>
+      <docidentifier type="W3C" primary="true">W3C REC-xml-names-19990114</docidentifier>
     </bibitem>
   </relation>
-  <relation type="instanceOf">
+  <relation type="hasEdition">
     <bibitem>
-      <formattedref format="text/plain">W3C PER-xml-names-20090806</formattedref>
-      <uri type="src">http://www.w3.org/TR/2009/PER-xml-names-20090806/</uri>
-      <docidentifier type="W3C" primary="true">W3C PER-xml-names-20090806</docidentifier>
+      <title format="text/plain">Namespaces in XML</title>
+      <uri type="src">https://www.w3.org/TR/1998/PR-xml-names-19981117</uri>
+      <docidentifier type="W3C" primary="true">W3C PR-xml-names-19981117</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML</title>
+      <uri type="src">https://www.w3.org/TR/1998/WD-xml-names-19980916</uri>
+      <docidentifier type="W3C" primary="true">W3C WD-xml-names-19980916</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML</title>
+      <uri type="src">https://www.w3.org/TR/1998/WD-xml-names-19980802</uri>
+      <docidentifier type="W3C" primary="true">W3C WD-xml-names-19980802</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML</title>
+      <uri type="src">https://www.w3.org/TR/1998/WD-xml-names-19980518</uri>
+      <docidentifier type="W3C" primary="true">W3C WD-xml-names-19980518</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML</title>
+      <uri type="src">https://www.w3.org/TR/1998/WD-xml-names-19980327</uri>
+      <docidentifier type="W3C" primary="true">W3C WD-xml-names-19980327</docidentifier>
+    </bibitem>
+  </relation>
+  <relation type="hasEdition">
+    <bibitem>
+      <title format="text/plain">Namespaces in XML</title>
+      <uri type="src">https://www.w3.org/TR/1998/NOTE-xml-names-0119</uri>
+      <docidentifier type="W3C" primary="true">W3C NOTE-xml-names-0119</docidentifier>
     </bibitem>
   </relation>
   <series>
-    <title format="text/plain">W3C PER</title>
+    <title format="text/plain">W3C technicalReport</title>
     <number>xml-names</number>
   </series>
   <ext schema-version="v1.0.0">

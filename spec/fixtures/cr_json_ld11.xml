@@ -1,8 +1,7 @@
 <bibdata type="standard" schema-version="v1.2.9">
-  <fetched>2024-10-08</fetched>
+  <fetched>2025-07-06</fetched>
   <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
-  <uri type="current">https://w3c.github.io/json-ld-syntax/</uri>
   <docidentifier type="W3C" primary="true">W3C REC-json-ld11-20200716</docidentifier>
   <docnumber>REC-json-ld11-20200716</docnumber>
   <date type="published">
@@ -20,7 +19,8 @@
     <role type="editor"/>
     <person>
       <name>
-        <completename language="en" script="Latn">Dave Longley</completename>
+        <forename language="en" script="Latn">Gregg</forename>
+        <surname language="en" script="Latn">Kellogg</surname>
       </name>
     </person>
   </contributor>
@@ -28,15 +28,8 @@
     <role type="editor"/>
     <person>
       <name>
-        <completename language="en" script="Latn">Gregg Kellogg</completename>
-      </name>
-    </person>
-  </contributor>
-  <contributor>
-    <role type="editor"/>
-    <person>
-      <name>
-        <completename language="en" script="Latn">Pierre-Antoine Champin</completename>
+        <forename language="en" script="Latn">Dave</forename>
+        <surname language="en" script="Latn">Longley</surname>
       </name>
     </person>
   </contributor>
@@ -45,23 +38,22 @@
   <status>
     <stage>Recommendation</stage>
   </status>
+  <relation type="editionOf">
+    <bibitem>
+      <title format="text/plain">JSON-LD 1.1</title>
+      <uri type="src">https://www.w3.org/TR/json-ld11/</uri>
+      <docidentifier type="W3C" primary="true">W3C json-ld11</docidentifier>
+    </bibitem>
+  </relation>
   <relation type="obsoletes">
     <bibitem>
-      <formattedref format="text/plain">W3C PR-json-ld11-20200507</formattedref>
+      <title format="text/plain">JSON-LD 1.1</title>
       <uri type="src">https://www.w3.org/TR/2020/PR-json-ld11-20200507/</uri>
       <docidentifier type="W3C" primary="true">W3C PR-json-ld11-20200507</docidentifier>
     </bibitem>
   </relation>
-  <relation type="updatedBy">
-    <description format="text/plain">errata</description>
-    <bibitem>
-      <formattedref format="text/plain">W3C json-ld-syntax/errata</formattedref>
-      <uri type="src">https://w3c.github.io/json-ld-syntax/errata/</uri>
-      <docidentifier type="W3C" primary="true">W3C json-ld-syntax/errata</docidentifier>
-    </bibitem>
-  </relation>
   <series>
-    <title format="text/plain">W3C REC</title>
+    <title format="text/plain">W3C Recommendation</title>
     <number>REC-json-ld11-20200716</number>
   </series>
   <ext schema-version="v1.0.0">
