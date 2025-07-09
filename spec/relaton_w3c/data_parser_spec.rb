@@ -5,7 +5,6 @@ RSpec.describe RelatonW3c::DataParser do
 
   subject { RelatonW3c::DataParser.new specification }
 
-  before { RelatonW3c::RateLimitHandler.fetched_objects.clear }
 
   it "create instance and run parsing" do
     parser = double "parser"
