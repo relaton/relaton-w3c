@@ -9,7 +9,7 @@ RSpec.describe RelatonW3c::DataFetcher do
     expect(FileUtils).to receive(:mkdir_p).with("dir")
     fetcher = double("fetcher")
     expect(fetcher).to receive(:fetch).with(no_args)
-    expect(RelatonW3c::DataFetcher).to receive(:new).with("dir", "xml").and_return(fetcher)
+    expect(RelatonW3c::DataFetcher).to receive(:new).with("dir", "xml", fetch_versions: true).and_return(fetcher)
     RelatonW3c::DataFetcher.fetch output: "dir", format: "xml"
   end
 
@@ -49,7 +49,7 @@ RSpec.describe RelatonW3c::DataFetcher do
           end
           specs
         end
-        expect(subject).to receive(:save_doc).with(kind_of(RelatonW3c::W3cBibliographicItem)).at_least(10)
+        expect(subject).to receive(:save_doc).with(kind_of(RelatonW3c::W3cBibliographicItem)).exactly(4).times
         subject.fetch
       end
     end
