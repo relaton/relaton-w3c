@@ -1,6 +1,5 @@
 module RelatonW3c
   class DataParser
-    include RelatonW3c::RateLimitHandler
 
     USED_TYPES = %w[WD NOTE PER PR REC CR].freeze
 
@@ -322,6 +321,23 @@ module RelatonW3c
       end
 
       RelatonBib::EditorialGroup.new tc
+    end
+
+    private
+
+    #
+    # Realize a HAL link using w3c_api's built-in rate limiting
+    #
+    # @param [Object] obj HAL link object to realize
+    # @return [Object] realized object
+    #
+    def realize(obj)
+      # Use the built-in realize method which now includes sophisticated rate limiting
+      # with exponential backoff and Retry-After header support
+      obj.realize
+    rescue Lutaml::Hal::NotFoundError
+      Util.warn "Object not found: #{obj.href || obj.links.self.href}"
+      nil
     end
   end
 end

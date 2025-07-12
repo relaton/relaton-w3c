@@ -33,5 +33,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "relaton-bib", "~> 1.20.0"
   spec.add_dependency "relaton-index", "~> 0.2.8"
-  spec.add_dependency "w3c_api", "~> 0.1.3"
+  spec.add_dependency "w3c_api", "~> 0.1.6"
 end
