@@ -25,8 +25,8 @@ module RelatonW3c
     #
     # Initialize fetcher and run fetch
     #
-    # @param [Strin] output directory to save files, default: "data"
-    # @param [Strin] format format of output files (xml, yaml, bibxml), default: yaml
+    # @param [String] output directory to save files, default: "data"
+    # @param [String] format format of output files (xml, yaml, bibxml), default: yaml
     # @param [Boolean] fetch_versions whether to fetch version history (slower but more complete), default: true
     #
     def self.fetch(output: "data", format: "yaml", fetch_versions: true)
