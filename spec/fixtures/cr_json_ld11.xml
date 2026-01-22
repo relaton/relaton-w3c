@@ -1,5 +1,5 @@
 <bibdata type="standard" schema-version="v1.2.9">
-  <fetched>2025-07-06</fetched>
+  <fetched>2026-01-22</fetched>
   <title format="text/plain">JSON-LD 1.1</title>
   <uri type="src">https://www.w3.org/TR/2020/REC-json-ld11-20200716/</uri>
   <docidentifier type="W3C" primary="true">W3C REC-json-ld11-20200716</docidentifier>
@@ -21,6 +21,15 @@
       <name>
         <forename language="en" script="Latn">Gregg</forename>
         <surname language="en" script="Latn">Kellogg</surname>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <forename language="en" script="Latn">Pierre-Antoine</forename>
+        <surname language="en" script="Latn">Champin</surname>
       </name>
     </person>
   </contributor>
