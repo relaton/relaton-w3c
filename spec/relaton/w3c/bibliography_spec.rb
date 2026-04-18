@@ -72,7 +72,7 @@ describe Relaton::W3c::Bibliography do
     expect(doc.docidentifier[0].content).to eq "W3C xml"
   end
 
-  it "not found", vcr: "not_found" do
+  it "not found" do
     expect { described_class.get("W3C NOT-FOUND") }
       .to output(/Not found/).to_stderr_from_any_process
   end
