@@ -8,7 +8,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -19,33 +19,39 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:43 GMT
+      - Wed, 22 Apr 2026 17:20:25 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a436e37c953-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
+      Age:
+      - '2'
+      Last-Modified:
+      - Wed, 22 Apr 2026 17:20:23 GMT
       Cf-Cache-Status:
       - HIT
-      Age:
-      - '481'
-      Last-Modified:
-      - Thu, 22 Jan 2026 18:51:42 GMT
-      Set-Cookie:
-      - __cf_bm=YKyjMYrO2fkNF5QrQrVe3M7VhBaifDq7.HjWRDafbSA-1769108383-1.0.1.1-X0rnnZlJtegSN8lZLr5U75x8nhMBBMuabMqf6KZyx6bBMt88l5sNxgymtPouRzz6TTsvv24v6YtN3zORR_q90t8IKQFTKtoCrE1MKXJaow8;
-        path=/; expires=Thu, 22-Jan-26 19:29:43 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=N97Ku1HfMeNW8xk0ZnpmUycq8fpgwg5OJiQhXjsWRtE-1776878425.8168964-1.0.1.1-EplYyTnyjrlTs0a2lqjfsqikOWJ69vH_6nPVZxR6sqh2IINpjLbsw6ub0dIQwbHSWLJxVSC040MACo.OkP0nZng5PKZ6Bk8WeSE_iymnMgS5Jof4ai.uCZ9s9dw4k0Qc;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:25
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c915febe61d-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -79,7 +85,7 @@ http_interactions:
         fSwKICAgICAgICAic2VyaWVzIjogewogICAgICAgICAgICAiaHJlZiI6ICJo
         dHRwczovL2FwaS53My5vcmcvc3BlY2lmaWNhdGlvbi1zZXJpZXMvd2VicnRj
         IgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:43 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:25 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions
@@ -88,7 +94,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -99,33 +105,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:43 GMT
+      - Wed, 22 Apr 2026 17:20:26 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a442a19e631-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '479'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:44 GMT
-      Set-Cookie:
-      - __cf_bm=W2fOJfVjx6IohwihFOIC1kjBAnmDDioVZd7gM4qUZQU-1769108383-1.0.1.1-mhb_FWLw63wvksz06BfPn4wefY.VVWO8pfcLbncMb.sFTQ9ntU7tYDoT4PmbPluZa6z2Uo8YK6oK_IJZdkPsT5GfG8w85uQME11oBhgvQQg;
-        path=/; expires=Thu, 22-Jan-26 19:29:43 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:26 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=p6TeUwPg7xrIQos6IhSHYwxKjShCyaZcJDs5ksFX1FQ-1776878426.0546205-1.0.1.1-_AKgQ5icdSEOXAgOUMBOW1hqnBkFqpqm1koRfSvVcfi4h02sMC8ChlhGI8Qv.leRQB2TV9Gt3vmgryDgwSlaMr8i5x99uQ3VKC._lrwr4YX51jz4.PSkSewEyiacnm6C;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:26
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c92cf4f2902-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -308,7 +318,7 @@ http_interactions:
         ICAibGFzdCI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0cHM6Ly9hcGku
         dzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9ucz9wYWdlPTEm
         aXRlbXM9MTAwIgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:43 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:26 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20250313
@@ -317,7 +327,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -328,33 +338,39 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:43 GMT
+      - Wed, 22 Apr 2026 17:20:26 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a454ef7e5cb-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
+      Age:
+      - '2'
+      Last-Modified:
+      - Wed, 22 Apr 2026 17:20:23 GMT
       Cf-Cache-Status:
       - HIT
-      Age:
-      - '480'
-      Last-Modified:
-      - Thu, 22 Jan 2026 18:51:43 GMT
-      Set-Cookie:
-      - __cf_bm=Ip1iSgE5vBgf9TOrqr0dh0zOqSckcq69Pj8Xl7bbCZQ-1769108383-1.0.1.1-yQGeo5nkQB1N5AZiO.yURdCEVd8aAKuYX23ZdGn8tyGTDuQ8LJVvlb7CIXlTK1ipURyCzlZ.hkuGBYRrRMDbnDw8YyPD4tVW9TzKkcLGG78;
-        path=/; expires=Thu, 22-Jan-26 19:29:43 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=sIYAuy5o3yAVX0hwpROos8xd4YUua8a9q.lDv4i21T8-1776878426.3356075-1.0.1.1-s20GdSIfLl07rsqvsHLVHw6.tOL8syKAoCxGSRUOOmx7.ujHj_wNMjIbXPVYhCRTzw8iM6WGt9C2a3Ylfh9.g_Wq76QXsXPcwiwJSCQTa9XYjQ7G8dxWSIdmUehBzRF1;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:26
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c9498ab9e01-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -383,7 +399,7 @@ http_interactions:
         b3ItdmVyc2lvbiI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0cHM6Ly9h
         cGkudzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9ucy8yMDI1
         MDMxMy9wcmVkZWNlc3NvcnMiCiAgICAgICAgfQogICAgfQp9
-  recorded_at: Thu, 22 Jan 2026 18:59:43 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:26 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20241008
@@ -392,7 +408,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -403,33 +419,39 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:43 GMT
+      - Wed, 22 Apr 2026 17:20:26 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a464c0f3b36-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
+      Age:
+      - '3'
+      Last-Modified:
+      - Wed, 22 Apr 2026 17:20:22 GMT
       Cf-Cache-Status:
       - HIT
-      Age:
-      - '481'
-      Last-Modified:
-      - Thu, 22 Jan 2026 18:51:42 GMT
-      Set-Cookie:
-      - __cf_bm=wynP4K3lsLhxXlLmCblnSKF2KGbJvrSY64VGp8.4_dc-1769108383-1.0.1.1-CwRMEcdOQCdXCJxvHxYpJlFdD521swbVE2syYWvq3iVhTAzOIN0BEK.fWxquqOEjNadOTBl8Xi5O73xyerQRez56RfYiY3huXRDNZ4.vnVE;
-        path=/; expires=Thu, 22-Jan-26 19:29:43 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=_KuNQrcaacOndAFA9JaDR2yLpcM8SNe5Fbt1BLWb6yo-1776878426.5638146-1.0.1.1-z5cDG0NJY9Y7.2kzDS7IAOutNY55juX.Am6XNpdiBPddXch.ePI0FbtWN_ljo_gZ9DVr0x6mbLBA6N9ClryVhjAHLQG4XQQ9_MO4GwYg2D.OQSmbmN0UWryTdZqaV9Fo;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:26
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c960fb772d4-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -461,7 +483,7 @@ http_interactions:
         c29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBzOi8v
         YXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAy
         NDEwMDgvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:43 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:26 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20230306
@@ -470,7 +492,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -481,33 +503,39 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:43 GMT
+      - Wed, 22 Apr 2026 17:20:26 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a474a9781af-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
+      Age:
+      - '3'
+      Last-Modified:
+      - Wed, 22 Apr 2026 17:20:23 GMT
       Cf-Cache-Status:
       - HIT
-      Age:
-      - '481'
-      Last-Modified:
-      - Thu, 22 Jan 2026 18:51:42 GMT
-      Set-Cookie:
-      - __cf_bm=fMd7d.mAy_KOvnECGESTv4yUuZoqPBcmPaF9zZp5U2E-1769108383-1.0.1.1-F3MMJgNT_w3IJbf3vZoYoN_8FkBmSXDhDH18UpypflefHKdUkRW.ULuexrOOCFvLR0n02qU8RZmHT6Ewsed_fnrMbiXmfKfSVCZKwLcrMWQ;
-        path=/; expires=Thu, 22-Jan-26 19:29:43 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=7RCxornaOgyMpgcCy4PBiIkNNJlGd4g1Sk6wMI0gSgY-1776878426.7084315-1.0.1.1-T_wbzHXUfRmKNq7MH.U.gWslW1C3ypmg7jzBc_It_qAtFRlyI54Kjr4s_3pJmtyQPSwlj0JoR2gw.ZDG9zE8beysDrtRDeTiQddgkOqPoq6MR_QzRy43ZEM3CNW.VsIM;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:26
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c96eb12c5f1-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -539,7 +567,7 @@ http_interactions:
         dmVyc2lvbiI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0cHM6Ly9hcGku
         dzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9ucy8yMDIzMDMw
         Ni9zdWNjZXNzb3JzIgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:43 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:26 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20230301
@@ -548,7 +576,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -559,33 +587,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:44 GMT
+      - Wed, 22 Apr 2026 17:20:26 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a484bebe623-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '479'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:45 GMT
-      Set-Cookie:
-      - __cf_bm=IWciV5GF7XrlOOHCD7F_G9_r8I0yAdbeHSOSFAiNigg-1769108384-1.0.1.1-4tIflEKoTp778ndk9Ur1euKYet5zKed38uUWQG6lt4UyhCi910RRlytkDC914APQJWiTw.bSvB3B4Q_2YWFCTDqIwfNxQoQ2eOTSJr8ZB2g;
-        path=/; expires=Thu, 22-Jan-26 19:29:44 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:26 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=SBSvz6Tbd4a2HVz9oMZt2yp8hA_FoVIiFqRDUu0u0Xc-1776878426.848351-1.0.1.1-kzbkLBQrvNEZT9YfGquEjTDHXaq1f5VNp0GKzjc6Ts2uhPcqgkpzzVkiIhcCf7DxjXFEHn6dcuScLx4d_aiw_EgHBY6BnQDf5o74aFzlJGhHqMibIUeNExpM.u2_K6pC;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:26
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c97ca57c9b3-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -617,7 +649,7 @@ http_interactions:
         dmVyc2lvbiI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0cHM6Ly9hcGku
         dzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9ucy8yMDIzMDMw
         MS9zdWNjZXNzb3JzIgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:44 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:27 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20210126
@@ -626,7 +658,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -637,33 +669,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:44 GMT
+      - Wed, 22 Apr 2026 17:20:27 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a4909af1fe3-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '479'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:45 GMT
-      Set-Cookie:
-      - __cf_bm=rRIS4nZA.OBzwutnq2w7oJg.Z3tBRxAPWF1AwBwPZxI-1769108384-1.0.1.1-04MHCi3smtGQYDIYHzTzikHsi5yYuWGXaX0ZYuHalzrrhP79Nzpthqt_w7kHBL8toGXf5YDwh0gJtJ5ch_li9VwVWY.n7839EKcplLhGWWE;
-        path=/; expires=Thu, 22-Jan-26 19:29:44 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:27 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=jaKDfMi1_hmvvwAIjz8zNR7fM3B3ie6BJFoRla9kiuc-1776878427.25632-1.0.1.1-vlF.EyYMvUCirJyacGO0cx6TjKK7X51oQOzKTss941Xw.1yeDKykaWh927PBOB6apI3Rr7LhiltDmRZE6RVq5YmWtSYrBivr6vEMEOfm8Q0flFJWNUTTSYq2locJN37O;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:27
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c9a5bd105d7-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -699,7 +735,7 @@ http_interactions:
         ICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0
         aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAyMTAxMjYvc3VjY2Vzc29ycyIKICAg
         ICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:44 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:27 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201215
@@ -708,7 +744,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -719,33 +755,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:44 GMT
+      - Wed, 22 Apr 2026 17:20:27 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a49d800b41c-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '479'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:45 GMT
-      Set-Cookie:
-      - __cf_bm=lhbtr6z.bGm6BxTTIjHZ9EIn_AN0IaI..D2XJM8A8o8-1769108384-1.0.1.1-DcEnOfXxC9NkJKbRoiagOdpLBijExBUHgLKbVqMoWAEKAS9nTRzsS4jOF0LAedaVpC2Z1COAt5.QH7E10UWh2LkCpzGA9o7uV61iWQSG3tA;
-        path=/; expires=Thu, 22-Jan-26 19:29:44 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:27 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=VBSpVrRL9wSg0ziq8_Ybph2u.SCJUcyjjwBnXX8OD68-1776878427.4223838-1.0.1.1-9h7XWiu1BA2ksWpfRGRcoyggRjYxvB3.Qaa0pbM6b8Lt1s5excAM2HdohC7oAuB5osHzBKl7x5wpM9wye9Psi5R3.w4mvjXPBL5Mm1LMovGJ8NkCx_kyXVXw088rqX2m;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:27
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c9b6a65d65f-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -778,7 +818,7 @@ http_interactions:
         dWNjZXNzb3ItdmVyc2lvbiI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0
         cHM6Ly9hcGkudzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9u
         cy8yMDIwMTIxNS9zdWNjZXNzb3JzIgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:44 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:27 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201203
@@ -787,7 +827,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -798,33 +838,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:44 GMT
+      - Wed, 22 Apr 2026 17:20:27 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a4ab904d6d5-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:46 GMT
-      Set-Cookie:
-      - __cf_bm=EuKcnoVfv6Yz4eoAhr6otgk2PE8m3Ghrs5an63zcLqY-1769108384-1.0.1.1-hotJ7yJXi8gEinFbTMqbSWFytPvMhLuxlUkPVyZyj5djKgha2ZLtiBQtObVFtN6lb.YVYhBPhyrExXqBcIhcwkr3AS1AcCbZzUEyh2n_JJg;
-        path=/; expires=Thu, 22-Jan-26 19:29:44 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:27 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=vym2hsuZZVrA89mnwY8TbngSR05Vp8f_8xMisUCyZLU-1776878427.7002153-1.0.1.1-H.OboqDeCaxbkIUEQVrUI5uTUwvaRMXMI3mcqVXeA3E3vYwh6eCgT7e76cLR1uEArNT1Q1MPPvN36iLx7_o2yhNK4DgXAVdwGpDcek4Kshk4PFtZqTIUpEVkgJ9j1V5U;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:27
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c9d1c5bc9ac-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -857,7 +901,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDEyMDMvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:44 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:27 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201201
@@ -866,7 +910,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -877,33 +921,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:44 GMT
+      - Wed, 22 Apr 2026 17:20:28 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a4bb9e73b38-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:46 GMT
-      Set-Cookie:
-      - __cf_bm=RVx54dhGLmNYcRbojIYbotDKJfk1JTTVvXBwri6w79E-1769108384-1.0.1.1-Gu6riPGTw.6WZXyYtWSq2pRpvtlAoKmcBfeyf_YQqrYlnzhY758xnh.jDK20W68_ncM5ZPVXmT8mEyg9fzFtIicuh5XxvrUMcTuX_QfJq2U;
-        path=/; expires=Thu, 22-Jan-26 19:29:44 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:28 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=lGowvIymhvAmxmheSF5t0dYihDx0DykxDMfcx282EFk-1776878427.9047198-1.0.1.1-OzNtusnI1z9SAy2PGKE6P.xarSno5WiNXXIKj9J1wFoqE8TIMNnKxm0wyQzVAg6Ql6tvCSrgkVs2etYC4S11gO3gNyGgWeUMcKECnPcYSLmT1WaKpkQakg2c5r1WpIJX;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:28
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064c9e5c47d88a-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -936,7 +984,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDEyMDEvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:44 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:28 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201127
@@ -945,7 +993,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -956,33 +1004,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:44 GMT
+      - Wed, 22 Apr 2026 17:20:28 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a4d1c198bda-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:46 GMT
-      Set-Cookie:
-      - __cf_bm=HFsgmpEVNaqgaByANRlufWNJn_xKb08hm6y.ZxTUTic-1769108384-1.0.1.1-j0t3y7vROEyor7_172YTPdEnLH7_91lkccGlVKswvMT1vIIfAHrbYCNB9WSNgnP4TxAKsa14PYnrr85CHCKp0f4Jn5ouuRU0CCcNX.UCe9I;
-        path=/; expires=Thu, 22-Jan-26 19:29:44 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:28 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=.55NlrWwSWONJYZveu6HeiBhGA_YGqJKYeaGWKiDI2o-1776878428.1984684-1.0.1.1-KfRdJySOz58ggjC.iuvFixMZtpqRDXwVhzeu1F8K5THDs2z4EYDZKERbsx4haWt3X8NptBxZFw9uOig3LokQeK1Y_i6jl5bldqsACHtBMzhNafz7q.AN7a9FL5r_z..W;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:28
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ca02cf62c11-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1015,7 +1067,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDExMjcvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:44 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:28 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201125
@@ -1024,7 +1076,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1035,33 +1087,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:44 GMT
+      - Wed, 22 Apr 2026 17:20:28 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a4de9ddd739-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:46 GMT
-      Set-Cookie:
-      - __cf_bm=7prMAUZqIE.vqsFnf4P1_gpIjmI0GAtlt2z5Sv5mzxE-1769108384-1.0.1.1-yQZk9VxktDnDui6Md8gmxm__oeRI9asAg0YqYbp0wtaGgd3nuEKhdVeWQ7NHz5glv_30MjHALRJPRVdW2wbfeSdM8_U.rshUksrbyP2pUe4;
-        path=/; expires=Thu, 22-Jan-26 19:29:44 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:28 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=vm9356VFdgukLab7V8chDMX5dDQn9x_ChTFe3cpci6E-1776878428.4370773-1.0.1.1-nUJhkEMBKO2cxH1kf9LgqqQE4GHjj_AlVdsVbZio3NZff4L.a.IEKc.OCx_qg2TJNHQAOaE9yKrGvelK1iDAJ5wO1mtX6t6rMNkXTUR3Z2F1QaCrokn17QfnFOW2DCE0;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:28
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ca1b9a82d85-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1094,7 +1150,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDExMjUvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:44 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:28 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201119
@@ -1103,7 +1159,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1114,33 +1170,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:45 GMT
+      - Wed, 22 Apr 2026 17:20:28 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a4ebce2d688-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '479'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:46 GMT
-      Set-Cookie:
-      - __cf_bm=FzhDJ7wUhW7ZBJs.UgXZd265UpbnDlblJvoM1SJ0RRE-1769108385-1.0.1.1-aeKLwNG.oGFXNtHUDMkGhf5krkuzfSq9JTLATWU_8kFeFqwGrNkCgZq6Uxzef5N.fNhDWKTPXECT2yWf9VeudU5F9ezK1RmPy7WQ7p7gwyU;
-        path=/; expires=Thu, 22-Jan-26 19:29:45 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:28 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=ubSx_Eq1ZDvcGo5GlQsI6V2d3iRjssuTgiMm6Xg9NnI-1776878428.7141953-1.0.1.1-Vk5oZ.yPLYxAJYAWle2Yuj0Cp0JvW3r9.57dDtutw12Zyx2RNYK0ygexZvNBKOLb23v4hUl1_7W7LSGacLAkMhlH1lh98YnMw1DluN21DdM9uM1Gmk2qOByMmqwz8dHc;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:28
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ca37b5d2896-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1173,7 +1233,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDExMTkvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:45 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:28 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201105
@@ -1182,7 +1242,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1193,33 +1253,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:45 GMT
+      - Wed, 22 Apr 2026 17:20:29 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a4f8ed40654-IAD
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '479'
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:46 GMT
+      - Wed, 22 Apr 2026 17:20:29 GMT
+      Cf-Cache-Status:
+      - MISS
       Set-Cookie:
-      - __cf_bm=_AhKS9uN7zDrQdzWf8xSbdIvl1BaJZKycSj5oZhqVxQ-1769108385-1.0.1.1-HefwgDHVn86_s.oVX5gDZts5EqvjxkOkTZRH_5ItGnV_HkUaq.FvuQw6ak9HziWV5TWYt.8x8gDwChawStVqzESKIpXvyJK_33066WIDJ1g;
-        path=/; expires=Thu, 22-Jan-26 19:29:45 GMT; domain=.w3.org; HttpOnly; Secure;
+      - __cf_bm=FKGbfoqojWPpvTJ2rkP1Nq5etVqZZnfEgT_T0MyCB0I-1776878429-1.0.1.1-qIa8W56cGcfZkYnqCigu.NVe0yzYOWI3UOWP8cfSw37FMuFQEkRyPkpp8vzOg6fI_NwbjUk4m4G11Pvc_vB2MH8vnQ5A_3rd4EaHdrkjS_4;
+        path=/; expires=Wed, 22-Apr-26 17:50:29 GMT; domain=.w3.org; HttpOnly; Secure;
         SameSite=None
       Vary:
       - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Server:
       - cloudflare
+      Cf-Ray:
+      - 9f064ca4d9e2c96c-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1252,7 +1316,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDExMDUvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:45 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:29 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201015
@@ -1261,7 +1325,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1272,33 +1336,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:45 GMT
+      - Wed, 22 Apr 2026 17:20:29 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a50a994c989-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:47 GMT
-      Set-Cookie:
-      - __cf_bm=PRL34v1XjdbYohUeRY_SJi8X7clblf9FtB6oeJonovA-1769108385-1.0.1.1-1b1hn.RDOtn.ZoL0IXiNzTQf9ydQ0DjttAOuWrChBsqIBkvb2jOrP4b2tDPYY2kRIUFTziZ2Jq1hOf66_61fRSlUQhXot7C6JTmgIgB70x8;
-        path=/; expires=Thu, 22-Jan-26 19:29:45 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:29 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=NjexeWlGoblKJjIs4q8R5_yChG5Y6ds_cMIySn7oS20-1776878429.268234-1.0.1.1-Seb3hXb0V90K0y7UM0Q83.QZ2gLXBVSbHw2vybD7c8Lh2Piz6V4fR3s50ex2VDLoW82G6GaxUbtsY2feKPZK_5jUPHvf_.U7pxKcnzYE.5ixr.vk__JQME1wLyX6oira;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:29
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ca6eeb9b8b1-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1331,7 +1399,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDEwMTUvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:45 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:29 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201008
@@ -1340,7 +1408,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1351,33 +1419,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:45 GMT
+      - Wed, 22 Apr 2026 17:20:29 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a518feed692-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:47 GMT
-      Set-Cookie:
-      - __cf_bm=buX5KjNSiwqPsQxU4mxI55JFfHcmExF9IEv5nRZRg7c-1769108385-1.0.1.1-aKIPmaG1C98K3KkPYUTXaAJb1ojVp6pHK8AQKalXN5uLGQOEg1cqVPVsfVR_0YedXQCIJsQexUWrSvm7Hz5As3V60oFJ5JSiu0vvdhmdf04;
-        path=/; expires=Thu, 22-Jan-26 19:29:45 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:29 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=PkiMX0PAxmohXiOEFhoGfIXlF4cg9LFQwEtjzDxo.mA-1776878429.4893608-1.0.1.1-nXHEBGBwc46GZ6h3D0m0NM0AKYn86Ppin2YjiTfTUG0PIJA.dvlXO7lefhGB0_1skowDFUBAWlgmrtkxX.gl5WHxbQjMa0vo.a6NJmaG3JaTZxABvckX6nBiD7r7JPcS;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:29
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ca84a7f13fa-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1410,7 +1482,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDEwMDgvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:45 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:29 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20201007
@@ -1419,7 +1491,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1430,33 +1502,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:45 GMT
+      - Wed, 22 Apr 2026 17:20:29 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a526fff8024-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:47 GMT
-      Set-Cookie:
-      - __cf_bm=GJfU8XPOl3FoCq3.Mp_1jUTedt4lSoJHjQ7Y0nZhCW0-1769108385-1.0.1.1-jMAq25ov23yA_mv1yNRq6K_Tse2PVI09.294OdaSwady7odueRoWLvaBoNWQ3IYILuR5K.t5Y26MevktpX45_isP5oNFttr9nATWsssd09c;
-        path=/; expires=Thu, 22-Jan-26 19:29:45 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:29 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=1bE9mjN6YVkHbkMWt7HccVzsvg3e5vXo506csKvwq0M-1776878429.772887-1.0.1.1-RbqoYDYbqr8hhfNOieYkz2.tUxOL6HSvwYB4L9LRgKYo.nzcEfyTUgRNi7uZK4HUPSIGa_SSqRr.h7JXXGGCU4WNZEYm44Mi7B.sMRFGPI.RQ0L4uXlpzBasx7zH0Hbs;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:29
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064caa081c1853-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1489,7 +1565,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDEwMDcvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:45 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:29 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20200924
@@ -1498,7 +1574,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1509,33 +1585,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:45 GMT
+      - Wed, 22 Apr 2026 17:20:30 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a534957084e-IAD
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:47 GMT
+      - Wed, 22 Apr 2026 17:20:30 GMT
+      Cf-Cache-Status:
+      - MISS
       Set-Cookie:
-      - __cf_bm=d1cUTGlpX4ZO3GnE0bWwrmI4zbPLITCWI7G5h0uWbCE-1769108385-1.0.1.1-xIfitVXEtUHbtEYlYmdDCJ5n_iM73tIncghJWpedsLFkwqYp5tVLNpbii3nXq.s1cXuWlMwP.5pm5Y24WQnizsOOBO4OQdCZH9S5qjcFvyI;
-        path=/; expires=Thu, 22-Jan-26 19:29:45 GMT; domain=.w3.org; HttpOnly; Secure;
+      - __cf_bm=7kQJ6pT7C_XSn52oONufW4oIc0DHWzn_ECQeDKA5tnE-1776878430-1.0.1.1-hRCldshTjokECCmWVigaJtxuAVyjz.aYIffyLKp2ESpkiAmNXYvu_PBbCqffAaJ_Tkv24Izq_abPL_Sv7pXqF0Y.lF6rYyo5ojELruQa4do;
+        path=/; expires=Wed, 22-Apr-26 17:50:30 GMT; domain=.w3.org; HttpOnly; Secure;
         SameSite=None
       Vary:
       - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Server:
       - cloudflare
+      Cf-Ray:
+      - 9f064cab6e9fc5b3-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1568,7 +1648,7 @@ http_interactions:
         ICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9u
         cy93ZWJydGMvdmVyc2lvbnMvMjAyMDA5MjQvc3VjY2Vzc29ycyIKICAgICAg
         ICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:45 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:30 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20200903
@@ -1577,7 +1657,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1588,33 +1668,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:45 GMT
+      - Wed, 22 Apr 2026 17:20:30 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a545f5e0434-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:47 GMT
-      Set-Cookie:
-      - __cf_bm=7sXW_bIayTCeKIuaT5q096XveEvueNwTeUVm3Bm2IiI-1769108385-1.0.1.1-1pq1tyEVVBwxAGQ3C.WDW0wkwDmlt7IQMX.Sgvnzr38mA4Vl8NV9dJRbhMNc2ZZG7HX5snDIhSjRqfEGFEoXHTh_nIyQwspmu0tIGC.NOOQ;
-        path=/; expires=Thu, 22-Jan-26 19:29:45 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:30 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=nJN.4oqyXGJZs4z2RJHrYSmMD1Cv7WWRzTLOE7rWv1w-1776878430.9014604-1.0.1.1-oBgfzfx7E4_wg1PWa5kUkmzyRzv30DqUABQKjrDF0tP_px_i.9lbXfHwHcwXTX5vnJln.aE7wWiNcrUTxfEbBJoBgdC84UR.v43Sm9aaGnnzY4rS8flcBWUWn6mgZQde;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:30
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cb11f2bc95a-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1647,7 +1731,7 @@ http_interactions:
         ICAgICAgImhyZWYiOiAiaHR0cHM6Ly9hcGkudzMub3JnL3NwZWNpZmljYXRp
         b25zL3dlYnJ0Yy92ZXJzaW9ucy8yMDIwMDkwMy9zdWNjZXNzb3JzIgogICAg
         ICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:45 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:30 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20200825
@@ -1656,7 +1740,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1667,33 +1751,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:46 GMT
+      - Wed, 22 Apr 2026 17:20:31 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a552be32d07-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:48 GMT
-      Set-Cookie:
-      - __cf_bm=RcIbjC2zqzu1.AOVScMC0SzoMPSWM2JHCd_tHnMKsNo-1769108386-1.0.1.1-FGPNWoNxZRmB_N3Wf90RU8RXkcbeGH65HjaiLUn1vdgPnnaTC9RLajuiKvdq2z03UL77YKYhYN6rMEkDzWWCXvT3RIbAs7fxXOHiXbBVn5c;
-        path=/; expires=Thu, 22-Jan-26 19:29:46 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:31 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=JlXf4x0AhH1VHwqwUYTEOy9KnCLgYqum1wS_LK13xYc-1776878431.1108928-1.0.1.1-qXDqBCGRXnIyBy5j3zwYa7lKt3RJ4pePhuN6.TVh4M0yyB25n6y6Hsb0cPnWDdgroXwkNWYQHTb0yEkCpt42tJAPiqrhsb3TZDpUwRGX1n88sUGwuItaHy1iiKKJfKiq;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:31
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cb26a1fc9a8-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1726,7 +1814,7 @@ http_interactions:
         ICAgICAgImhyZWYiOiAiaHR0cHM6Ly9hcGkudzMub3JnL3NwZWNpZmljYXRp
         b25zL3dlYnJ0Yy92ZXJzaW9ucy8yMDIwMDgyNS9zdWNjZXNzb3JzIgogICAg
         ICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:46 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:31 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20191213
@@ -1735,7 +1823,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1746,33 +1834,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:46 GMT
+      - Wed, 22 Apr 2026 17:20:31 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a560cebd6f1-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:48 GMT
-      Set-Cookie:
-      - __cf_bm=LcHSM9nDaUbVcJqjAc3HxYkSRIoBs0qFj7vfI8Q0.5o-1769108386-1.0.1.1-V6OqUdpRx_wHe5y50g_1w5rK_SDzhu8FlZJGFo2rvPxjI.n3._M7oXaoJ44lUM9jEPtnfbWmyqU3ME__k5zFDEYGlWjzlem8_2t4mcFUFXk;
-        path=/; expires=Thu, 22-Jan-26 19:29:46 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:31 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=4OVGOgrjDWz2zW3_l6APa.hwUpknLPaB6l1hIVLe63Y-1776878431.3445227-1.0.1.1-H04NUhA2w.DABfgEEFX78FTtmdEdPuGzQ0HiM1M4WVH9exAh1tLH8aGaHSfy4PeiG0HByAoRGIi_DFfcu3qFxlDbPfs2htF9OFVrQQ.rjsVX_b1f3sH90iVoM82DKDkz;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:31
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cb3ef0c093a-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1805,7 +1897,7 @@ http_interactions:
         ICAgICAgImhyZWYiOiAiaHR0cHM6Ly9hcGkudzMub3JnL3NwZWNpZmljYXRp
         b25zL3dlYnJ0Yy92ZXJzaW9ucy8yMDE5MTIxMy9zdWNjZXNzb3JzIgogICAg
         ICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:46 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:31 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20180927
@@ -1814,7 +1906,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1825,33 +1917,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:46 GMT
+      - Wed, 22 Apr 2026 17:20:31 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a56f9f8de8e-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:48 GMT
-      Set-Cookie:
-      - __cf_bm=hXNGGdjuZhGs_rHPT7a5S_FVGS5Q7EfdfyTHUxku0to-1769108386-1.0.1.1-HQ7rWY5zwvfhsTSez2t7_.n1.92fv2QphKrPD2OEgA1Xs8Pw8VYJzg3hY6sHADOFGxESWsoIkgVqph5zlMC_LVgBZlqJy5qnzL9w8U0m8Ig;
-        path=/; expires=Thu, 22-Jan-26 19:29:46 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:31 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=xrWKobTQnlQS0wsRayl3gEOciT2KAk020PAeH7N.eGI-1776878431.5621653-1.0.1.1-BHiV6OX0GRTKWYxH2ehmDH0AMV1QGMv8aaRFa0oixDhRBDWPXnslTgf2GSoXzljKJqsDBSJTR7ru7gttzy0eV5C80WWGPS7JKyDMxNuhNGTpVnItywL.bwSWrRdD_ili;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:31
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cb53d5c2d10-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1885,7 +1981,7 @@ http_interactions:
         ICAgICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZp
         Y2F0aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAxODA5Mjcvc3VjY2Vzc29ycyIK
         ICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:46 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:31 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20180621
@@ -1894,7 +1990,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1905,33 +2001,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:46 GMT
+      - Wed, 22 Apr 2026 17:20:31 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a57eef68f17-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:48 GMT
-      Set-Cookie:
-      - __cf_bm=bLGtDNfZ2m_TZF81PDG8Rm0uQLtGfS5QzIuIYrD3cqk-1769108386-1.0.1.1-5NfEInrURaEYt7fQq0xZpm7kD2NCBW96qbkFh4wknp64WjUPaUfTst7oNA4JCu8228G0U4Rvb9hd6H3BdQ1wi8NXMYJQo3POfqg1uJzXBK0;
-        path=/; expires=Thu, 22-Jan-26 19:29:46 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:31 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=DgGS3i02nopivAgH7tppRjqM40HPLeWJER0DSkkE3qE-1776878431.8615348-1.0.1.1-679ofU_orxXQtQc1OqeS55JkTH4Sspt0J1C4ujpU_fxiUOsmYpSgTJdIMHvr9kXJKPJ_cIt3bqSg2EQH1hhRkdID.mSS8G2.kCyXNRWKV.UaZ0aI2DQFfVYE8X_STH_X;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:31
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cb71e6ee644-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -1965,7 +2065,7 @@ http_interactions:
         ICAgICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZp
         Y2F0aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAxODA2MjEvc3VjY2Vzc29ycyIK
         ICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:46 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:31 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20171102
@@ -1974,7 +2074,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1985,33 +2085,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:46 GMT
+      - Wed, 22 Apr 2026 17:20:32 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a58ca9cd739-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:48 GMT
-      Set-Cookie:
-      - __cf_bm=jNOnVP79VosbdOtWQeGm_O28DNaelakXAHzFPKygR3U-1769108386-1.0.1.1-amkzso5k_JAJbNDraMfzU_fTdSobXbHJ.idL4t1OWW8Ik4VEH8zY0LTq0Mr0mNT_9.VCPcpEBK.Amn12ed0T0zuH5.X0Y0KE2fffaPqvA_Q;
-        path=/; expires=Thu, 22-Jan-26 19:29:46 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:32 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=iPkNrXWrPLgS67UzxOuOfj9KKeRLIkX2yQm86WonMEU-1776878432.0699728-1.0.1.1-u.5hvVCoM0JA4gPlfaj1qwthbFDdGhHQj5bfhRgE3CYFo3qMttONxiGMoUWbrToebXwuknUls2qKlHISB5gTbB_ZK8mSJ_2oBuQJNmYTyCmjRjME8TeN5UKqFDFS.kUJ;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:32
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cb86df182f0-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2045,7 +2149,7 @@ http_interactions:
         ICAgICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZp
         Y2F0aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAxNzExMDIvc3VjY2Vzc29ycyIK
         ICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:46 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:32 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20170822
@@ -2054,7 +2158,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2065,33 +2169,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:46 GMT
+      - Wed, 22 Apr 2026 17:20:32 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a598abed692-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:48 GMT
-      Set-Cookie:
-      - __cf_bm=.aVuOGcHd6BsHRp1xq8kjTkk_67ZLk2amqRV7ySVZYo-1769108386-1.0.1.1-KWI9D0vlgCslVyl4l5jYVzAnLV2vuuU7li6Zc5EW96aC2V3yZxJgeA8dlpyRSgnoNpFSRedM8cb_tNKi91.sXc6I_qNOOaDcJmDZeaFNzYo;
-        path=/; expires=Thu, 22-Jan-26 19:29:46 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:32 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=TWf45f97MdusBzJIJ20SCqI9rao.X8wjr0sZG4KbRvQ-1776878432.3615563-1.0.1.1-04BrrKWwyXKZqTk_pTmTg9NvTyzsenSFx12ylwUITLDbwq04tmIypR12mlDfEGk1Jm8hO2Eo1vVfA_unrnOCiYgbe0kZsgN.iDIrWiUTF4DfezyXiE09RJHN8QXLmvji;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:32
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cba4d5fe5fe-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2123,7 +2231,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNzA4MjIvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:46 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:32 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20170605
@@ -2132,7 +2240,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2143,33 +2251,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:47 GMT
+      - Wed, 22 Apr 2026 17:20:32 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a5a9f1605ab-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:49 GMT
-      Set-Cookie:
-      - __cf_bm=bUECmR1byyCyQluyd.5Xx.FqPaAmVjilZWbXI.GITx4-1769108387-1.0.1.1-IB21kawcExBH2oQjBEqGp32t0JxED3QHB25xnUTOLVGF4Cen3qvF4z1wmX_5L_M6S3_iurM65_ADibvQRtR20mURoDeMkxa6XxQGurHZNB4;
-        path=/; expires=Thu, 22-Jan-26 19:29:47 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:32 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=hBHd9yLpwGH.SIIMcnGucgnNoSKxxSvY7Yu.H4VtZSM-1776878432.5847979-1.0.1.1-w4DG_E_Zm0JTuU1WjkIl76nQGoHi3KyiusSRL2ds_L_NcCSVOXfoRgK9eT36nzMmWc6pRLZuzXTd1Pyx_g7klG3bcs13_Qze53hDxLIe_BC3TW0ain6BrqOnLeR4LcJU;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:32
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cbbae0381f4-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2201,7 +2313,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNzA2MDUvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:47 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:32 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20170515
@@ -2210,7 +2322,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2221,33 +2333,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:47 GMT
+      - Wed, 22 Apr 2026 17:20:33 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a5b9cb8d962-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:49 GMT
-      Set-Cookie:
-      - __cf_bm=jiAZJ2YXpv7HMS7aXoZLVOksjZ2L2BrcW16EE.NmAWI-1769108387-1.0.1.1-ghaqAqxhPD4b2_WL5W7yfhZkklzFBd8QaGV4_zorjnbhn0lejjtk97KRASHWqkTh7tUraS.R50CUYr_N_h.cvU9fR_ZfGqSYkDPgxfF2SPo;
-        path=/; expires=Thu, 22-Jan-26 19:29:47 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:33 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=oNvDZ17PiC5nbQgo2rtLp3c6XZD7_1awxdAxX5.o72k-1776878433.047623-1.0.1.1-lyXsnFqYnsWO2.Ba3Jyh556kyiCaWGgmIuVq.5ZqELgf2BRSQjFf6ZJw_A7hdXwKZ49YKStMOJ47wM53GFb7jcV41SXN3b7SPAZSuEdmDfi6LCbg9kOGRYHSHhQW9.wJ;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:33
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cbe893305ab-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2279,7 +2395,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNzA1MTUvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:47 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:33 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20170508
@@ -2288,7 +2404,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2299,33 +2415,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:47 GMT
+      - Wed, 22 Apr 2026 17:20:33 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a5c59a62d11-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:49 GMT
-      Set-Cookie:
-      - __cf_bm=uAyO5LMlJ0wCI9TsavoG1sYzzMatBbGEzH2nVVPn3iA-1769108387-1.0.1.1-zXliDWiNSvieegx1w6tpI8Re7UQdB_eQKMk65ZUhZ5Fs.IqtsvDQTcJeUOTzB9R_a9Sz8lrejVQbIy67cf_zH7uAFOJ9u0.HWMGzrK_Y_fs;
-        path=/; expires=Thu, 22-Jan-26 19:29:47 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:33 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=TQPH6VHNZIHnvY_OQ3ulxRAlWmooj53M4z6nap09vrg-1776878433.3399284-1.0.1.1-FeQKcvAVD3alBOlYq3qaEeR4yfawI42it6h_CpRpSJuFmLSzzDnJ_c0kvuT0WigXYnFfgVln3ymKazcDDBjA2.XprB6Uo86j8m6R0Tr.8T14JKnS5alsaeeg988_fFbq;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:33
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cc05e89e646-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2357,7 +2477,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNzA1MDgvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:47 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:33 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20170313
@@ -2366,7 +2486,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2377,33 +2497,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:47 GMT
+      - Wed, 22 Apr 2026 17:20:33 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a5d7fd1356c-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:49 GMT
-      Set-Cookie:
-      - __cf_bm=sD9YRC9PLliXUDojG81wiuPOyAH9bNLSGmf8vv40Tuw-1769108387-1.0.1.1-JR5rrX9Plnj5cBDf_3D8ZlJtVNVhBwjAqB6WPo1qKaUyml8yDdxbq9FAup_hdfwa4u8_O_9lOmVym50DzRiSYRyWNPicNF9d8ss9ZFDYkOU;
-        path=/; expires=Thu, 22-Jan-26 19:29:47 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:33 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=F5XM5Vkook0V4HO7Ubj32KJroIf_4w5obyoYaD9I9D0-1776878433.582537-1.0.1.1-OshJT1iO7EUaRCt2WT64c0JUQTdeKdBFk2RmP2tlAF6L4MSjyw5JMCAi9dhOM..2LnXDBZFR8z3N68GHWCYSTYbZRpp4N2b5it4Gr1AR6Aw1NXrzGgHSvo8PcIM45Vx_;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:33
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cc1eee499f9-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2435,7 +2559,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNzAzMTMvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:47 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:33 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20161124
@@ -2444,7 +2568,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2455,33 +2579,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:47 GMT
+      - Wed, 22 Apr 2026 17:20:34 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a5e5f8d82c8-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:49 GMT
-      Set-Cookie:
-      - __cf_bm=_qh6L08vcjw5mDKrrnKf2jKDk8SUdqbSSDgujwg.Y4k-1769108387-1.0.1.1-3NIAiPYUkorEpuT4cIA5s0NPLQTBSljl6Iy04TkYxBZVPSL38fGXMLxkpvJR1Pm8hkIe5Qo0x3DBjID1bqrxq91PVju9NNUdqpjU5NsevJk;
-        path=/; expires=Thu, 22-Jan-26 19:29:47 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:34 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=9N2BhkZ3TFxW7c.kSX49F2EjZoiXMiQYbyC6XRysT8Q-1776878433.91038-1.0.1.1-MW378f5S5nFpbeGDkZl7JRZBC8O.PZOZKiFU009nWm1Q3.oWLL9SXe22wRSM2vYQXRJDU2mnQXOijtNUFWzXrx1XwUHY6YxLqNyJ_qXK_92TnDwa3bwsOzIP6cGcmLh_;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:34
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cc3eda93725-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2513,7 +2641,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNjExMjQvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:47 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:34 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20161123
@@ -2522,7 +2650,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2533,33 +2661,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:47 GMT
+      - Wed, 22 Apr 2026 17:20:34 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a5f5aa6db71-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '477'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:50 GMT
-      Set-Cookie:
-      - __cf_bm=P472JZyElOn6MnFAc0b25cvn5g9uRqu7D9EdBTBJvtI-1769108387-1.0.1.1-SE7VQ_BRHLu8PfZD8jflbXiFEdknbDjzc5CCSJLpiIMQTJrA65M22EX4wtyiDTNvmmTOnFsX.1MNIMAMcOVZawr8Qvm5GiUl7wpdQmSFcnA;
-        path=/; expires=Thu, 22-Jan-26 19:29:47 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:34 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=496Q.Iz.H9cuu3gsa7X53M_6vU4tJDanlz37PxOPERg-1776878434.1446962-1.0.1.1-W87fVt3lz35c9ti.H9SrQoLJBAB2x21rxZVOnYl1Ai3A9.tV6ui1zcAEFJRwnourSHi8a238flljma_PEpX4O.WMKQUy.Nfg3N2SXeV7hGyHut5ZI6_wckTw7Sq0J3VV;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:34
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cc56908c973-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2591,7 +2723,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNjExMjMvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:47 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:34 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20160913
@@ -2600,7 +2732,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2611,33 +2743,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:48 GMT
+      - Wed, 22 Apr 2026 17:20:34 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a602dc8e6e8-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '477'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:50 GMT
-      Set-Cookie:
-      - __cf_bm=pHHTZB3CFFjSBJK6OHKbBbyczmietaFgzAmUq6EMqpc-1769108388-1.0.1.1-WT5HHc5duBN6Ly89OjWgyRkOUDBoFMM2t4lI9eBaROCYRm2IKc3uO25TnftsJfGy1RzplUaLGQun_kkPMvd2LydTAtdvl3rnFRpSa4GbDlg;
-        path=/; expires=Thu, 22-Jan-26 19:29:48 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:34 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=00cwwyjhY2qxSpfeVMgkhf5wc529sl2EShFZQnqBaec-1776878434.433386-1.0.1.1-PHVZ3anYUhuHvh_Br0ww_0SiEhQUtrHese5f3U33N9vUYf.X3716T5Y7q_u7tGAjeXztjIpxoQDuRFvq.heIWdpC5pNN4AbaDrvGfb6rfJLTDKgadM7c6D_XyVK45kqR;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:34
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cc7382df685-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2669,7 +2805,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNjA5MTMvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:48 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:34 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20160803
@@ -2678,7 +2814,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2689,33 +2825,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:48 GMT
+      - Wed, 22 Apr 2026 17:20:34 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a61baa405eb-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:50 GMT
-      Set-Cookie:
-      - __cf_bm=3zYKCeJmR5C_lbmNVOJZrJAmdgRdcGypBcF2hrkdeDk-1769108388-1.0.1.1-DoxXXPe7A.OJWfYxNe22TsHQSXCpmjEqC73vO2HY4d2m3FiTBT514xjuNiVWdmmQsArcHeGXrBOBmKflvwQXfM3B8UOz2Aue7X3cxOpbYho;
-        path=/; expires=Thu, 22-Jan-26 19:29:48 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:34 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=KpipWyEA7WnPA0glAOUuf2swSCq4n6_y8X.AUFR64mk-1776878434.6237025-1.0.1.1-y_QdhviC3FBclxaPXlEG1P4ClFyJGVgK9UtEYvlCsE5kRx7KlPVrFuD15sgvOPr5OkFjm7ny0M1xGuqf.dKV8CPf1A97PBXM5phgIYo6MNhuOq7ZKNCjGr28meDPVMDl;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:34
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cc86ffae5fd-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2747,7 +2887,7 @@ http_interactions:
         Y2Vzc29yLXZlcnNpb24iOiB7CiAgICAgICAgICAgICJocmVmIjogImh0dHBz
         Oi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0aW9ucy93ZWJydGMvdmVyc2lvbnMv
         MjAxNjA4MDMvc3VjY2Vzc29ycyIKICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:48 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:34 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20160531
@@ -2756,7 +2896,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2767,33 +2907,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:48 GMT
+      - Wed, 22 Apr 2026 17:20:35 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a6299a6c987-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:50 GMT
-      Set-Cookie:
-      - __cf_bm=1wnhhpsDVoKWZF_RvQKrvwkdfg6Dv21KHkiYUeOLpK4-1769108388-1.0.1.1-AEg1mBB8C87vrwqU8q0QW8_93cpNPCofaDQkgcFQ84mvGZPAukxljj.Ng0215wkJM1PklmjmvHzXamB03kNwmfCIQaJ9sLcMMidsw1mOqNE;
-        path=/; expires=Thu, 22-Jan-26 19:29:48 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:35 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=6BNWF_XutxGUacaEksjDr47HdRJBn_UY14kh5Q88.NA-1776878434.9146721-1.0.1.1-g6h9D7dO2NWnk0Z39325EJBsn8AdTeCFNubG8s3zI5TQ5sPH0XizO8Oh1JM694BQVDPoOnXyl8S85Cl5uXGEnbL2EUpsUwlE6wZDeqxkCpXDTyaEHnRWbFHefxGQJTT9;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:35
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cca2e7ae5f7-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2825,7 +2969,7 @@ http_interactions:
         ZXNzb3ItdmVyc2lvbiI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0cHM6
         Ly9hcGkudzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9ucy8y
         MDE2MDUzMS9zdWNjZXNzb3JzIgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:48 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:35 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20160128
@@ -2834,7 +2978,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2845,33 +2989,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:48 GMT
+      - Wed, 22 Apr 2026 17:20:35 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a63ae1d20d7-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:50 GMT
-      Set-Cookie:
-      - __cf_bm=HRyB3EZSk6jEJeDk_qUytmiBCYmjLaFApMlKHyM_4fQ-1769108388-1.0.1.1-KLcCNaYLoO30BE58VkkS7xt_Rc.vIaS_cqtZV.Jq5PffDIxfgbZLRjqOUgiZHeOGijuIHp52bd0GkpfjKTo9AnFsBlH8uYAeB5WAc6NvRV0;
-        path=/; expires=Thu, 22-Jan-26 19:29:48 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:35 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=.W9lR_O3WTJckR4Y8kRScNpmco2GNVWAUdP88NPBe.o-1776878435.1475391-1.0.1.1-RwM6XG1lsiTiv_EV1j.txNj1r70DSr_TzlLucq5JJiplFWezkrSA4ACzvbbJ5_uP8L2vX8Tce6NB6amD_whKX0c.jTMBL8HqsLpRS7NfYFd.a031_dxnegurLs1mRf0c;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:35
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ccba91405dc-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2903,7 +3051,7 @@ http_interactions:
         ZXNzb3ItdmVyc2lvbiI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0cHM6
         Ly9hcGkudzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9ucy8y
         MDE2MDEyOC9zdWNjZXNzb3JzIgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:48 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:35 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20150210
@@ -2912,7 +3060,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -2923,33 +3071,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:48 GMT
+      - Wed, 22 Apr 2026 17:20:35 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a64ad341b39-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '477'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:51 GMT
-      Set-Cookie:
-      - __cf_bm=QBfhLWg2Ep6i6Qcttg3D9_5HDjOTmYPA9BmTN0ug1dU-1769108388-1.0.1.1-frwnog.lxPUjxkRHc_9GSWEvvYgJELWzTcDVsogdJ_mhPcZwGabE1oU_qBdLtquEVd650cX8IZ_MlqlFFNqNuJNEAOWStTg.x9WzE.P09qk;
-        path=/; expires=Thu, 22-Jan-26 19:29:48 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:35 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=saPX0noCnnfgZhmkHkpMTfKSnH2_OtV23idZseQcu6M-1776878435.4506586-1.0.1.1-cKh.PMjrJ6CQ6uNdK9BsrelhJvLyr4bcP.oJwuElesdrn5ww.C94MF4HTh4UUopvYZ1h.VhsKe7.qKRETAHNVdoi6OIXRijN0eyAgahqK2jvjomb4s1GyozjOWfcOcl5;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:35
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ccd8e2fd63c-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -2981,7 +3133,7 @@ http_interactions:
         ZXNzb3ItdmVyc2lvbiI6IHsKICAgICAgICAgICAgImhyZWYiOiAiaHR0cHM6
         Ly9hcGkudzMub3JnL3NwZWNpZmljYXRpb25zL3dlYnJ0Yy92ZXJzaW9ucy8y
         MDE1MDIxMC9zdWNjZXNzb3JzIgogICAgICAgIH0KICAgIH0KfQ==
-  recorded_at: Thu, 22 Jan 2026 18:59:48 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:35 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20130910
@@ -2990,7 +3142,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -3001,33 +3153,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:48 GMT
+      - Wed, 22 Apr 2026 17:20:35 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a658fd639a4-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '477'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:51 GMT
-      Set-Cookie:
-      - __cf_bm=5urZfk_18.iPd8hB_dCRMNGVYwnsqvKNul7prQgF7HA-1769108388-1.0.1.1-_SMIrcnwPTo8MF9mJwqUuYCdseDZFQQ3eQnbud6THT99np4NLUkeFiWf8LxerAA0_FRHCA62D0a5NKaMyIxwqtKhcjab1xrhoiBLsN4Lgyo;
-        path=/; expires=Thu, 22-Jan-26 19:29:48 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:35 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=dbf6gWDBA3itDyBsPE5APOM7ZuUC3297RyG.GyJ9qFo-1776878435.6334405-1.0.1.1-ubMkM006ydRIpFjIc6SQI1PVMMAElfJnqJn.e7oeipNpI8j9v7Lf1zh0M.J3mT1dcWlj1H9gfPqtlhs37N8_jzLyRqrdiiDqpmTGxjpwCl4PB47uMqa75nmRygXw2T.a;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:35
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ccebad56fcd-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -3058,7 +3214,7 @@ http_interactions:
         ICAgICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZp
         Y2F0aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAxMzA5MTAvc3VjY2Vzc29ycyIK
         ICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:48 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:35 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20120821
@@ -3067,7 +3223,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -3078,33 +3234,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:48 GMT
+      - Wed, 22 Apr 2026 17:20:35 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a666c450660-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '477'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:51 GMT
-      Set-Cookie:
-      - __cf_bm=wLOZ03w6ElOCFqwg6T3tiCcqfur0.LgOe2L6y_gE62s-1769108388-1.0.1.1-Cl2hUfa24QSxRc5d8k26OfDURKiSxPa5j0JYVjYi6OgH8gUKR6mcIqsx27qOzR8ScC4XD8JSTx97vhXi9KwRjV6UqEM3LmMQpjqaJ_NU76g;
-        path=/; expires=Thu, 22-Jan-26 19:29:48 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:35 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=O8BAg4pNcPILmF9hUWx3f95j7q3YSwzJ8xEnZ.ezEDQ-1776878435.8392103-1.0.1.1-hzvEVZGoTb3nVENThiLBLZqNvQ693a19kNTOmBlV3mdktl0ICNruobftztQrV_Gy1vPBteaBGPhHkeze9X_IeHb0G1MYb_sRbJbSVkXbCYjtQ_wUlUyDVWt94rm8mJ6J;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:35
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064ccffcb9a568-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -3135,7 +3295,7 @@ http_interactions:
         ICAgICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZp
         Y2F0aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAxMjA4MjEvc3VjY2Vzc29ycyIK
         ICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:48 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:35 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20120209
@@ -3144,7 +3304,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -3155,33 +3315,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:49 GMT
+      - Wed, 22 Apr 2026 17:20:36 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a677a4e90c8-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:51 GMT
-      Set-Cookie:
-      - __cf_bm=ktCbrwqsyByTPWH8HvCqbO6iUZZ9EeEoeT3IUKK9WHI-1769108389-1.0.1.1-KPPPxeXbx_ru96Ub9PeVTeOl4chbvWin6olTkaX9XaqslZ9sp.bNxpKenoNLUL7KM6Fup7Loy09MW48TPrjDmWRPAJqmX8VzVdaOfWR2RV4;
-        path=/; expires=Thu, 22-Jan-26 19:29:49 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:36 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=Abv7AwaGO3vlVTGFna8mEcx9kSvEbfD8gp7q.ag.osw-1776878436.0835648-1.0.1.1-moAxthODbRWq1CP5RbmuYuVy3t_lUHHZDdfz13KHKITgAU5yEbfuluYPQL7ZCA0KpcN_1PlLyrTFev5uJjBEAcKX85JNbxBm2s6Xq7MeCWhcE_KA.LMnUu6LZzU5eTCx;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:36
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cd17e4b1757-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -3212,7 +3376,7 @@ http_interactions:
         ICAgICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZp
         Y2F0aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAxMjAyMDkvc3VjY2Vzc29ycyIK
         ICAgICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:49 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:36 GMT
 - request:
     method: get
     uri: https://api.w3.org/specifications/webrtc/versions/20111027
@@ -3221,7 +3385,7 @@ http_interactions:
       base64_string: ''
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -3232,33 +3396,37 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 22 Jan 2026 18:59:49 GMT
+      - Wed, 22 Apr 2026 17:20:36 GMT
       Content-Type:
       - application/hal+json;version=1.0
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Cf-Ray:
-      - 9c214a687c1e96a2-IAD
+      Server:
+      - cloudflare
       Cache-Control:
       - public, s-maxage=900
       Access-Control-Allow-Origin:
       - "*"
-      Cf-Cache-Status:
-      - HIT
-      Age:
-      - '478'
+      Content-Security-Policy:
+      - upgrade-insecure-requests
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubdomains; preload
       Last-Modified:
-      - Thu, 22 Jan 2026 18:51:51 GMT
-      Set-Cookie:
-      - __cf_bm=hPjf615iFgXS8dmZM3f5wM0mMHX2iAdTIRB948C3Hjw-1769108389-1.0.1.1-kzy7SChpJCbfw85Ii6lBTXXbEegH_vR9Gwa6kMeLg7X7KrfFBsmdSnwdXy8ut31uIJV.j3J48UU.qGpOFqf.kdYtTfGrHondaaC50.l5t_g;
-        path=/; expires=Thu, 22-Jan-26 19:29:49 GMT; domain=.w3.org; HttpOnly; Secure;
-        SameSite=None
+      - Wed, 22 Apr 2026 17:20:36 GMT
+      Cf-Cache-Status:
+      - MISS
       Vary:
-      - Accept-Encoding
-      Server:
-      - cloudflare
+      - accept-encoding
+      Set-Cookie:
+      - __cf_bm=p61d6cKuBh9UJhrBOeQSwQgffv1gWJIarjE2MsPIt2g-1776878436.3135056-1.0.1.1-gCQC9dekVMaQjwT2oaVyfzdax0uhJHzAmUnTPYnqbTeAfGdOE9ZmmAy99LXVvTG3dRUQW8uaSbBmJJNjLchp2WoxZkIG5DLbp.nDxV8bHX7ZToT2cCyyRq_jDs1pWhvt;
+        HttpOnly; Secure; Path=/; Domain=w3.org; Expires=Wed, 22 Apr 2026 17:50:36
+        GMT
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 9f064cd2fa99c958-IAD
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -3286,5 +3454,5 @@ http_interactions:
         ICAgICAgICJocmVmIjogImh0dHBzOi8vYXBpLnczLm9yZy9zcGVjaWZpY2F0
         aW9ucy93ZWJydGMvdmVyc2lvbnMvMjAxMTEwMjcvc3VjY2Vzc29ycyIKICAg
         ICAgICB9CiAgICB9Cn0=
-  recorded_at: Thu, 22 Jan 2026 18:59:49 GMT
+  recorded_at: Wed, 22 Apr 2026 17:20:36 GMT
 recorded_with: VCR 6.4.0

@@ -314,7 +314,7 @@ module RelatonW3c
       return unless @spec.links.respond_to?(:deliverers)
 
       deliverers = realize @spec.links.deliverers
-      return unless deliverers.links.deliverers
+      return unless deliverers&.links&.deliverers
 
       tc = deliverers.links.deliverers.map do |edg|
         wg = RelatonBib::WorkGroup.new(name: edg.title)
