@@ -109,16 +109,31 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
 
     context "when Lutaml::Hal::ServerError is raised" do
       before do
-        allow(obj).to receive(:realize).and_raise(Lutaml::Hal::ServerError, "500")
+        allow(handler).to receive(:sleep)
         allow(Relaton.logger_pool).to receive(:warn)
       end
 
-      it "warns, caches nil, and returns nil" do
+      it "retries and succeeds on transient 5xx" do
+        call_count = 0
+        allow(obj).to receive(:realize) do
+          call_count += 1
+          raise Lutaml::Hal::ServerError, "500" if call_count < 3
+          realized
+        end
+
+        result = handler.realize(obj)
+        expect(result).to eq realized
+        expect(call_count).to eq 3
+      end
+
+      it "gives up after MAX_RETRIES and caches nil on persistent 5xx" do
+        allow(obj).to receive(:realize).and_raise(Lutaml::Hal::ServerError, "500")
+
         result = handler.realize(obj)
         expect(result).to be_nil
         expect(Relaton::W3c::RateLimitHandler.fetched_objects[href]).to be_nil
         expect(Relaton::W3c::RateLimitHandler.fetched_objects).to have_key(href)
-        expect(Relaton.logger_pool).to have_received(:warn).with(/Server error/, anything)
+        expect(Relaton.logger_pool).to have_received(:warn).with(/Server error for .* skipping/, anything)
       end
     end
   end

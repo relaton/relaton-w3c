@@ -4,7 +4,7 @@ module Relaton
       MAX_RETRIES = 5
       RETRYABLE_ERRORS = [
         NameError, Lutaml::Hal::ConnectionError, Lutaml::Hal::TimeoutError,
-        Faraday::ConnectionFailed, Net::OpenTimeout,
+        Lutaml::Hal::ServerError, Faraday::ConnectionFailed, Net::OpenTimeout,
       ].freeze
 
       def self.fetched_objects
@@ -25,6 +25,11 @@ module Relaton
             Util.warn "Rate limit exceeded for #{href}, retrying in #{sleep_time} seconds..."
             sleep sleep_time
             retry
+          elsif e.is_a?(Lutaml::Hal::ServerError)
+            # Persistent 5xx — cache nil so a permanently broken upstream
+            # resource is skipped on the next lookup instead of re-tried.
+            Util.warn "Server error for #{href}, skipping: #{e.message}"
+            RateLimitHandler.fetched_objects[href] = nil
           else
             # Do not cache on retries exhausted — transient failures should not
             # permanently poison the cache; subsequent calls will retry fresh.
@@ -32,9 +37,6 @@ module Relaton
           end
         rescue Lutaml::Hal::NotFoundError
           Util.warn "Object not found: #{href}"
-          RateLimitHandler.fetched_objects[href] = nil
-        rescue Lutaml::Hal::ServerError => e
-          Util.warn "Server error while realizing object: #{href}, error: #{e.message}"
           RateLimitHandler.fetched_objects[href] = nil
         end
       end

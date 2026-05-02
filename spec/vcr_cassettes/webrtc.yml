@@ -40,6 +40,8 @@ http_interactions:
       - Sat, 18 Apr 2026 02:48:06 GMT
       Age:
       - '2'
+      Last-Modified:
+      - Thu, 23 Apr 2026 16:33:46 GMT
       Cf-Cache-Status:
       - HIT
       Vary:
@@ -359,6 +361,8 @@ http_interactions:
       - Sat, 18 Apr 2026 02:48:07 GMT
       Age:
       - '2'
+      Last-Modified:
+      - Thu, 23 Apr 2026 16:33:47 GMT
       Cf-Cache-Status:
       - HIT
       Vary:
@@ -440,6 +444,8 @@ http_interactions:
       - Sat, 18 Apr 2026 02:48:06 GMT
       Age:
       - '3'
+      Last-Modified:
+      - Thu, 23 Apr 2026 16:33:46 GMT
       Cf-Cache-Status:
       - HIT
       Vary:
@@ -524,6 +530,8 @@ http_interactions:
       - Sat, 18 Apr 2026 02:48:06 GMT
       Age:
       - '2'
+      Last-Modified:
+      - Thu, 23 Apr 2026 16:33:47 GMT
       Cf-Cache-Status:
       - HIT
       Vary:
