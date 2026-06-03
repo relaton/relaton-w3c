@@ -10,7 +10,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
 
   subject(:handler) { dummy_class.new }
 
-  before { Relaton::W3c::RateLimitHandler.fetched_objects.clear }
+  before { Relaton::W3c::RateLimitHandler.skipped.clear }
 
   describe "#resolve_href" do
     it "returns obj.href when present" do
@@ -31,22 +31,21 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
     let(:realized) { double("realized_object") }
     let(:obj) { double(href: href) }
 
-    context "when the object is already cached" do
-      before { Relaton::W3c::RateLimitHandler.fetched_objects[href] = realized }
+    context "when obj.realize succeeds" do
+      before { allow(obj).to receive(:realize).and_return(realized) }
 
-      it "returns the cached value without calling obj.realize" do
-        expect(obj).not_to receive(:realize)
+      it "returns the realized object (caching is w3c_api's job)" do
+        # No memoization here — repeat fetches are served by w3c_api's cache.
         expect(handler.realize(obj)).to eq realized
       end
     end
 
-    context "when obj.realize succeeds" do
-      before { allow(obj).to receive(:realize).and_return(realized) }
+    context "when the href was already skipped" do
+      before { Relaton::W3c::RateLimitHandler.skipped[href] = true }
 
-      it "caches and returns the realized object" do
-        result = handler.realize(obj)
-        expect(result).to eq realized
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects[href]).to eq realized
+      it "returns nil without calling obj.realize" do
+        expect(obj).not_to receive(:realize)
+        expect(handler.realize(obj)).to be_nil
       end
     end
 
@@ -55,7 +54,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
     context "when a network error reaches the handler" do
       before { allow(Relaton.logger_pool).to receive(:warn) }
 
-      it "does not retry and does not cache, so a later reference can try again" do
+      it "does not retry and does not skip, so a later reference can try again" do
         call_count = 0
         allow(obj).to receive(:realize) do
           call_count += 1
@@ -65,7 +64,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
         result = handler.realize(obj)
         expect(result).to be_nil
         expect(call_count).to eq 1
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be false
+        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be false
         expect(Relaton.logger_pool).to have_received(:warn).with(/Failed to realize object/, anything)
       end
     end
@@ -76,11 +75,10 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
         allow(Relaton.logger_pool).to receive(:warn)
       end
 
-      it "warns, caches nil, and returns nil" do
+      it "warns, skips the resource, and returns nil" do
         result = handler.realize(obj)
         expect(result).to be_nil
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects[href]).to be_nil
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be true
+        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
         expect(Relaton.logger_pool).to have_received(:warn).with(/Object not found/, anything)
       end
     end
@@ -88,7 +86,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
     context "when a definitive upstream error reaches the handler" do
       before { allow(Relaton.logger_pool).to receive(:warn) }
 
-      it "caches nil for a persistent 403 (W3C rate-limit) without retrying" do
+      it "skips a persistent 403 (W3C rate-limit) without retrying" do
         call_count = 0
         allow(obj).to receive(:realize) do
           call_count += 1
@@ -98,12 +96,11 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
         result = handler.realize(obj)
         expect(result).to be_nil
         expect(call_count).to eq 1
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects[href]).to be_nil
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be true
+        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
         expect(Relaton.logger_pool).to have_received(:warn).with(/Skipping .* upstream error/, anything)
       end
 
-      it "caches nil for a 5xx without retrying" do
+      it "skips a 5xx without retrying" do
         call_count = 0
         allow(obj).to receive(:realize) do
           call_count += 1
@@ -113,15 +110,15 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
         result = handler.realize(obj)
         expect(result).to be_nil
         expect(call_count).to eq 1
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be true
+        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
       end
 
-      it "caches nil for a 429 without retrying" do
+      it "skips a 429 without retrying" do
         allow(obj).to receive(:realize).and_raise(Lutaml::Hal::TooManyRequestsError, "429")
 
         result = handler.realize(obj)
         expect(result).to be_nil
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be true
+        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
       end
     end
   end

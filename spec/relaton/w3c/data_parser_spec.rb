@@ -8,7 +8,7 @@ RSpec.describe Relaton::W3c::DataParser do
 
   subject { described_class.new specification }
 
-  before { Relaton::W3c::RateLimitHandler.fetched_objects.clear }
+  before { Relaton::W3c::RateLimitHandler.skipped.clear }
 
   it "create instance and run parsing" do
     parser = double "parser"

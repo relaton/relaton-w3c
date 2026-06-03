@@ -49,7 +49,7 @@ All classes live under `lib/relaton/w3c/` in the `Relaton::W3c` namespace:
 **Data fetching:**
 - **`DataFetcher`** (`data_fetcher.rb`) — extends `Core::DataFetcher`, fetches all W3C specs via the W3C API
 - **`DataParser`** (`data_parser.rb`) — converts W3C API spec objects into `Relaton::W3c::Item` instances
-- **`RateLimitHandler`** (`rate_limit_handler.rb`) — mixin that memoizes realized API objects and, on a terminal error, skips the resource (see Rate limiting & retries). It no longer retries — that lives upstream.
+- **`RateLimitHandler`** (`rate_limit_handler.rb`) — mixin that, on a terminal error, skips the resource (returns `nil`) so one bad link doesn't abort the crawl (see Rate limiting & retries). It does not retry or cache successes — those live upstream.
 - **`PubId`** (`pubid.rb`) — parses and compares W3C document identifiers (stage, code, date parts)
 
 **Utilities:**
@@ -63,7 +63,7 @@ Transient-failure resilience is layered upstream, not in this gem:
 - **w3c_api** builds its HAL client with `faraday-retry` to retry HTTP 403 (the W3C rate-limit signal) and connection/timeout errors.
 - **lutaml-hal** (beneath w3c_api) retries 429 and 5xx with exponential backoff.
 
-`RateLimitHandler` therefore does **not** retry. It memoizes realized objects in a `{ href => object }` map so a document linked from many places is fetched once, and on a terminal error caches `nil` to skip the resource so one bad link doesn't abort the crawl (network errors are left uncached so a later reference can retry).
+Successful objects are cached by **w3c_api** (lutaml-hal caches realized objects keyed by URL, thread-safely as of lutaml-hal 0.2.1), so `RateLimitHandler` doesn't cache them. It only **retries nothing** and remembers hrefs that failed terminally (in a `Concurrent::Map`), returning `nil` for them so one bad link doesn't abort the crawl and isn't re-fetched on every reference. Network errors are not remembered, so a later reference can try again.
 
 ### Key Dependencies
 
