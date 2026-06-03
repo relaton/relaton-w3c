@@ -42,5 +42,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "shex", "~> 0.7"
   spec.add_dependency "csv", "~> 3.0"
   spec.add_dependency "sparql", "~> 3.2"
-  spec.add_dependency "w3c_api", "~> 0.1.3"
+  spec.add_dependency "w3c_api", "~> 0.3.0"
 end
