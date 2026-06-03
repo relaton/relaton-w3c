@@ -10,16 +10,21 @@ module Relaton
     # Transient failures are retried upstream: w3c_api retries HTTP 403 (the
     # W3C rate-limit signal) and connection/timeout errors, and lutaml-hal
     # retries 429 and 5xx. By the time an error surfaces here it is terminal.
-    module RateLimitHandler
-      # Hrefs that failed terminally. Concurrent::Map so the parallel fetcher's
-      # threads can record/check without a global lock.
+    module SafeRealize
+      # Hrefs that failed terminally — one map shared by every includer
+      # (DataFetcher and DataParser) since a broken resource is broken for the
+      # whole crawl. Initialized eagerly (at load, single-threaded) so the
+      # parallel fetcher's first concurrent access can't race a lazy `||=`;
+      # Concurrent::Map then handles the concurrent reads/writes.
+      @skipped = Concurrent::Map.new
+
       def self.skipped
-        @skipped ||= Concurrent::Map.new
+        @skipped
       end
 
       def realize(obj)
         href = resolve_href(obj)
-        return nil if RateLimitHandler.skipped.key?(href)
+        return nil if SafeRealize.skipped.key?(href)
 
         obj.realize
       rescue Lutaml::Hal::ConnectionError, Lutaml::Hal::TimeoutError, Faraday::Error, Net::OpenTimeout => e
@@ -29,14 +34,14 @@ module Relaton
         nil
       rescue Lutaml::Hal::NotFoundError
         Util.warn "Object not found: #{href}"
-        RateLimitHandler.skipped[href] = true
+        SafeRealize.skipped[href] = true
         nil
       rescue Lutaml::Hal::Error => e
         # Definitive upstream error (403 rate-limit, 5xx, 429) already retried by
         # w3c_api / lutaml-hal. Skip the broken/unavailable resource rather than
         # re-hitting it for every link that references it.
         Util.warn "Skipping #{href}, upstream error after retries: #{e.message}"
-        RateLimitHandler.skipped[href] = true
+        SafeRealize.skipped[href] = true
         nil
       end
 

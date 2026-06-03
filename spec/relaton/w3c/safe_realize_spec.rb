@@ -1,16 +1,16 @@
 require "spec_helper"
 require_relative "../../../lib/relaton/w3c/data_fetcher"
 
-RSpec.describe Relaton::W3c::RateLimitHandler do
+RSpec.describe Relaton::W3c::SafeRealize do
   let(:dummy_class) do
     Class.new do
-      include Relaton::W3c::RateLimitHandler
+      include Relaton::W3c::SafeRealize
     end
   end
 
   subject(:handler) { dummy_class.new }
 
-  before { Relaton::W3c::RateLimitHandler.skipped.clear }
+  before { Relaton::W3c::SafeRealize.skipped.clear }
 
   describe "#resolve_href" do
     it "returns obj.href when present" do
@@ -41,7 +41,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
     end
 
     context "when the href was already skipped" do
-      before { Relaton::W3c::RateLimitHandler.skipped[href] = true }
+      before { Relaton::W3c::SafeRealize.skipped[href] = true }
 
       it "returns nil without calling obj.realize" do
         expect(obj).not_to receive(:realize)
@@ -64,7 +64,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
         result = handler.realize(obj)
         expect(result).to be_nil
         expect(call_count).to eq 1
-        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be false
+        expect(Relaton::W3c::SafeRealize.skipped.key?(href)).to be false
         expect(Relaton.logger_pool).to have_received(:warn).with(/Failed to realize object/, anything)
       end
     end
@@ -78,7 +78,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
       it "warns, skips the resource, and returns nil" do
         result = handler.realize(obj)
         expect(result).to be_nil
-        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
+        expect(Relaton::W3c::SafeRealize.skipped.key?(href)).to be true
         expect(Relaton.logger_pool).to have_received(:warn).with(/Object not found/, anything)
       end
     end
@@ -96,7 +96,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
         result = handler.realize(obj)
         expect(result).to be_nil
         expect(call_count).to eq 1
-        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
+        expect(Relaton::W3c::SafeRealize.skipped.key?(href)).to be true
         expect(Relaton.logger_pool).to have_received(:warn).with(/Skipping .* upstream error/, anything)
       end
 
@@ -110,7 +110,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
         result = handler.realize(obj)
         expect(result).to be_nil
         expect(call_count).to eq 1
-        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
+        expect(Relaton::W3c::SafeRealize.skipped.key?(href)).to be true
       end
 
       it "skips a 429 without retrying" do
@@ -118,7 +118,7 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
 
         result = handler.realize(obj)
         expect(result).to be_nil
-        expect(Relaton::W3c::RateLimitHandler.skipped.key?(href)).to be true
+        expect(Relaton::W3c::SafeRealize.skipped.key?(href)).to be true
       end
     end
   end

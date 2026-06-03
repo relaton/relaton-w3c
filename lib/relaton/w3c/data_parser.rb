@@ -1,7 +1,7 @@
 module Relaton
   module W3c
     class DataParser
-      include Relaton::W3c::RateLimitHandler
+      include Relaton::W3c::SafeRealize
 
       USED_TYPES = %w[WD NOTE PER PR REC CR].freeze
 
