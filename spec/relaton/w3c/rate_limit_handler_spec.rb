@@ -50,43 +50,21 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
       end
     end
 
-    context "when a retryable error occurs" do
-      before do
-        allow(handler).to receive(:sleep)
-        allow(Relaton.logger_pool).to receive(:warn)
-      end
+    # Retries now live upstream (w3c_api retries 403 + connection/timeout,
+    # lutaml-hal retries 429 + 5xx), so the handler never retries.
+    context "when a network error reaches the handler" do
+      before { allow(Relaton.logger_pool).to receive(:warn) }
 
-      it "retries and succeeds" do
+      it "does not retry and does not cache, so a later reference can try again" do
         call_count = 0
         allow(obj).to receive(:realize) do
           call_count += 1
-          raise Faraday::ConnectionFailed, "connection failed" if call_count < 3
-          realized
-        end
-
-        result = handler.realize(obj)
-        expect(result).to eq realized
-        expect(call_count).to eq 3
-      end
-
-      it "uses exponential backoff sleep times" do
-        allow(obj).to receive(:realize) do
           raise Faraday::ConnectionFailed, "connection failed"
         end
 
-        handler.realize(obj)
-
-        expect(handler).to have_received(:sleep).with(1).ordered
-        expect(handler).to have_received(:sleep).with(4).ordered
-        expect(handler).to have_received(:sleep).with(9).ordered
-        expect(handler).to have_received(:sleep).with(16).ordered
-      end
-
-      it "gives up after MAX_RETRIES and does not cache" do
-        allow(obj).to receive(:realize).and_raise(Faraday::ConnectionFailed, "fail")
-
         result = handler.realize(obj)
         expect(result).to be_nil
+        expect(call_count).to eq 1
         expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be false
         expect(Relaton.logger_pool).to have_received(:warn).with(/Failed to realize object/, anything)
       end
@@ -107,63 +85,43 @@ RSpec.describe Relaton::W3c::RateLimitHandler do
       end
     end
 
-    context "when Lutaml::Hal::Error is raised (e.g. 403 rate-limit)" do
-      before do
-        allow(handler).to receive(:sleep)
-        allow(Relaton.logger_pool).to receive(:warn)
-      end
+    context "when a definitive upstream error reaches the handler" do
+      before { allow(Relaton.logger_pool).to receive(:warn) }
 
-      it "retries with backoff and succeeds on transient 403" do
+      it "caches nil for a persistent 403 (W3C rate-limit) without retrying" do
         call_count = 0
         allow(obj).to receive(:realize) do
           call_count += 1
-          raise Lutaml::Hal::Error, "Status: 403" if call_count < 3
-          realized
+          raise Lutaml::Hal::Error, "Status: 403"
         end
 
         result = handler.realize(obj)
-        expect(result).to eq realized
-        expect(call_count).to eq 3
-      end
-
-      it "gives up after MAX_RETRIES and caches nil on persistent 403" do
-        allow(obj).to receive(:realize).and_raise(Lutaml::Hal::Error, "Status: 403")
-
-        result = handler.realize(obj)
         expect(result).to be_nil
+        expect(call_count).to eq 1
         expect(Relaton::W3c::RateLimitHandler.fetched_objects[href]).to be_nil
         expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be true
-        expect(Relaton.logger_pool).to have_received(:warn).with(/Client error for .* skipping after retries/, anything)
-      end
-    end
-
-    context "when Lutaml::Hal::ServerError is raised" do
-      before do
-        allow(handler).to receive(:sleep)
-        allow(Relaton.logger_pool).to receive(:warn)
+        expect(Relaton.logger_pool).to have_received(:warn).with(/Skipping .* upstream error/, anything)
       end
 
-      it "retries and succeeds on transient 5xx" do
+      it "caches nil for a 5xx without retrying" do
         call_count = 0
         allow(obj).to receive(:realize) do
           call_count += 1
-          raise Lutaml::Hal::ServerError, "500" if call_count < 3
-          realized
+          raise Lutaml::Hal::ServerError, "500"
         end
 
         result = handler.realize(obj)
-        expect(result).to eq realized
-        expect(call_count).to eq 3
+        expect(result).to be_nil
+        expect(call_count).to eq 1
+        expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be true
       end
 
-      it "gives up after MAX_RETRIES and caches nil on persistent 5xx" do
-        allow(obj).to receive(:realize).and_raise(Lutaml::Hal::ServerError, "500")
+      it "caches nil for a 429 without retrying" do
+        allow(obj).to receive(:realize).and_raise(Lutaml::Hal::TooManyRequestsError, "429")
 
         result = handler.realize(obj)
         expect(result).to be_nil
-        expect(Relaton::W3c::RateLimitHandler.fetched_objects[href]).to be_nil
         expect(Relaton::W3c::RateLimitHandler.fetched_objects.key?(href)).to be true
-        expect(Relaton.logger_pool).to have_received(:warn).with(/Server error for .* skipping/, anything)
       end
     end
   end
