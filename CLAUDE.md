@@ -49,7 +49,7 @@ All classes live under `lib/relaton/w3c/` in the `Relaton::W3c` namespace:
 **Data fetching:**
 - **`DataFetcher`** (`data_fetcher.rb`) — extends `Core::DataFetcher`, fetches all W3C specs via the W3C API
 - **`DataParser`** (`data_parser.rb`) — converts W3C API spec objects into `Relaton::W3c::Item` instances
-- **`RateLimitHandler`** (`rate_limit_handler.rb`) — mixin for retry logic and caching of fetched API objects
+- **`RateLimitHandler`** (`rate_limit_handler.rb`) — mixin that memoizes realized API objects and, on a terminal error, skips the resource (see Rate limiting & retries). It no longer retries — that lives upstream.
 - **`PubId`** (`pubid.rb`) — parses and compares W3C document identifiers (stage, code, date parts)
 
 **Utilities:**
@@ -57,13 +57,22 @@ All classes live under `lib/relaton/w3c/` in the `Relaton::W3c` namespace:
 
 The entry module is defined in `lib/relaton/w3c.rb` and exposes `grammar_hash`.
 
+### Rate limiting & retries
+
+Transient-failure resilience is layered upstream, not in this gem:
+- **w3c_api** builds its HAL client with `faraday-retry` to retry HTTP 403 (the W3C rate-limit signal) and connection/timeout errors.
+- **lutaml-hal** (beneath w3c_api) retries 429 and 5xx with exponential backoff.
+
+`RateLimitHandler` therefore does **not** retry. It memoizes realized objects in a `{ href => object }` map so a document linked from many places is fetched once, and on a terminal error caches `nil` to skip the resource so one bad link doesn't abort the crawl (network errors are left uncached so a later reference can retry).
+
 ### Key Dependencies
 
-- **relaton-bib** (~> 2.0.0-alpha) — provides base `Bib::Item`, `Bib::Ext`, `Bib::Doctype` and serialization mixins (LutaML model layer)
+- **relaton-bib** (~> 2.1.0) — provides base `Bib::Item`, `Bib::Ext`, `Bib::Doctype` and serialization mixins (LutaML model layer)
 - **relaton-core** — provides base `Core::Processor` and `Core::DataFetcher`
-- **relaton-index** — index-based search for bibliographic references
-- **w3c_api** — W3C API client used by `DataFetcher` to retrieve specifications
-- **linkeddata/rdf/sparql** — legacy RDF dependencies (still in gemspec)
+- **relaton-index** — index-based search for bibliographic references; also unpacks the index zip at runtime
+- **w3c_api** (~> 0.3.0) — W3C API (HAL/REST) client used by `DataFetcher` to retrieve specifications; owns rate-limit and transient-error retries
+
+The W3C data is fetched entirely through `w3c_api`; the older RDF/SPARQL/scraping stack (linkeddata, rdf, sparql, shex, mechanize, …) has been removed.
 
 ### Schema Validation
 
@@ -82,7 +91,7 @@ Tests use RSpec with:
 - **VCR** — recorded HTTP cassettes in `spec/vcr_cassettes/` (7-day re-record interval)
 - **WebMock** — disables external HTTP in tests
 
-Test fixtures live in `spec/fixtures/` (YAML, XML, RDF files).
+Test fixtures live in `spec/fixtures/` (YAML and XML files).
 
 ## Style
 
