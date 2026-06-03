@@ -1,14 +1,14 @@
 require "relaton/core"
 require "w3c_api"
 require_relative "../w3c"
-require_relative "rate_limit_handler"
+require_relative "safe_realize"
 require_relative "data_parser"
 require_relative "pubid"
 
 module Relaton
   module W3c
     class DataFetcher < Core::DataFetcher
-      include Relaton::W3c::RateLimitHandler
+      include Relaton::W3c::SafeRealize
 
       DEFAULT_CONCURRENCY = 8
 

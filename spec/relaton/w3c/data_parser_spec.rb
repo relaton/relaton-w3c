@@ -8,7 +8,7 @@ RSpec.describe Relaton::W3c::DataParser do
 
   subject { described_class.new specification }
 
-  before { Relaton::W3c::RateLimitHandler.fetched_objects.clear }
+  before { Relaton::W3c::SafeRealize.skipped.clear }
 
   it "create instance and run parsing" do
     parser = double "parser"
@@ -132,7 +132,7 @@ RSpec.describe Relaton::W3c::DataParser do
   end
 
   # Regression for the relaton-data-w3c crawler crash caused by W3C API
-  # returning 403 on a sub-resource. RateLimitHandler#realize now caches
+  # returning 403 on a sub-resource. SafeRealize#realize now returns
   # nil for non-retryable client errors, so DataParser must tolerate nil
   # results at every realize callsite.
   describe "tolerates nil from realize (e.g. 403/401/400 sub-resources)" do
