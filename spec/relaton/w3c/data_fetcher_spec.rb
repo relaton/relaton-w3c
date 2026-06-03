@@ -11,6 +11,31 @@ RSpec.describe Relaton::W3c::DataFetcher do
     described_class.fetch output: "dir", format: "xml"
   end
 
+  describe ".fetch_versions?" do
+    around do |ex|
+      orig = ENV["RELATON_W3C_FETCH_VERSIONS"]
+      ex.run
+      ENV["RELATON_W3C_FETCH_VERSIONS"] = orig
+    end
+
+    it "defaults to true when unset" do
+      ENV.delete("RELATON_W3C_FETCH_VERSIONS")
+      expect(described_class.fetch_versions?).to be true
+    end
+
+    it "is false for falsey values" do
+      %w[false 0 no off FALSE Off].each do |v|
+        ENV["RELATON_W3C_FETCH_VERSIONS"] = v
+        expect(described_class.fetch_versions?).to be(false), "expected #{v.inspect} to disable"
+      end
+    end
+
+    it "is true for any other value" do
+      ENV["RELATON_W3C_FETCH_VERSIONS"] = "true"
+      expect(described_class.fetch_versions?).to be true
+    end
+  end
+
   context "instance" do
     subject { described_class.new("dir", "bibxml") }
     let(:index) { double("index") }
@@ -36,28 +61,67 @@ RSpec.describe Relaton::W3c::DataFetcher do
         allow(index).to receive(:save)
       end
 
-      it "iterates through paginated specifications" do
+      it "iterates through paginated specifications by page number" do
         specs2_links = double("specs2_links", specifications: [spec_link])
-        specs2 = double("specs2", links: specs2_links)
-        next_link = double("next_link", href: "https://example.com/page2", realize: specs2)
+        specs2 = double("specs2", links: specs2_links, page: 2)
 
-        allow(spec_links).to receive(:next).and_return(next_link)
+        allow(specs).to receive(:page).and_return(1)
         expect(specs).to receive(:next?).and_return(true)
         expect(specs2).to receive(:next?).and_return(false)
 
-        client = double("client", specifications: specs)
+        client = double("client")
+        # Page 1 fetched with embed, page 2 fetched via page-number param —
+        # both through the client so embedded_data is populated each time.
+        allow(client).to receive(:specifications).with(embed: true).and_return(specs)
+        allow(client).to receive(:specifications).with(embed: true, page: 2).and_return(specs2)
         allow(subject).to receive(:client).and_return(client)
         allow(subject).to receive(:fetch_spec)
 
         subject.fetch
+
+        expect(client).to have_received(:specifications).with(embed: true, page: 2)
       end
 
-      it "calls fetch_spec for each specification" do
+      it "fetches the index with embed and hands the page to fetch_spec" do
+        allow(specs).to receive(:page).and_return(1)
         expect(specs).to receive(:next?).and_return(false)
-        client = double("client", specifications: specs)
+        client = double("client")
+        expect(client).to receive(:specifications).with(embed: true).and_return(specs)
         allow(subject).to receive(:client).and_return(client)
-        expect(subject).to receive(:fetch_spec).with(spec_link)
+        expect(subject).to receive(:fetch_spec).with(spec_link, specs)
         subject.fetch
+      end
+
+      it "stops crawling when interrupted but still saves the index" do
+        subject.instance_variable_set(:@interrupted, true)
+        client = double("client")
+        allow(client).to receive(:specifications).with(embed: true).and_return(specs)
+        allow(subject).to receive(:client).and_return(client)
+
+        # No spec is processed, but progress collected so far is still saved.
+        expect(subject).not_to receive(:fetch_spec)
+        expect(index).to receive(:save)
+
+        expect { subject.fetch }
+          .to output(/interrupted/i).to_stderr_from_any_process
+      end
+
+      it "restores the previous SIGINT handler after the crawl" do
+        sentinel = ->(_sig) {}
+        previous = Signal.trap("INT", sentinel)
+        begin
+          allow(specs).to receive(:page).and_return(1)
+          allow(specs).to receive(:next?).and_return(false)
+          client = double("client", specifications: specs)
+          allow(subject).to receive(:client).and_return(client)
+          allow(subject).to receive(:fetch_spec)
+
+          subject.fetch
+
+          expect(Signal.trap("INT", "DEFAULT")).to eq sentinel
+        ensure
+          Signal.trap("INT", previous || "DEFAULT")
+        end
       end
     end
 
@@ -68,7 +132,7 @@ RSpec.describe Relaton::W3c::DataFetcher do
       let(:spec) { double("spec", links: spec_links) }
 
       before do
-        allow(subject).to receive(:realize).with(unrealized_spec).and_return(spec)
+        allow(subject).to receive(:realize).with(unrealized_spec, parent_resource: nil).and_return(spec)
         allow(Relaton::W3c::DataParser).to receive(:parse).with(spec, kind_of(Hash)).and_return(bib)
         allow(subject).to receive(:save_doc)
       end
@@ -78,8 +142,30 @@ RSpec.describe Relaton::W3c::DataFetcher do
 
         subject.fetch_spec(unrealized_spec)
 
-        expect(subject).to have_received(:realize).with(unrealized_spec)
+        expect(subject).to have_received(:realize).with(unrealized_spec, parent_resource: nil)
         expect(Relaton::W3c::DataParser).to have_received(:parse).with(spec, kind_of(Hash))
+        expect(subject).to have_received(:save_doc).with(bib).once
+      end
+
+      it "realizes the spec from the embedded page when given a parent page" do
+        page = double("page")
+        allow(subject).to receive(:realize).with(unrealized_spec, parent_resource: page).and_return(spec)
+        allow(spec_links).to receive(:respond_to?).and_return(false)
+
+        subject.fetch_spec(unrealized_spec, page)
+
+        expect(subject).to have_received(:realize).with(unrealized_spec, parent_resource: page)
+        expect(subject).to have_received(:save_doc).with(bib).once
+      end
+
+      it "skips version history when fetch_versions? is false" do
+        allow(described_class).to receive(:fetch_versions?).and_return(false)
+        # version_history etc. would be consulted only if fetch_versions ran;
+        # respond_to? must never be asked when versions are skipped.
+        expect(spec_links).not_to receive(:respond_to?)
+
+        subject.fetch_spec(unrealized_spec)
+
         expect(subject).to have_received(:save_doc).with(bib).once
       end
 

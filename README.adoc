@@ -118,6 +118,22 @@ require 'relaton/w3c/data_fetcher'
 Relaton::W3c::DataFetcher.fetch
 ----
 
+The crawl is tunable via environment variables:
+
+- `RELATON_W3C_FETCH_CONCURRENCY` (default `8`) - number of parallel worker threads. Lower it to lighten load on `api.w3.org`.
+- `RELATON_W3C_FETCH_VERSIONS` (default enabled) - set to `false` for a faster, shallower crawl that fetches only the top-level specifications and skips each spec's version history (the bulk of the API requests). Leave it unset for a complete dataset.
+
+The fetcher requests the specifications index with embedded specification data, so each specification is read from the page already in memory instead of issuing a separate HTTP request.
+
+A full crawl is long-running, so it handles `Ctrl-C` gracefully: it stops fetching, lets in-flight work finish, and saves the index of everything collected so far rather than losing the run.
+
+[source,sh]
+----
+# Fast, shallow refresh: top-level specs only, 4 workers
+RELATON_W3C_FETCH_VERSIONS=false RELATON_W3C_FETCH_CONCURRENCY=4 \
+  ruby -r relaton/w3c/data_fetcher -e 'Relaton::W3c::DataFetcher.fetch'
+----
+
 === Logging
 
 RelatonW3c uses the relaton-logger gem for logging. By default, it logs to STDOUT. To change the log levels and add other loggers, read the https://github.com/relaton/relaton-logger#usage[relaton-logger] documentation.

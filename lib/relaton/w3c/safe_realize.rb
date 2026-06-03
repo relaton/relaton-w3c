@@ -22,11 +22,15 @@ module Relaton
         @skipped
       end
 
-      def realize(obj)
+      # @param parent_resource [Object, nil] the index/page the link came from.
+      #   When the page was fetched with `embed: true`, its inlined `_embedded`
+      #   payload lets the link realize from memory instead of issuing an HTTP
+      #   request. nil (the default) preserves the plain remote-fetch behavior.
+      def realize(obj, parent_resource: nil)
         href = resolve_href(obj)
         return nil if SafeRealize.skipped.key?(href)
 
-        obj.realize
+        obj.realize(parent_resource: parent_resource)
       rescue Lutaml::Hal::ConnectionError, Lutaml::Hal::TimeoutError, Faraday::Error, Net::OpenTimeout => e
         # Network-level failure (already retried by w3c_api). The resource itself
         # is fine, so don't skip it permanently — a later reference can try again.
