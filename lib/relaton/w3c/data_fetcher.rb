@@ -34,6 +34,7 @@ module Relaton
       def initialize(*args)
         super
         @mutex = Mutex.new
+        @interrupted = false
       end
 
       def index
@@ -54,21 +55,46 @@ module Relaton
       # pool gives a near-linear speedup. Pagination still happens serially:
       # each page's `next?` flag gates whether the next page is requested.
       #
+      # A SIGINT (Ctrl-C) is handled gracefully: the producer stops queuing and
+      # the workers stop processing after their in-flight spec, then the index
+      # of everything fetched so far is saved rather than the run being lost.
+      #
       def fetch(_source = nil)
         n_workers = self.class.concurrency
         queue = SizedQueue.new(n_workers * 4)
         workers = Array.new(n_workers) { spawn_worker(queue) }
 
-        # embed: true inlines each specification's full payload into the index
-        # page's `_embedded` block, so a spec link realizes from that page in
-        # memory instead of making its own HTTP request — one request per page
-        # rather than one per specification. The page is queued alongside each
-        # link so the worker can hand it back to realize as the parent_resource.
+        with_interrupt_handler do
+          enqueue_specs(queue)
+          n_workers.times { queue << nil } # poison pills
+          workers.each(&:join)
+          Util.warn "Crawl interrupted — saving progress collected so far." if @interrupted
+          index.save
+        end
+
+        report_errors
+      end
+
+      #
+      # Page through the specifications index, feeding each spec (paired with
+      # its embedded page) to the worker queue. Returns early when interrupted.
+      #
+      # embed: true inlines each specification's full payload into the index
+      # page's `_embedded` block, so a spec link realizes from that page in
+      # memory instead of making its own HTTP request — one request per page
+      # rather than one per specification. The page is queued alongside each
+      # link so the worker can hand it back to realize as the parent_resource.
+      #
+      def enqueue_specs(queue)
         specs = client.specifications(embed: true)
         loop do
           page = specs
-          page.links.specifications.each { |spec| queue << [spec, page] }
-          break unless page.next?
+          page.links.specifications.each do |spec|
+            break if @interrupted
+
+            queue << [spec, page]
+          end
+          break if @interrupted || !page.next?
 
           # Fetch the next page through the client's fetch path rather than
           # realizing the `next` link: only fetch populates the page's
@@ -80,12 +106,6 @@ module Relaton
 
           specs = next_page
         end
-
-        n_workers.times { queue << nil } # poison pills
-        workers.each(&:join)
-
-        index.save
-        report_errors
       end
 
       def fetch_spec(unrealized_spec, page = nil)
@@ -172,6 +192,20 @@ module Relaton
 
       private
 
+      # Install a SIGINT handler for the duration of the crawl so Ctrl-C sets
+      # the @interrupted flag (observed by the producer loop and the workers)
+      # instead of killing the process mid-write. The trap body is kept minimal
+      # (no I/O or locking) because trap context is restricted; the user-facing
+      # notice is printed from the main thread once the crawl winds down. The
+      # previous handler is restored on the way out so the trap doesn't leak
+      # into the host process.
+      def with_interrupt_handler
+        previous = Signal.trap("INT") { @interrupted = true }
+        yield
+      ensure
+        Signal.trap("INT", previous || "DEFAULT")
+      end
+
       # Fetch one page of the specifications index with embed enabled. Goes
       # through the client (the register's fetch path) so the page's
       # embedded_data is populated. Transient 403/5xx/connection failures are
@@ -188,6 +222,10 @@ module Relaton
       def spawn_worker(queue)
         Thread.new do
           while (item = queue.pop)
+            # Once interrupted, drain the queue without processing so the
+            # producer unblocks and the pool reaches its poison pills quickly.
+            next if @interrupted
+
             spec, page = item
             begin
               fetch_spec spec, page

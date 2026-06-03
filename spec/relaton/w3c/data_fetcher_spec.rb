@@ -91,6 +91,38 @@ RSpec.describe Relaton::W3c::DataFetcher do
         expect(subject).to receive(:fetch_spec).with(spec_link, specs)
         subject.fetch
       end
+
+      it "stops crawling when interrupted but still saves the index" do
+        subject.instance_variable_set(:@interrupted, true)
+        client = double("client")
+        allow(client).to receive(:specifications).with(embed: true).and_return(specs)
+        allow(subject).to receive(:client).and_return(client)
+
+        # No spec is processed, but progress collected so far is still saved.
+        expect(subject).not_to receive(:fetch_spec)
+        expect(index).to receive(:save)
+
+        expect { subject.fetch }
+          .to output(/interrupted/i).to_stderr_from_any_process
+      end
+
+      it "restores the previous SIGINT handler after the crawl" do
+        sentinel = ->(_sig) {}
+        previous = Signal.trap("INT", sentinel)
+        begin
+          allow(specs).to receive(:page).and_return(1)
+          allow(specs).to receive(:next?).and_return(false)
+          client = double("client", specifications: specs)
+          allow(subject).to receive(:client).and_return(client)
+          allow(subject).to receive(:fetch_spec)
+
+          subject.fetch
+
+          expect(Signal.trap("INT", "DEFAULT")).to eq sentinel
+        ensure
+          Signal.trap("INT", previous || "DEFAULT")
+        end
+      end
     end
 
     context "#fetch_spec" do
