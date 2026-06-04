@@ -10,11 +10,26 @@ module Relaton
     class DataFetcher < Core::DataFetcher
       include Relaton::W3c::SafeRealize
 
-      DEFAULT_CONCURRENCY = 8
+      # Raised when pagination over the specifications index stops before the
+      # last page (e.g. a page fetch fails after retries, or the API reports
+      # more pages than were reached). It aborts the whole crawl so a truncated
+      # dataset is never saved or committed — see #fetch and #enqueue_specs.
+      class CrawlIncompleteError < StandardError; end
+
+      # Conservative default: too many parallel workers burst the per-spec
+      # version-history requests fast enough to trip the W3C API rate limiter
+      # (429s), which is what silently truncated the dataset before the crawl
+      # learned to abort on incomplete pagination. Raise it via the env var on
+      # a faster/shallower run; lower it further if 429s still appear.
+      DEFAULT_CONCURRENCY = 4
+
+      # How many times #fetch_specifications_page retries a transient failure
+      # (rate-limit/connection) before giving up and aborting the crawl.
+      PAGE_FETCH_ATTEMPTS = 3
 
       # Number of fetch_spec worker threads. Tunable via env var so CI or
-      # local runs can dial it down (e.g. for debugging or to lighten load
-      # on api.w3.org).
+      # local runs can dial it up for speed or down to lighten load on
+      # api.w3.org (or for debugging).
       def self.concurrency
         (ENV["RELATON_W3C_FETCH_CONCURRENCY"] || DEFAULT_CONCURRENCY).to_i
       end
@@ -65,9 +80,15 @@ module Relaton
         workers = Array.new(n_workers) { spawn_worker(queue) }
 
         with_interrupt_handler do
-          enqueue_specs(queue)
-          n_workers.times { queue << nil } # poison pills
-          workers.each(&:join)
+          # The poison pills + join run in `ensure` so an exception raised while
+          # enqueuing (e.g. CrawlIncompleteError) still unblocks the producer
+          # and drains the workers instead of deadlocking on queue.pop.
+          begin
+            enqueue_specs(queue)
+          ensure
+            n_workers.times { queue << nil } # poison pills
+            workers.each(&:join)
+          end
           Util.warn "Crawl interrupted — saving progress collected so far." if @interrupted
           index.save
         end
@@ -87,6 +108,8 @@ module Relaton
       #
       def enqueue_specs(queue)
         specs = client.specifications(embed: true)
+        expected_pages = specs.pages
+        last_page = nil
         loop do
           page = specs
           page.links.specifications.each do |spec|
@@ -94,7 +117,10 @@ module Relaton
 
             queue << [spec, page]
           end
-          break if @interrupted || !page.next?
+          break if @interrupted
+
+          last_page = page.page
+          break unless page.next?
 
           # Fetch the next page through the client's fetch path rather than
           # realizing the `next` link: only fetch populates the page's
@@ -102,10 +128,35 @@ module Relaton
           # the `next` link drops `_embedded` and forces a per-spec HTTP
           # request for every specification on every later page.
           next_page = fetch_specifications_page(page.page + 1)
-          break unless next_page
+          # A nil here means the page fetch failed after retries (not the end
+          # of the list — that is `!page.next?` above). Aborting rather than
+          # `break`ing prevents a rate-limit blip from silently truncating the
+          # dataset: a partial crawl must never be saved/committed.
+          unless next_page
+            raise CrawlIncompleteError,
+                  "specifications pagination stopped at page #{page.page}: " \
+                  "failed to fetch page #{page.page + 1}"
+          end
 
           specs = next_page
         end
+
+        return if @interrupted
+
+        guard_complete_pagination(last_page, expected_pages)
+      end
+
+      # Defense in depth: even when no page fetch raised, make sure pagination
+      # actually reached the last page the API advertised. Catches truncation
+      # modes other than a failed fetch (e.g. a `next` link that goes missing).
+      # Only enforced when the index reported a positive page count.
+      def guard_complete_pagination(last_page, expected_pages)
+        return unless expected_pages.is_a?(Integer) && expected_pages.positive?
+        return unless last_page.is_a?(Integer) && last_page < expected_pages
+
+        raise CrawlIncompleteError,
+              "specifications pagination ended at page #{last_page} of " \
+              "#{expected_pages}; refusing to save a partial dataset"
       end
 
       def fetch_spec(unrealized_spec, page = nil)
@@ -209,14 +260,26 @@ module Relaton
       # Fetch one page of the specifications index with embed enabled. Goes
       # through the client (the register's fetch path) so the page's
       # embedded_data is populated. Transient 403/5xx/connection failures are
-      # already retried upstream (w3c_api/lutaml-hal); a terminal error here
-      # stops pagination gracefully rather than crashing the crawl.
+      # already retried upstream (w3c_api/lutaml-hal), but losing an index page
+      # drops every spec on it, so retry a few more times here with backoff to
+      # ride out a brief rate-limit window. Returns nil only once the attempts
+      # are exhausted; the caller turns that into a CrawlIncompleteError so the
+      # crawl aborts instead of committing a truncated dataset.
       def fetch_specifications_page(number)
-        client.specifications(embed: true, page: number)
-      rescue Lutaml::Hal::Error, Faraday::Error => e
-        log_error "Failed to fetch specifications page #{number}: " \
-                  "#{e.class}: #{e.message}"
-        nil
+        attempt = 0
+        begin
+          attempt += 1
+          client.specifications(embed: true, page: number)
+        rescue Lutaml::Hal::Error, Faraday::Error => e
+          log_error "Failed to fetch specifications page #{number} " \
+                    "(attempt #{attempt}/#{PAGE_FETCH_ATTEMPTS}): " \
+                    "#{e.class}: #{e.message}"
+          if attempt < PAGE_FETCH_ATTEMPTS
+            sleep(2**attempt)
+            retry
+          end
+          nil
+        end
       end
 
       def spawn_worker(queue)
