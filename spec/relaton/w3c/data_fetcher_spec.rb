@@ -55,7 +55,7 @@ RSpec.describe Relaton::W3c::DataFetcher do
     context "#fetch" do
       let(:spec_link) { double("spec_link") }
       let(:spec_links) { double("spec_links", specifications: [spec_link]) }
-      let(:specs) { double("specs", links: spec_links) }
+      let(:specs) { double("specs", links: spec_links, pages: 1) }
 
       before do
         allow(index).to receive(:save)
@@ -65,7 +65,7 @@ RSpec.describe Relaton::W3c::DataFetcher do
         specs2_links = double("specs2_links", specifications: [spec_link])
         specs2 = double("specs2", links: specs2_links, page: 2)
 
-        allow(specs).to receive(:page).and_return(1)
+        allow(specs).to receive_messages(page: 1, pages: 2)
         expect(specs).to receive(:next?).and_return(true)
         expect(specs2).to receive(:next?).and_return(false)
 
@@ -122,6 +122,72 @@ RSpec.describe Relaton::W3c::DataFetcher do
         ensure
           Signal.trap("INT", previous || "DEFAULT")
         end
+      end
+
+      it "aborts without saving when a page fetch fails mid-pagination" do
+        allow(specs).to receive_messages(page: 1, pages: 3)
+        allow(specs).to receive(:next?).and_return(true)
+
+        client = double("client")
+        allow(client).to receive(:specifications).with(embed: true).and_return(specs)
+        allow(client).to receive(:specifications).with(embed: true, page: 2)
+          .and_raise(Lutaml::Hal::Error.new("rate limited"))
+        allow(subject).to receive(:client).and_return(client)
+        allow(subject).to receive(:fetch_spec)
+        allow(subject).to receive(:sleep) # don't actually back off in the test
+
+        # A failed page fetch must not be mistaken for end-of-list: the crawl
+        # aborts and the (truncated) index is never saved.
+        expect(index).not_to receive(:save)
+        expect { subject.fetch }
+          .to raise_error(described_class::CrawlIncompleteError, /page 1/)
+      end
+
+      it "aborts when pagination ends before the last advertised page" do
+        allow(specs).to receive_messages(page: 1, pages: 3)
+        allow(specs).to receive(:next?).and_return(false)
+
+        client = double("client")
+        allow(client).to receive(:specifications).with(embed: true).and_return(specs)
+        allow(subject).to receive(:client).and_return(client)
+        allow(subject).to receive(:fetch_spec)
+
+        expect(index).not_to receive(:save)
+        expect { subject.fetch }
+          .to raise_error(described_class::CrawlIncompleteError, /page 1 of 3/)
+      end
+    end
+
+    context "#fetch_specifications_page" do
+      let(:client) { double("client") }
+      let(:page) { double("page") }
+
+      before do
+        allow(subject).to receive(:client).and_return(client)
+        allow(subject).to receive(:sleep) # keep backoff instant in tests
+      end
+
+      it "retries a transient failure and returns the page on success" do
+        calls = 0
+        allow(client).to receive(:specifications).with(embed: true, page: 2) do
+          calls += 1
+          raise Lutaml::Hal::Error, "rate limited" if calls < 2
+
+          page
+        end
+
+        expect(subject.send(:fetch_specifications_page, 2)).to eq page
+        expect(calls).to eq 2
+      end
+
+      it "returns nil after exhausting retries" do
+        allow(client).to receive(:specifications).with(embed: true, page: 2)
+          .and_raise(Lutaml::Hal::Error.new("rate limited"))
+
+        expect(subject.send(:fetch_specifications_page, 2)).to be_nil
+        expect(client).to have_received(:specifications)
+          .with(embed: true, page: 2).exactly(described_class::PAGE_FETCH_ATTEMPTS).times
+        expect(subject).to have_received(:sleep).exactly(described_class::PAGE_FETCH_ATTEMPTS - 1).times
       end
     end
 

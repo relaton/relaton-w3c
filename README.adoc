@@ -120,17 +120,19 @@ Relaton::W3c::DataFetcher.fetch
 
 The crawl is tunable via environment variables:
 
-- `RELATON_W3C_FETCH_CONCURRENCY` (default `8`) - number of parallel worker threads. Lower it to lighten load on `api.w3.org`.
+- `RELATON_W3C_FETCH_CONCURRENCY` (default `4`) - number of parallel worker threads. The default is kept conservative so the version-history requests don't burst fast enough to trip the W3C API rate limiter; raise it for a faster run, lower it if you still see rate-limit (429) skips.
 - `RELATON_W3C_FETCH_VERSIONS` (default enabled) - set to `false` for a faster, shallower crawl that fetches only the top-level specifications and skips each spec's version history (the bulk of the API requests). Leave it unset for a complete dataset.
 
 The fetcher requests the specifications index with embedded specification data, so each specification is read from the page already in memory instead of issuing a separate HTTP request.
 
 A full crawl is long-running, so it handles `Ctrl-C` gracefully: it stops fetching, lets in-flight work finish, and saves the index of everything collected so far rather than losing the run.
 
+If a specifications-index page can't be fetched (e.g. a rate-limit that outlasts the retries) the crawl aborts with `CrawlIncompleteError` rather than treating the failure as the end of the list. This is deliberate: a truncated crawl is never saved, so a transient API hiccup can't silently drop most of the dataset.
+
 [source,sh]
 ----
-# Fast, shallow refresh: top-level specs only, 4 workers
-RELATON_W3C_FETCH_VERSIONS=false RELATON_W3C_FETCH_CONCURRENCY=4 \
+# Fast, shallow refresh: top-level specs only, 8 workers
+RELATON_W3C_FETCH_VERSIONS=false RELATON_W3C_FETCH_CONCURRENCY=8 \
   ruby -r relaton/w3c/data_fetcher -e 'Relaton::W3c::DataFetcher.fetch'
 ----
 
