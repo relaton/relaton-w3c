@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
                        "using the IsoBibliographicItem model"
   spec.description   = "Relaton::W3c: retrieve W3C Standards for bibliographic "\
                        "using the IsoBibliographicItem model"
-  spec.homepage      = "https://github.com/relaton/relaton-wc3"
+  spec.homepage      = "https://github.com/relaton/relaton-w3c"
   spec.license       = "BSD-2-Clause"
   spec.required_ruby_version = Gem::Requirement.new(">= 3.2.0")
 
